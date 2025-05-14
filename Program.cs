@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Vintellitour_Framework.Services;
 using Vintellitour_Framework.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 

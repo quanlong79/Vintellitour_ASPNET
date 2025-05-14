@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Vintellitour_Framework.props" />
+</Project>

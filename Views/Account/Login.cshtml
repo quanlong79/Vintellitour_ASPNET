@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+<form method="post">
+    <div>
+        <label>Email</label>
+        <input type="email" name="Email" required />
+    </div>
+    <div>
+        <label>Mật khẩu</label>
+        <input type="password" name="Password" required />
+    </div>
+
+    @if (ViewData["Error"] != null)
+    {
+        <div style="color: red;">
+            @ViewData["Error"]
+        </div>
+    }
+
+    <button type="submit">Đăng nhập</button>
+</form>
+
+<div>
+    <p>Chưa có tài khoản? <a href="/Account/Register">Đăng ký tại đây</a></p>
+</div>

@@ -1,0 +1,58 @@
+﻿@model dynamic
+
+<!-- Main layout container -->
+<div class="flex flex-col md:flex-row px-4 md:px-16 py-8 gap-8">
+    <!-- LEFT COLUMN -->
+    <div class="flex-1">
+        <!-- Header with filters inline -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-2 border-gray-300 mb-6">
+            <div class="flex flex-col">
+                <h2 class="text-xl text-gray-700 font-semibold">
+                    Tất cả tỉnh
+                </h2>
+                <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
+            </div>
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
+                <button class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+                    <span class="text-xs font-semibold">XEM:</span>
+                    <span class="text-blue-600">Bài viết của tôi</span>
+                </button>
+                <button class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+                    <span>Mới nhất</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Placeholder for posts -->
+        <div class="text-center py-8 text-gray-500">
+            Không có bài viết nào
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="hidden md:block w-px bg-gray-300"></div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="w-full md:w-64">
+        <div class="bg-purple-100 p-4 rounded-lg">
+            <h2 class="text-xl text-gray-700 font-semibold border-b pb-2 border-gray-300 mb-6">
+                Tất cả tỉnh
+                <div class="w-24 h-1 bg-purple-500 mt-1 rounded-full"></div>
+            </h2>
+
+            <!-- Placeholder for province filter list -->
+            <ul class="space-y-3 text-gray-800 max-h-[500px] overflow-y-auto">
+                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
+                    <span>#Hà Nội</span>
+                </li>
+                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
+                    <span>#Đà Nẵng</span>
+                </li>
+                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
+                    <span>#TP.HCM</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

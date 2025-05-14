@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\UIT\\Xây dựng HTTT trên các framework\\Vintellitour_Framework\\Vintellitour_Framework.csproj": {}
+    "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {}
   },
   "projects": {
-    "E:\\UIT\\Xây dựng HTTT trên các framework\\Vintellitour_Framework\\Vintellitour_Framework.csproj": {
+    "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\UIT\\Xây dựng HTTT trên các framework\\Vintellitour_Framework\\Vintellitour_Framework.csproj",
+        "projectUniqueName": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
         "projectName": "Vintellitour_Framework",
-        "projectPath": "E:\\UIT\\Xây dựng HTTT trên các framework\\Vintellitour_Framework\\Vintellitour_Framework.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "E:\\UIT\\Xây dựng HTTT trên các framework\\Vintellitour_Framework\\obj\\",
+        "projectPath": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

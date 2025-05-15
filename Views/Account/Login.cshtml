@@ -1,29 +1,67 @@
-﻿@{
+﻿@model dynamic
+@{
     ViewData["Title"] = "Đăng nhập";
 }
 
-<h2>Đăng nhập</h2>
+<div class="min-h-screen flex flex-col items-center justify-center">
+    <div class="py-6 px-4">
+        <div class="grid md:grid-cols-2 items-center gap-15 max-w-6xl w-full">
+            <div class="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+                <form method="post" class="space-y-6">
+                    <div class="mb-8">
+                        <h3 class="text-slate-900 text-center text-3xl font-semibold">Đăng nhập</h3>
+                        <p class="text-slate-500 text-sm mt-6 leading-relaxed">
+                            Đăng nhập vào tài khoản của bạn và khám phá thế giới đầy cơ hội. Hành trình của bạn bắt đầu tại đây.
+                        </p>
+                    </div>
 
-<form method="post">
-    <div>
-        <label>Email</label>
-        <input type="email" name="Email" required />
-    </div>
-    <div>
-        <label>Mật khẩu</label>
-        <input type="password" name="Password" required />
-    </div>
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="text-red-500 text-center mb-2">@ViewBag.Error</div>
+                    }
 
-    @if (ViewData["Error"] != null)
-    {
-        <div style="color: red;">
-            @ViewData["Error"]
+                    @if (ViewBag.Success != null)
+                    {
+                        <div class="text-green-600 text-center mb-2">@ViewBag.Success</div>
+                    }
+
+                    <div>
+                        <label class="text-slate-800 text-sm font-medium mb-2 block">Email</label>
+                        <div class="relative flex items-center">
+                            <input name="Email" type="email" required class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600" placeholder="Nhập email của bạn" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-slate-800 text-sm font-medium mb-2 block">Mật khẩu</label>
+                        <div class="relative flex items-center">
+                            <input name="Password" type="password" required class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600" placeholder="Nhập mật khẩu" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="RememberMe" type="checkbox" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-slate-300 rounded" />
+                            <label for="remember-me" class="ml-3 block text-sm text-slate-500">Ghi nhớ tài khoản</label>
+                        </div>
+                        <div class="text-sm">
+                            <a href="/forgot-password" class="text-blue-600 hover:underline font-medium">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+
+                    <div class="!mt-12">
+                        <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-[15px] font-medium tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                            Đăng nhập
+                        </button>
+                        <p class="text-sm !mt-6 text-center text-slate-500">
+                            Chưa có tài khoản? <a href="/register" class="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap">Đăng ký tại đây</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="max-md:mt-8">
+                <img src="~/img/bandovn.jpg" alt=" Việt Nam" class="w-full object-cover rounded-lg" style="max-width:800px; height:auto;" />
+            </div>
         </div>
-    }
-
-    <button type="submit">Đăng nhập</button>
-</form>
-
-<div>
-    <p>Chưa có tài khoản? <a href="/Account/Register">Đăng ký tại đây</a></p>
+    </div>
 </div>

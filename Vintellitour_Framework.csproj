@@ -7,7 +7,71 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\1745740116722-cho-dam-boc.jpg" />
+    <Content Remove="wwwroot\img\1745740128863-hetcuu.jpg" />
+    <Content Remove="wwwroot\img\1745740135826-cho-dam-boc.jpg" />
+    <Content Remove="wwwroot\img\1745756548990-hetcuu.jpg" />
+    <Content Remove="wwwroot\img\1746509195408-494860942_706886945033664_5469190362297754429_n.jpg" />
+    <Content Remove="wwwroot\img\1746519178569-Nguyễn-Kim-Phương-Huy.png" />
+    <Content Remove="wwwroot\img\1746599658937-494815975_675821905148192_3359054012856848323_n.jpg" />
+    <Content Remove="wwwroot\img\avatar-default-svgrepo-com.svg" />
+    <Content Remove="wwwroot\img\bandovn.jpg" />
+    <Content Remove="wwwroot\img\baotangcaphe.jpg" />
+    <Content Remove="wwwroot\img\bb.jpg" />
+    <Content Remove="wwwroot\img\bg_vn.jpg" />
+    <Content Remove="wwwroot\img\bmt_daklak.jpg" />
+    <Content Remove="wwwroot\img\brand-threejs.svg" />
+    <Content Remove="wwwroot\img\Canhdep_Vietnam-1.jpg" />
+    <Content Remove="wwwroot\img\cc.jpg" />
+    <Content Remove="wwwroot\img\default-avatar.png" />
+    <Content Remove="wwwroot\img\github.png" />
+    <Content Remove="wwwroot\img\Langchain--Streamline-Simple-Icons.svg" />
+    <Content Remove="wwwroot\img\LangGraph_icon.png" />
+    <Content Remove="wwwroot\img\leaflet.svg" />
+    <Content Remove="wwwroot\img\man.png" />
+    <Content Remove="wwwroot\img\mongodb-original-wordmark.svg" />
+    <Content Remove="wwwroot\img\nextjs.svg" />
+    <Content Remove="wwwroot\img\setup vibe.jpeg" />
+    <Content Remove="wwwroot\img\sky.png" />
+    <Content Remove="wwwroot\img\tailwind-css.svg" />
+    <Content Remove="wwwroot\img\VN.jpg" />
+    <Content Remove="wwwroot\img\woman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\1745740116722-cho-dam-boc.jpg" />
+    <None Include="wwwroot\img\1745740128863-hetcuu.jpg" />
+    <None Include="wwwroot\img\1745740135826-cho-dam-boc.jpg" />
+    <None Include="wwwroot\img\1745756548990-hetcuu.jpg" />
+    <None Include="wwwroot\img\1746509195408-494860942_706886945033664_5469190362297754429_n.jpg" />
+    <None Include="wwwroot\img\1746519178569-Nguyễn-Kim-Phương-Huy.png" />
+    <None Include="wwwroot\img\1746599658937-494815975_675821905148192_3359054012856848323_n.jpg" />
+    <None Include="wwwroot\img\avatar-default-svgrepo-com.svg" />
+    <None Include="wwwroot\img\bandovn.jpg" />
+    <None Include="wwwroot\img\baotangcaphe.jpg" />
+    <None Include="wwwroot\img\bb.jpg" />
+    <None Include="wwwroot\img\bg_vn.jpg" />
+    <None Include="wwwroot\img\bmt_daklak.jpg" />
+    <None Include="wwwroot\img\brand-threejs.svg" />
+    <None Include="wwwroot\img\Canhdep_Vietnam-1.jpg" />
+    <None Include="wwwroot\img\cc.jpg" />
+    <None Include="wwwroot\img\default-avatar.png" />
+    <None Include="wwwroot\img\github.png" />
+    <None Include="wwwroot\img\Langchain--Streamline-Simple-Icons.svg" />
+    <None Include="wwwroot\img\LangGraph_icon.png" />
+    <None Include="wwwroot\img\leaflet.svg" />
+    <None Include="wwwroot\img\man.png" />
+    <None Include="wwwroot\img\mongodb-original-wordmark.svg" />
+    <None Include="wwwroot\img\nextjs.svg" />
+    <None Include="wwwroot\img\setup vibe.jpeg" />
+    <None Include="wwwroot\img\sky.png" />
+    <None Include="wwwroot\img\tailwind-css.svg" />
+    <None Include="wwwroot\img\VN.jpg" />
+    <None Include="wwwroot\img\woman.png" />
   </ItemGroup>
 
 </Project>

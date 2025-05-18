@@ -7,6 +7,8 @@ namespace Vintellitour_Framework.Services
     public class MongoDbService
     {
         private readonly IMongoCollection<User> _users;
+        private readonly IMongoCollection<Post> _posts;
+        private readonly IMongoCollection<Provinces> _provinces;
 
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
@@ -17,7 +19,9 @@ namespace Vintellitour_Framework.Services
 
             var client = new MongoClient(mongoDbSettings.Value.ConnectionString);
             var database = client.GetDatabase(mongoDbSettings.Value.DatabaseName);
-            _users = database.GetCollection<User>("Users");
+            _users = database.GetCollection<User>("users");
+            _posts = database.GetCollection<Post>("posts");
+            _provinces = database.GetCollection<Provinces>("provinces");
         }
 
         // Phương thức trả về collection Users
@@ -25,8 +29,15 @@ namespace Vintellitour_Framework.Services
         {
             return _users;
         }
-
-        // Lấy tất cả người dùng
+        public IMongoCollection<Post> GetPostCollection()
+        {
+            return _posts;
+        }
+        public IMongoCollection<Provinces> GetProvincesCollection()
+        {
+            return _provinces;
+        }
+        //Lấy tất cả người dùng
         public async Task<List<User>> GetUsersAsync() =>
             await _users.Find(user => true).ToListAsync();
 
@@ -45,5 +56,5 @@ namespace Vintellitour_Framework.Services
         // Xóa người dùng
         public async Task DeleteUserAsync(string id) =>
             await _users.DeleteOneAsync(user => user.Id == id);
-    }
+     }
 }

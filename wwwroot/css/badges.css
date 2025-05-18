@@ -1,0 +1,65 @@
+﻿.badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    cursor: default;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+    .badge:hover {
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+.badge-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.badge-label {
+    white-space: nowrap;
+}
+
+/* Màu gradient theo loại badge */
+.badge.expert {
+    background: linear-gradient(to right, #9333ea, #ec4899);
+}
+
+.badge.creator {
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+}
+
+.badge.connector {
+    background: linear-gradient(to right, #10b981, #22c55e);
+}
+
+.badge.rookie {
+    background: linear-gradient(to right, #fbbf24, #f97316);
+}
+
+/* Hover glow effect */
+.badge-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    filter: blur(6px);
+    z-index: -1;
+}
+
+.badge:hover .badge-glow {
+    opacity: 1;
+}

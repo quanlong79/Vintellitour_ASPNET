@@ -14,7 +14,16 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 // Đăng ký các dịch vụ MongoDbService và UserService
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService
+builder.Services.AddScoped<IPostService, PostService>(); // Cũng phải đăng ký MongoDB Database instance và kết nối cho PostService nhận
 
+// Đăng ký session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Tạo ứng dụng
 var app = builder.Build();
 
@@ -31,10 +40,10 @@ app.UseRouting();
 
 // Đảm bảo yêu cầu xác thực
 app.UseAuthorization();
-
+// Sử dụng session
+app.UseSession();
 // Xử lý tài nguyên tĩnh (assets)
-app.UseStaticFiles();  // Đây là middleware xử lý các file tĩnh
-
+app.UseStaticFiles();
 // Định nghĩa route mặc định cho MVC
 app.MapControllerRoute(
     name: "default",

@@ -4,6 +4,7 @@ using System;
 
 namespace Vintellitour_Framework.Models
 {
+    [BsonIgnoreExtraElements]  // Bỏ qua các trường extra không khai báo
     public class User
     {
         [BsonId]
@@ -23,7 +24,7 @@ namespace Vintellitour_Framework.Models
         public string Avatar { get; set; } = "";
 
         [BsonElement("isVerified")]
-        public bool IsVerified { get; set; } = true;  // Người dùng được xác thực ngay từ đầu
+        public bool IsVerified { get; set; } = true;
 
         [BsonElement("createdAt")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]

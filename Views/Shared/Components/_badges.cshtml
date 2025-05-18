@@ -1,0 +1,13 @@
+﻿@{
+    var badges = ViewData["Badges"] as List<(string Type, string Label)> ?? new List<(string, string)>
+    {
+        ("expert", "Chuyên gia")
+    };
+}
+
+<div class="flex gap-2">
+    @foreach (var badge in badges)
+    {
+        @await Html.PartialAsync("Components/_PremiumBadge", badge)
+    }
+</div>

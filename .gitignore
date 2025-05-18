@@ -1,1 +1,4 @@
 .vs/
+# Th? m?c build
+bin/
+obj/

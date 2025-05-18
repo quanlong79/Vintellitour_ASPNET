@@ -7,11 +7,19 @@ namespace Vintellitour_Framework.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        //private readonly MongoDbService _mongoDbService;
 
         public AccountController(IUserService userService)
         {
             _userService = userService;
         }
+
+        //public AccountController(IUserService userService, MongoDbService mongoDbService)
+        //{
+        //    _userService = userService;
+        //    _mongoDbService = mongoDbService;
+        //}
+
 
         // Trang đăng ký
         [HttpGet]
@@ -65,8 +73,27 @@ namespace Vintellitour_Framework.Controllers
                 return View();
             }
 
+            // Lưu thông tin user vào session
+            HttpContext.Session.SetString("UserId", user.Id);
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetString("Avatar", user.Avatar ?? "/img/default-avatar.png");
+
             // Sau khi đăng nhập thành công, có thể chuyển hướng tới trang chính
             return RedirectToAction("Index", "Home");
+
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear(); // Xóa session user
+            return RedirectToAction("Login", "Account"); // Chuyển về trang Login của AccountController
+        }
+
+
+        //public async Task<IActionResult> TestRawDb()
+        //{
+        //    var count = await _mongoDbService.GetRawUserCountAsync();
+        //    return Content($"Số user raw từ MongoDbService: {count}");
+        //}
+
     }
 }

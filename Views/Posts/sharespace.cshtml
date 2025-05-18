@@ -1,0 +1,154 @@
+﻿@model Vintellitour_Framework.ViewModels.SharespaceViewModel
+
+@{
+    Layout = "_Layout"; // hoặc tùy bạn
+}
+
+@section Scripts {
+    <script>
+        // Script JS nhỏ để xử lý expand text
+        function toggleExpand(postId) {
+            var content = document.getElementById("content-" + postId);
+            var btn = document.getElementById("btn-expand-" + postId);
+            if (content.classList.contains("line-clamp-3")) {
+                content.classList.remove("line-clamp-3");
+                btn.innerText = "Thu gọn";
+            } else {
+                content.classList.add("line-clamp-3");
+                btn.innerText = "Xem thêm";
+            }
+        }
+
+        // Script carousel ảnh đơn giản
+        function showImage(postId, index) {
+            var images = document.querySelectorAll(`#media-${postId} img`);
+            images.forEach((img, i) => {
+                img.style.display = i === index ? "block" : "none";
+            });
+            var indicators = document.querySelectorAll(`#indicators-${postId} div`);
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle("bg-white", i === index);
+                dot.classList.toggle("bg-white/50", i !== index);
+            });
+            // Lưu index nếu cần
+        }
+
+        // Các hàm like, open comment modal, ... bạn có thể bổ sung thêm
+    </script>
+}
+
+<div class="flex flex-col md:flex-row px-4 md:px-16 py-8 gap-8">
+    <div class="flex-1">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-2 border-gray-300 mb-6">
+            <div class="flex flex-col">
+                <h2 class="text-xl text-gray-700 font-semibold">
+                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                    {
+                        var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
+                        <text>Tỉnh: @p?.Name</text>
+                    }
+                    else
+                    {
+                        <text>Tất cả tỉnh</text>
+                    }
+                </h2>
+                <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
+            </div>
+            <div>
+                <form method="get" class="inline-flex gap-2">
+                    <input type="hidden" name="selectedProvinceId" value="@Model.SelectedProvinceId" />
+                    <input type="hidden" name="showOnlyMyPosts" value="@(!Model.ShowOnlyMyPosts)" />
+                    <button type="submit" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500">
+                        @(Model.ShowOnlyMyPosts ? "Đang xem: Bài viết của tôi" : "Xem tất cả bài viết")
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        @if (Model.Posts.Count == 0)
+        {
+            <p class="text-center text-gray-500">Không có bài viết nào phù hợp.</p>
+        }
+        else
+        {
+            @foreach (var post in Model.Posts)
+            {
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)" alt="@post.AuthorName" class="rounded-full" width="50" height="50" />
+                        <div>
+                            <p class="text-sm font-bold text-orange-600">@post.AuthorName</p>
+                            <p class="text-xs text-gray-500">@post.Post.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</p>
+                        </div>
+                    </div>
+
+                    <p id="content-@post.Post.Id" class="text-gray-800 mb-3 line-clamp-3">@post.Post.Content</p>
+                    @if (post.Post.Content.Length > 100)
+                    {
+                        <button id="btn-expand-@post.Post.Id" class="text-blue-500 text-xs" onclick="toggleExpand('@post.Post.Id')">Xem thêm</button>
+                    }
+
+                    @if (post.Post.Media != null && post.Post.Media.Count > 0)
+                    {
+                        <div id="media-@post.Post.Id" class="relative w-full max-w-[600px] h-[400px] mb-4">
+                            @for (int i = 0; i < post.Post.Media.Count; i++)
+                            {
+                                var media = post.Post.Media[i];
+                                <img src="@media.MediaUrl" alt="media" class="absolute inset-0 w-full h-full object-cover rounded-md" style="display:@(i==0 ? "block" : "none");" />
+                            }
+                            <div id="indicators-@post.Post.Id" class="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                                @for (int i = 0; i < post.Post.Media.Count; i++)
+                                {
+                                    <div onclick="showImage('@post.Post.Id', @i)" class="w-2 h-2 rounded-full cursor-pointer @(i==0 ? "bg-white" : "bg-white/50")"></div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <div class="flex gap-6 mt-3 text-gray-700">
+                        <div class="flex items-center gap-1 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="red" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            <span>@post.Post.Likes</span>
+                        </div>
+                        <div class="flex items-center gap-1 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-2xl text-gray-700" fill="none" stroke="currentColor" width="24" height="24" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-6 4h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>@(post.Post.Comments?.Count ?? 0)</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="w-full md:w-64">
+        <div class="bg-purple-100 p-4 rounded-lg">
+            <h2 class="text-xl text-gray-700 font-semibold border-b pb-2 border-gray-300 mb-6">
+                @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                {
+                    var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
+                    <text>Tỉnh: @p?.Name</text>
+                }
+                else
+                {
+                    <text>Tất cả tỉnh</text>
+                }
+            </h2>
+            <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
+
+            <ul class="space-y-3 text-gray-800 max-h-[500px] overflow-y-auto">
+                @foreach (var province in Model.Provinces)
+                {
+                    <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600 @(Model.SelectedProvinceId == province.Id ? "ring-2 ring-white" : "")"
+                        onclick="location.href='@Url.Action("Sharespace", "Main", new { selectedProvinceId = province.Id, showOnlyMyPosts = Model.ShowOnlyMyPosts })'">
+                        <span>#{province.Name}</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

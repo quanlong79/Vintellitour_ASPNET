@@ -1,2 +1,0 @@
-D:\University\Năm 3 - HK II ----\HTTT FrameWork\Vintellitour_ASPNET\wwwroot\css\global.css
-E:\UIT\Xây dựng HTTT trên các framework\Vintellitour_Framework\wwwroot\css\global.css

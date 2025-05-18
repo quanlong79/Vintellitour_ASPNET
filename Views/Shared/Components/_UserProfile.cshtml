@@ -1,9 +1,10 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+
 @{
-    var isLoggedIn = User.Identity.IsAuthenticated;
-    var userName = isLoggedIn ? User.Identity.Name : "Khách";
-    string avatarUrl = "/img/avatar-default-svgrepo-com.svg"; // TODO: load avatar nếu bạn có trong DB
-    // TODO: badges và trạng thái có thể truyền vào ViewBag hoặc tạo model riêng nếu cần
+    var userId = Context.Session.GetString("UserId");
+    var isLoggedIn = !string.IsNullOrEmpty(userId);
+    var userName = isLoggedIn ? Context.Session.GetString("Username") ?? "User" : "Khách";
+    var avatarUrl = isLoggedIn ? Context.Session.GetString("Avatar") ?? "/img/avatar-default-svgrepo-com.svg" : "/img/avatar-default-svgrepo-com.svg";
 }
 
 <div class="flex items-center gap-4">
@@ -22,11 +23,7 @@
         </div>
 
         <!-- Badges (giả lập tạm thời) -->
-        <div class="flex gap-2">
-            <span class="py-1 px-3 rounded-full bg-blue-100 text-sm text-blue-600 font-semibold">🌟 Thành viên</span>
-            <!-- Có thể loop ViewBag.Badges nếu có -->
-        </div>
-
+        @await Html.PartialAsync("Components/_badges")
         <!-- Nút logout -->
         <a href="/Account/Logout" class="text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-700 hover:to-indigo-600 px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-300 ml-4">
             Đăng xuất

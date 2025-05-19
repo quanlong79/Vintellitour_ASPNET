@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
-
+@model Vintellitour_Framework.ViewModels.SharespaceViewModel
 @{
     var userId = Context.Session.GetString("UserId");
     var isLoggedIn = !string.IsNullOrEmpty(userId);
@@ -22,8 +22,16 @@
             </div>
         </div>
 
-        <!-- Badges (giả lập tạm thời) -->
-        @await Html.PartialAsync("Components/_badges")
+        <!-- Badges -->
+        <div class="flex gap-2">
+            @if (Model != null && Model.CurrentUserBadges != null)
+            {
+                foreach (var badge in Model.CurrentUserBadges)
+                {
+                    @await Html.PartialAsync("_PremiumBadge", badge)
+                }
+            }
+        </div>
         <!-- Nút logout -->
         <a href="/Account/Logout" class="text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-700 hover:to-indigo-600 px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-300 ml-4">
             Đăng xuất

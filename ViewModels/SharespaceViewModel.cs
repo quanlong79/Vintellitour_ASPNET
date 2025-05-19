@@ -11,6 +11,11 @@ namespace Vintellitour_Framework.ViewModels
         public bool ShowOnlyMyPosts { get; set; }
         public string CurrentUserId { get; set; }
         public Dictionary<string, List<BadgeViewModel>> AuthorBadges { get; set; }
+        public string SortOrder { get; set; } = "newest";
+        public int PostsCount { get; set; }
+        public int CommentsCount { get; set; }
+        public List<BadgeViewModel> CurrentUserBadges { get; set; } = new List<BadgeViewModel>();
+
     }
 
     public class ProvinceViewModel

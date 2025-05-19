@@ -73,11 +73,7 @@
 
             badgesList[authorId] = badges;
         }
-        List<BadgeViewModel> currentUserBadges = new List<BadgeViewModel>();
-        if (!string.IsNullOrEmpty(currentUserId) && badgesList.ContainsKey(currentUserId))
-        {
-            currentUserBadges = badgesList[currentUserId];
-        }
+        
         var viewModel = new SharespaceViewModel
             {
                 SelectedProvinceId = selectedProvinceId,
@@ -86,11 +82,10 @@
                 ShowOnlyMyPosts = showOnlyMyPosts,
                 CurrentUserId = currentUserId,
                 SortOrder = sortOrder,
-                AuthorBadges = badgesList,
-                CurrentUserBadges = currentUserBadges
+                AuthorBadges = badgesList
         };
         
-        return View(viewModel);
+        return View("~/Views/Main/Sharespace.cshtml",viewModel);
         }
 
 }

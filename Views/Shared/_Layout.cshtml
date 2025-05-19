@@ -3,7 +3,6 @@
 @*     var currentUser = User.Identity.IsAuthenticated ? User.Identity.GetUserName() : "Khách"; *@
 @* } *@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +46,7 @@
                 </li>
             </ul>
             <div class="hidden md:flex justify-start pl-2 pr-10 py-1 gap-12">
-                @await Html.PartialAsync("Components/_UserProfile")
+                @await Component.InvokeAsync("UserProfile")
             </div>
         </nav>
     </header>

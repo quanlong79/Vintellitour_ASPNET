@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+@{
+    Layout = "adminlayout";
+}
+
+<div class="p-6 space-y-10">
+
+    <h1 class="text-3xl font-bold mb-10 text-center">Admin Dashboard</h1>
+
+    <!-- Section 1: Top 5 Provinces + User Post Status -->
+    <section class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-10 text-gray-800">
+            🏞️ Top 5 Provinces & 👤 User Post Status
+        </h2>
+
+        <div class="flex flex-wrap gap-6">
+            <!-- Column Chart placeholder -->
+            <div class="flex-1 min-w-[300px] h-[400px] bg-gray-100 flex items-center justify-center text-gray-400">
+                ProvinceEngagementChart
+            </div>
+
+            <!-- Pie Chart placeholder -->
+            <div class="w-full md:w-1/3 h-[400px] bg-gray-100 flex items-center justify-center text-gray-400">
+                UserPostStatusChart
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Post Stats by Month -->
+    <section class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+            📈 Post Stats by Month
+        </h2>
+
+        <div class="w-full h-[500px] bg-gray-100 flex items-center justify-center text-gray-400">
+            PostStatsChart
+        </div>
+    </section>
+
+</div>

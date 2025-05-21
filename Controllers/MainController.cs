@@ -5,14 +5,17 @@ namespace Vintellitour_Framework.Controllers
 {
     public class MainController : Controller
     {
-        public IActionResult AboutUs()
+        public IActionResult mainpage()
         {
-            return View();  // Sẽ tìm Views/Main/AboutUs.cshtml
+            return View();
         }
-
         public IActionResult sharespace()
         {
-            return View();  
+            return View();
+        }
+        public IActionResult AboutUs()
+        {
+            return View(); 
         }
     }
 }

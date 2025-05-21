@@ -252,3 +252,87 @@ D:\University\Năm 3 - HK II ----\HTTT FrameWork\Vintellitour_ASPNET\obj\Debug\n
 D:\University\Năm 3 - HK II ----\HTTT FrameWork\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.pdb
 D:\University\Năm 3 - HK II ----\HTTT FrameWork\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.genruntimeconfig.cache
 D:\University\Năm 3 - HK II ----\HTTT FrameWork\Vintellitour_ASPNET\obj\Debug\net9.0\ref\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\appsettings.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\public\province.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.staticwebassets.runtime.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.staticwebassets.endpoints.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.exe
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.deps.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.runtimeconfig.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.pdb
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\DnsClient.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\MongoDB.Bson.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\MongoDB.Driver.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\SharpCompress.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\Snappier.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\bin\Debug\net9.0\ZstdSharp.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.csproj.AssemblyReference.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.AssemblyInfoInputs.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.AssemblyInfo.cs
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.csproj.CoreCompileInputs.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.RazorAssemblyInfo.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.RazorAssemblyInfo.cs
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.sourcelink.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\scopedcss\bundle\Vintellitour_Framework.styles.css
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.Vintellitour_Framework.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.Vintellitour_Framework.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.build.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintelli.27334272.Up2Date
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\refint\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.pdb
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.genruntimeconfig.cache
+C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\obj\Debug\net9.0\ref\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\appsettings.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\public\province.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.staticwebassets.endpoints.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.staticwebassets.runtime.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.exe
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.deps.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.runtimeconfig.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Vintellitour_Framework.pdb
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\DnsClient.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\MongoDB.Bson.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\MongoDB.Driver.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\SharpCompress.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\Snappier.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\bin\Debug\net9.0\ZstdSharp.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.csproj.AssemblyReference.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.AssemblyInfoInputs.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.AssemblyInfo.cs
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.csproj.CoreCompileInputs.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.RazorAssemblyInfo.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.RazorAssemblyInfo.cs
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.sourcelink.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\scopedcss\bundle\Vintellitour_Framework.styles.css
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.Vintellitour_Framework.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.Vintellitour_Framework.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.build.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Vintellitour_Framework.props
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintelli.27334272.Up2Date
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\refint\Vintellitour_Framework.dll
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.pdb
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\Vintellitour_Framework.genruntimeconfig.cache
+C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\obj\Debug\net9.0\ref\Vintellitour_Framework.dll

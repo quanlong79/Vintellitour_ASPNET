@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {}
+    "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {}
   },
   "projects": {
-    "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {
+    "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+        "projectUniqueName": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
         "projectName": "Vintellitour_Framework",
-        "projectPath": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\University\\Năm 3 - HK II ----\\HTTT FrameWork\\Vintellitour_ASPNET\\obj\\",
+        "projectPath": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+        "packagesPath": "C:\\Users\\giahu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\giahu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

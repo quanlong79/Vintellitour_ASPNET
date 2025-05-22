@@ -10,6 +10,7 @@ namespace Vintellitour_Framework.Services
         Task<User> RegisterUserAsync(string username, string email, string password);
         Task<User> LoginUserAsync(string email, string password);
         Task<List<User>> GetUsersByIdsAsync(List<string> userIds);
+        Task<User> GetUserIdAsync(string userIds);
     }
 
     public class UserService : IUserService
@@ -25,6 +26,13 @@ namespace Vintellitour_Framework.Services
             var filter = Builders<User>.Filter.In(u => u.Id, userIds);
             return await _users.Find(filter).ToListAsync();
         }
+        public async Task<User> GetUserIdAsync(string userId)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Id, userId);
+            return await _users.Find(filter).FirstOrDefaultAsync();
+        }
+
+
         public async Task<User> RegisterUserAsync(string username, string email, string password)
         {
             var existingUser = await _users.Find(user => user.Email == email).FirstOrDefaultAsync();

@@ -1,0 +1,60 @@
+﻿@* \Views\Shared\Components\_UserProfile.cshtml *@
+@using Microsoft.AspNetCore.Http
+@model Vintellitour_Framework.ViewModels.SharespaceViewModel
+@{
+    var userId = Context.Session.GetString("UserId");
+    var isLoggedIn = !string.IsNullOrEmpty(userId);
+    var userName = isLoggedIn ? Context.Session.GetString("Username") ?? "User" : "Khách";
+    var avatarUrl = isLoggedIn ? Context.Session.GetString("Avatar") ?? "/img/avatar-default-svgrepo-com.svg" : "/img/avatar-default-svgrepo-com.svg";
+}
+
+<div class="flex items-center gap-4">
+    @if (isLoggedIn)
+    {
+        <!-- Avatar + Tên -->
+        <div class="flex items-center cursor-pointer group">
+            <div class="relative">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300"></div>
+                <img src="@avatarUrl" alt="User Avatar"
+                     class="relative z-10 w-10 h-10 rounded-full transition-all duration-300 ease-in-out group-hover:scale-110 border-2 border-transparent group-hover:border-blue-400" />
+            </div>
+            <div class="ml-2">
+                <span class="font-medium text-gray-800 group-hover:text-blue-600 transition-colors duration-300">@userName</span>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="flex gap-2">
+            @if (Model != null && Model.CurrentUserBadges != null)
+            {
+                foreach (var badge in Model.CurrentUserBadges)
+                {
+                    @await Html.PartialAsync("_PremiumBadge", badge)
+                }
+            }
+        </div>
+        <!-- Nút logout -->
+        <a href="/Account/Logout" class="text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-700 hover:to-indigo-600 px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-300 ml-4">
+            Đăng xuất
+        </a>
+    }
+    else
+    {
+        <div class="flex gap-4">
+            <a href="/Account/Login"
+               class="bg-white text-white border-2 border-blue-800 rounded px-6 py-2 rounded-md relative overflow-hidden group hover:bg-gradient-to-r hover:from-blue-500 hover:via-indigo-400 hover:to-purple-500">
+                <span class="relative group-hover:text-white z-10 font-bold text-gray-800 transition-colors duration-300">
+                    Đăng nhập
+                </span>
+            </a>
+
+            <a href="/Account/Register"
+               class="bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-500 text-white px-6 py-2 rounded-md relative overflow-hidden group shadow-md hover:shadow-lg">
+                <span class="absolute top-0 left-0 w-full h-full bg-white opacity-20 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition duration-500"></span>
+                <span class="relative z-10 font-bold text-white">
+                    Đăng ký
+                </span>
+            </a>
+        </div>
+    }
+</div>

@@ -1,5 +1,6 @@
 ﻿using Vintellitour_Framework.Models;
 using MongoDB.Driver;
+using System;
 using System.Threading.Tasks;
 
 namespace Vintellitour_Framework.Services
@@ -8,6 +9,7 @@ namespace Vintellitour_Framework.Services
     {
         Task<User> RegisterUserAsync(string username, string email, string password);
         Task<User> LoginUserAsync(string email, string password);
+        Task<List<User>> GetUsersByIdsAsync(List<string> userIds);
     }
 
     public class UserService : IUserService
@@ -18,7 +20,11 @@ namespace Vintellitour_Framework.Services
         {
             _users = mongoDbService.GetUserCollection();  // Lấy collection Users từ MongoDbService
         }
-
+        public async Task<List<User>> GetUsersByIdsAsync(List<string> userIds)
+        {
+            var filter = Builders<User>.Filter.In(u => u.Id, userIds);
+            return await _users.Find(filter).ToListAsync();
+        }
         public async Task<User> RegisterUserAsync(string username, string email, string password)
         {
             var existingUser = await _users.Find(user => user.Email == email).FirstOrDefaultAsync();

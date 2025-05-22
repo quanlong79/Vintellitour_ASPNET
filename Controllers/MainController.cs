@@ -9,10 +9,5 @@ namespace Vintellitour_Framework.Controllers
         {
             return View();  // Sẽ tìm Views/Main/AboutUs.cshtml
         }
-
-        public IActionResult sharespace()
-        {
-            return View();  
-        }
     }
 }

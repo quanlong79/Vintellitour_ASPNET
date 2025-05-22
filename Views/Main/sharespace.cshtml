@@ -1,57 +1,264 @@
-﻿@model dynamic
+﻿@model Vintellitour_Framework.ViewModels.SharespaceViewModel
 
-<!-- Main layout container -->
+@{
+    Layout = "_Layout"; // hoặc tùy bạn
+}
+
+@section Scripts {
+    <script>
+        // Script JS nhỏ để xử lý expand text
+        function toggleExpand(postId) {
+            var content = document.getElementById("content-" + postId);
+            var btn = document.getElementById("btn-expand-" + postId);
+            if (content.classList.contains("line-clamp-3")) {
+                content.classList.remove("line-clamp-3");
+                btn.innerText = "Thu gọn";
+            } else {
+                content.classList.add("line-clamp-3");
+                btn.innerText = "Xem thêm";
+            }
+        }
+
+        // Script carousel ảnh đơn giản
+        function showImage(postId, index) {
+            var images = document.querySelectorAll(`#media-${postId} img`);
+            images.forEach((img, i) => {
+                img.style.display = i === index ? "block" : "none";
+            });
+            var indicators = document.querySelectorAll(`#indicators-${postId} div`);
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle("bg-white", i === index);
+                dot.classList.toggle("bg-white/50", i !== index);
+            });
+            // Lưu index nếu cần
+        }
+
+        function initFilters() {
+          document.getElementById("toggleShowMyPostsBtn").addEventListener("click", function () {
+            var input = document.getElementById("showOnlyMyPostsInput");
+            input.value = (input.value === "true") ? "false" : "true";
+            document.getElementById("filterForm").submit();
+          });
+
+          var resetBtn = document.getElementById("resetShowMyPosts");
+          if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+              var input = document.getElementById("showOnlyMyPostsInput");
+              input.value = "false";
+              document.getElementById("filterForm").submit();
+            });
+          }
+
+          document.getElementById("toggleSortOrderBtn").addEventListener("click", function () {
+            var input = document.getElementById("sortOrderInput");
+            input.value = (input.value === "newest") ? "oldest" : "newest";
+            document.getElementById("filterForm").submit();
+          });
+
+          document.getElementById("ClearfilterProvinces")?.addEventListener("click", function() {
+            document.getElementById("selectedProvinceId").value = "";
+            document.getElementById("filterForm").submit();
+        });
+    
+
+
+
+        }
+
+        // Gọi hàm khi trang đã tải xong
+        window.onload = function() {
+          initFilters();
+        };
+
+        // Các hàm like, open comment modal, ... bạn có thể bổ sung thêm
+    </script>
+}
+
 <div class="flex flex-col md:flex-row px-4 md:px-16 py-8 gap-8">
-    <!-- LEFT COLUMN -->
     <div class="flex-1">
-        <!-- Header with filters inline -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-2 border-gray-300 mb-6">
             <div class="flex flex-col">
                 <h2 class="text-xl text-gray-700 font-semibold">
-                    Tất cả tỉnh
+                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                    {
+                        var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
+                        <text>Tỉnh: @p?.Name</text>
+                    }
+                    else
+                    {
+                        <text>Tất cả tỉnh</text>
+                    }
                 </h2>
                 <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
             </div>
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
-                <button class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
-                    <span class="text-xs font-semibold">XEM:</span>
-                    <span class="text-blue-600">Bài viết của tôi</span>
-                </button>
-                <button class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
-                    <span>Mới nhất</span>
-                </button>
+            <div>
+                <form id="filterForm" method="get" class="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
+
+                    <input type="hidden" id="selectedProvinceId" name="selectedProvinceId" value="@Model.SelectedProvinceId" />
+                    <input type="hidden" id="showOnlyMyPostsInput" name="showOnlyMyPosts" value="@Model.ShowOnlyMyPosts.ToString().ToLower()" />
+                    <input type="hidden" id="sortOrderInput" name="sortOrder" value="@Model.SortOrder" />
+
+                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                    {
+                        <button type="button" id="ClearfilterProvinces"
+                                class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition-colors duration-200 font-semibold shadow-sm"
+                                title="Xóa bộ lọc tỉnh">
+                            ✕ Xóa lọc
+                        </button>
+
+
+                    }
+                    <!-- Nút Bài viết của tôi -->
+                    <button type="button" id="toggleShowMyPostsBtn"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all duration-300 shadow-sm focus:outline-none
+            @(Model.ShowOnlyMyPosts
+                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium"
+                : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500")">
+                        <span class="text-xs font-semibold flex items-center">
+                            @if (Model.ShowOnlyMyPosts)
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <text>ĐANG XEM:</text>
+                            }
+                            else
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                <text>XEM:</text>
+                            }
+                        </span>
+                        <span class="font-medium @(Model.ShowOnlyMyPosts ? "text-white" : "text-blue-600") cursor-pointer mb-0.5">
+                            Bài viết của tôi
+                        </span>
+                    </button>
+
+                    @if (Model.ShowOnlyMyPosts)
+                    {
+                        <span id="resetShowMyPosts" title="Bỏ lọc bài viết của tôi"
+                              class="ml-2 bg-white bg-opacity-20 text-white rounded-full h-5 w-5 flex items-center justify-center cursor-pointer hover:bg-opacity-30 select-none">
+                            ✕
+                        </span>
+                    }
+
+                    <!-- Nút sắp xếp -->
+                    <button type="button" id="toggleSortOrderBtn"
+                            class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            @if (Model.SortOrder == "newest")
+                            {
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                            }
+                            else
+                            {
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                            }
+                        </svg>
+                        <span class="font-medium cursor-pointer">@((Model.SortOrder == "newest") ? "Mới nhất" : "Cũ nhất")</span>
+                    </button>
+                </form>
+
             </div>
         </div>
 
-        <!-- Placeholder for posts -->
-        <div class="text-center py-8 text-gray-500">
-            Không có bài viết nào
-        </div>
-    </div>
+        @if (Model.Posts.Count == 0)
+        {
+            <p class="text-center text-gray-500">Không có bài viết nào phù hợp.</p>
+        }
+        else
+        {
+            @foreach (var post in Model.Posts)
+            {
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)" alt="@post.AuthorName" class="rounded-full" width="50" height="50" />
+                        <div>
+                            <p class="text-sm font-bold text-orange-600">@post.AuthorName</p>
+                            @* Hiển thị badges cho tác giả nếu có *@
+                            <div class="flex gap-1 mt-1 ">
+                                <div class="scale-[0.85] transform-origin-right ml-[-12px]">
+                                    @if (Model.AuthorBadges != null && Model.AuthorBadges.TryGetValue(post.Post.AuthorId, out var badges))
+                                    {
+                                        foreach (var badge in badges)
+                                        {
+                                            @await Html.PartialAsync("_PremiumBadge", badge)
+                                        }
+                                    }
+                                </div>
+                            </div>
 
-    <!-- Divider -->
-    <div class="hidden md:block w-px bg-gray-300"></div>
+                            <p class="text-sm text-gray-500">@post.Post.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</p>
+                        </div>
+                    </div>
+                    
+                    <p id="content-@post.Post.Id" class="text-gray-800 mb-3 line-clamp-3">@post.Post.Content</p>
+                    @if (post.Post.Content.Length > 100)
+                    {
+                        <button id="btn-expand-@post.Post.Id" class="text-blue-500 text-xs" onclick="toggleExpand('@post.Post.Id')">Xem thêm</button>
+                    }
+
+                    @if (post.Post.Media != null && post.Post.Media.Count > 0)
+                    {
+                        <div id="media-@post.Post.Id" class="relative w-full max-w-[600px] h-[400px] mb-4">
+                            @for (int i = 0; i < post.Post.Media.Count; i++)
+                            {
+                                var media = post.Post.Media[i];
+                                <img src="@media.MediaUrl" alt="media" class="absolute inset-0 w-full h-full object-cover rounded-md" style="display:@(i==0 ? "block" : "none");" />
+                            }
+                            <div id="indicators-@post.Post.Id" class="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                                @for (int i = 0; i < post.Post.Media.Count; i++)
+                                {
+                                    <div onclick="showImage('@post.Post.Id', @i)" class="w-2 h-2 rounded-full cursor-pointer @(i==0 ? "bg-white" : "bg-white/50")"></div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <div class="flex gap-6 mt-3 text-gray-700">
+                        <div class="flex items-center gap-1 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="red" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            <span>@post.Post.Likes</span>
+                        </div>
+                        <div class="flex items-center gap-1 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-2xl text-gray-700" fill="none" stroke="currentColor" width="24" height="24" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-6 4h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>@(post.Post.Comments?.Count ?? 0)</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 
     <!-- RIGHT COLUMN -->
     <div class="w-full md:w-64">
         <div class="bg-purple-100 p-4 rounded-lg">
             <h2 class="text-xl text-gray-700 font-semibold border-b pb-2 border-gray-300 mb-6">
-                Tất cả tỉnh
-                <div class="w-24 h-1 bg-purple-500 mt-1 rounded-full"></div>
+                @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                {
+                    var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
+                    <text>Tỉnh: @p?.Name</text>
+                }
+                else
+                {
+                    <text>Tất cả tỉnh</text>
+                }
             </h2>
+            <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
 
-            <!-- Placeholder for province filter list -->
             <ul class="space-y-3 text-gray-800 max-h-[500px] overflow-y-auto">
-                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
-                    <span>#Hà Nội</span>
-                </li>
-                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
-                    <span>#Đà Nẵng</span>
-                </li>
-                <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600">
-                    <span>#TP.HCM</span>
-                </li>
+                @foreach (var province in Model.Provinces)
+                {
+                    <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600 @(Model.SelectedProvinceId == province.Id ? "ring-2 ring-white" : "")"
+                        onclick="document.getElementById('selectedProvinceId').value='@province.Id'; document.getElementById('filterForm').submit();">
+                        <span>@province.Name</span>
+                    </li>
+                }
             </ul>
         </div>
     </div>

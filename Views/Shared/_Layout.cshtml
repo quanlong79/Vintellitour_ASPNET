@@ -3,7 +3,6 @@
 @*     var currentUser = User.Identity.IsAuthenticated ? User.Identity.GetUserName() : "Khách"; *@
 @* } *@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,60 +11,161 @@
     <title>@ViewData["Title"] - Vintellitour_Framework</title>
     <script type="importmap"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
     <header>
         <nav class="w-full mx-auto relative z-10 flex items-center justify-between bg-white py-0 text-black border-b border-blue-600/20 shadow-lg shadow-blue-400/20">
             <div class="flex-shrink-0 px-4">
-                <a href="/">
+                <a href="/" class="transition-transform duration-300 hover:scale-105">
                     <img src="~/img/Logo_merus.png" alt="Logo" class="w-40 ml-15 h-auto cursor-pointer" width="160" height="30" />
                 </a>
             </div>
-
-            <ul class="hidden text-lg md:flex w-1/2 items-center justify-between gap-4 py-2 cursor-pointer md:px-10 border-r-2 border-l-2 border-gray-800 dark:border-gray-300">
+            <ul class="hidden text-lg md:flex w-1/2 items-center justify-between gap-4 py-2 cursor-pointer md:px-10 border-r-2 border-l-2 border-gray-800 dark:border-gray-800">
                 <li>
-                    <a href="/" class="relative px-2 py-1 transition-all duration-300 @(ViewBag.ActivePage == "home" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
-                        Trang chủ
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 @(ViewBag.ActivePage == "home" ? "scale-x-100" : "scale-x-0 hover:scale-x-100")"></span>
+                    <a href="/" class="relative px-2 py-1 transition-all duration-300 group @(ViewBag.ActivePage == "home" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
+                        <span class="relative z-10 group-hover:text-blue-600 transition-colors duration-300">Trang chủ</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 origin-left @(ViewBag.ActivePage == "home" ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100")"></span>
+                        <span class="absolute inset-0 bg-blue-50 scale-y-0 opacity-0 group-hover:opacity-20 group-hover:scale-y-100 transition-all duration-300 rounded-md -z-0"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="/main/sharespace" class="relative px-2 py-1 transition-all duration-300 @(ViewBag.ActivePage == "share" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
-                        Không gian chia sẻ
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 @(ViewBag.ActivePage == "share" ? "scale-x-100" : "scale-x-0 hover:scale-x-100")"></span>
+                    <a href="/main/sharespace" class="relative px-2 py-1 transition-all duration-300 group @(ViewBag.ActivePage == "share" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
+                        <span class="relative z-10 group-hover:text-blue-600 transition-colors duration-300">Không gian chia sẻ</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 origin-left @(ViewBag.ActivePage == "share" ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100")"></span>
+                        <span class="absolute inset-0 bg-blue-50 scale-y-0 opacity-0 group-hover:opacity-20 group-hover:scale-y-100 transition-all duration-300 rounded-md -z-0"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="/main/aboutus" class="relative px-2 py-1 transition-all duration-300 @(ViewBag.ActivePage == "about" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
-                        Về chúng tôi
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 @(ViewBag.ActivePage == "about" ? "scale-x-100" : "scale-x-0 hover:scale-x-100")"></span>
+                    <a href="/main/aboutus" class="relative px-2 py-1 transition-all duration-300 group @(ViewBag.ActivePage == "about" ? "text-blue-600 font-semibold" : "hover:text-blue-600")">
+                        <span class="relative z-10 group-hover:text-blue-600 transition-colors duration-300">Về chúng tôi</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform transition-transform duration-300 origin-left @(ViewBag.ActivePage == "about" ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100")"></span>
+                        <span class="absolute inset-0 bg-blue-50 scale-y-0 opacity-0 group-hover:opacity-20 group-hover:scale-y-100 transition-all duration-300 rounded-md -z-0"></span>
                     </a>
                 </li>
             </ul>
-
             <div class="hidden md:flex justify-start pl-2 pr-10 py-1 gap-12">
-                <div class="hidden md:flex justify-start pl-2 pr-10 py-1 gap-12">
-                    @Html.Partial("Components/_UserProfile")
-                </div>
-
+                @await Component.InvokeAsync("UserProfile")
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container mx-auto flex-grow mt-2">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Vintellitour_Framework - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="w-full bg-white text-black py-2 border-t border-blue-600/20 shadow-[0_-4px_6px_rgba(96,165,250,0.2)] mt-2">
+        <div class="max-w-screen-xl mx-auto px-2 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+
+                <!-- Logo và mô tả -->
+                <div class="col-span-2">
+                    <img src="@Url.Content("~/img/Logo_merus.png")" alt="Logo" class="w-40 h-auto" />
+                    <p class="text-sm text-gray-400 text-left mt-4">
+                        Website kết hợp du lịch, văn hóa và trí tuệ nhân tạo, mang đến trải nghiệm khám phá Việt Nam thông minh và cá nhân hóa.
+                    </p>
+
+                    <!-- Social Icons -->
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.facebook.com/anvanket1402" class="text-white text-xl hover:text-blue-500 rounded-full p-2 bg-blue-600 flex items-center justify-center w-10 h-10">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vanket_1402/" class="text-white text-xl hover:text-pink-400 rounded-full p-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center w-10 h-10">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white text-xl hover:text-blue-500 rounded-full p-2 bg-blue-600 flex items-center justify-center w-10 h-10">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Thông tin liên hệ -->
+                <div class="col-span-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+                        <div>
+                            <ul class="space-y-2 text-sm">
+                                <li><p class="text-black text-base font-bold">Địa chỉ</p></li>
+                                <li><p class="text-gray-500">Hàn Thuyên, Thủ Đức, Hồ Chí Minh</p></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-2 text-sm">
+                                <li><p class="text-black text-base font-bold">Liên hệ</p></li>
+                                <li><p class="text-gray-500">+84 377 892 859</p></li>
+                                <li><p class="text-gray-500">22520595@gm.uit.edu.vn</p></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-2 text-sm">
+                                <li><p class="text-black text-base font-bold">Thời gian</p></li>
+                                <li><p class="text-gray-500">Thứ hai - Thứ bảy</p></li>
+                                <li><p class="text-gray-500">9AM - 7PM</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="h-px bg-gray-600 border-0 mx-auto w-[90%] mt-2" />
+
+        <!-- Bottom Footer -->
+        <div class="bg-white pt-4">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4 px-4 text-center">
+                <div class="text-left flex items-center">
+                    <p class="text-sm text-gray-500">&copy; @DateTime.Now.Year VintelliTour. Tất cả quyền lợi được bảo vệ.</p>
+                </div>
+
+                <!-- Công nghệ hỗ trợ -->
+                <div class="flex justify-center items-center">
+                    <div class="flex items-center justify-center space-x-12">
+                        <div class="flex items-center justify-center w-12 h-12">
+                            <img src="@Url.Content("~/img/brand-threejs.svg")" alt="threejs" class="object-contain w-10 h-10" />
+                        </div>
+                        <div class="flex items-center justify-center w-12 h-12">
+                            <img src="@Url.Content("~/img/Langchain--Streamline-Simple-Icons.svg")" alt="langchain" class="object-contain w-10 h-10" />
+                        </div>
+                        <div class="flex items-center justify-center w-12 h-12">
+                            <img src="@Url.Content("~/img/LangGraph_icon.png")" alt="langgraph" class="object-contain w-10 h-10" />
+                        </div>
+                        <div class="flex items-center justify-center w-8 h-8">
+                            <img src="@Url.Content("~/img/leaflet.svg")" alt="leaflet" class="object-contain w-8 h-8" />
+                        </div>
+                        <div class="flex items-center justify-center w-12 h-12">
+                            <img src="@Url.Content("~/img/mongodb-original-wordmark.svg")" alt="mongodb" class="object-contain w-12 h-12" />
+                        </div>
+                        <div class="flex items-center justify-center w-12 h-12">
+                            <img src="@Url.Content("~/img/nextjs.svg")" alt="nextjs" class="object-contain w-12 h-12" />
+                        </div>
+                        <div class="flex items-center justify-center w-32 h-12">
+                            <img src="@Url.Content("~/img/tailwind-css.svg")" alt="tailwind" class="w-30 h-12 object-contain" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

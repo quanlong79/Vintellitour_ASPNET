@@ -36,7 +36,7 @@ namespace Vintellitour_Framework.Models
 
         [BsonElement("likes")]
         [BsonRepresentation(BsonType.Int64)]
-        public long Likes { get; set; }
+        public int Likes { get; set; }
 
         [BsonElement("comments")]
         public List<Comment> Comments { get; set; }
@@ -99,6 +99,7 @@ namespace Vintellitour_Framework.Models
         public Post Post { get; set; }
         public string AuthorName { get; set; }
         public string AuthorAvatar { get; set; }
+        public bool IsLikedByCurrentUser { get; set; }
     }
 
 }

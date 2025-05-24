@@ -1,0 +1,80 @@
+﻿
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Comment Modal Debug Tool</h1>
+
+        <!-- Test Button -->
+        <button id="testModalBtn"
+                class="comment-button bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mb-6"
+                data-postid="123"
+                data-author-name="Test User"
+                data-author-avatar="/img/VN.jpg"
+                data-author-id="456"
+                data-media='[{"mediaUrl": "https://via.placeholder.com/600x400/FF6B6B/FFFFFF?text=Image+1"}, {"mediaUrl": "https://via.placeholder.com/600x400/4ECDC4/FFFFFF?text=Image+2"}]'
+                data-comments='[{"username": "User1", "content": "Bình luận test 1", "avatar": "/img/VN.jpg", "createdAt": "2024-01-15T10:30:00Z"}, {"username": "User2", "content": "Bình luận test 2", "avatar": "/img/VN.jpg", "createdAt": "2024-01-15T11:00:00Z"}]'>
+            Test Modal
+        </button>
+
+        <!-- Debug Info -->
+        <div id="debugInfo" class="bg-gray-50 p-4 rounded-lg mb-6">
+            <h3 class="font-bold mb-2">Debug Information:</h3>
+            <pre id="debugOutput" class="text-sm text-gray-700"></pre>
+        </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="commentModal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <!-- Overlay nền mờ -->
+        <div class="modal-overlay absolute inset-0 bg-black bg-opacity-60"></div>
+        <!-- Container modal -->
+        <div class="bg-white text-black w-full max-w-4xl h-auto rounded-lg flex overflow-hidden relative">
+            <!-- Left - Images Section -->
+            <div id="mediaSection" class="w-1/2 bg-black flex items-center justify-center overflow-hidden rounded-l-lg relative">
+                <div class="w-full h-[600px] relative">
+                    <img id="currentImage" src="https://via.placeholder.com/600x400/CCCCCC/FFFFFF?text=No+Image" alt="post" class="absolute inset-0 w-full h-full object-cover" />
+                </div>
+                <!-- Image navigation controls -->
+                <div id="imageNavControls" class="hidden">
+                    <button id="prevImageBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
+                        &#10094;
+                    </button>
+                    <button id="nextImageBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
+                        &#10095;
+                    </button>
+                    <div id="imageIndicators" class="absolute bottom-4 left-0 right-0 flex justify-center gap-1">
+                        <!-- Image indicators will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+            <!-- Right - Comments -->
+            <div class="w-1/2 p-4 flex flex-col h-[600px]">
+                <!-- Header -->
+                <div class="flex items-center gap-2 border-b border-gray-300 pb-2 relative">
+                    <img id="authorAvatar" src="https://via.placeholder.com/32x32/FF6B6B/FFFFFF?text=U" alt="avatar" width="32" height="32" class="rounded-full" />
+                    <p id="authorName" class="font-semibold text-orange-600">Loading...</p>
+                    <div id="authorBadgesContainer" class="flex items-center gap-1 scale-90 transform-origin-left">
+                        <!-- Badges sẽ được chèn bởi JS -->
+                    </div>
+                    <button class="modal-close absolute top-2 right-2 text-black/50 hover:text-indigo-700 cursor-pointer font-bold">
+                        ✕
+                    </button>
+                </div>
+                <!-- Comments list -->
+                <div id="commentList" class="flex-1 overflow-y-auto py-4 space-y-4 text-sm">
+                    <p class="text-center py-4 text-gray-500">Đang tải bình luận...</p>
+                </div>
+                <!-- Footer - Input -->
+                <div class="border-t border-gray-300 pt-3 mt-auto">
+                    <div class="flex items-center gap-2">
+                        <input type="text"
+                               id="newCommentContent"
+                               placeholder="Thêm bình luận..."
+                               class="flex-1 bg-transparent border-none outline-none text-sm text-black placeholder-gray-400 border-b border-gray-200 pb-1" />
+                        <button id="btnPostComment"
+                                class="text-sm text-blue-500 font-semibold hover:text-blue-700">
+                            Đăng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

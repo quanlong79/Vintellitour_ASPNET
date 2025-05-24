@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Quản lý bài đăng";
+}
+@{
+    Layout = "adminlayout";
+}
+
+@* //fix *@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+    <!-- Toolbar -->
+    <div class="max-w-7xl mx-auto mb-6 flex flex-wrap items-center gap-3">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm">
+            Bài viết thường (0)
+        </button>
+        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405M19 13V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8m16 0l-4 4m0 0l-4-4m4 4V3" />
+            </svg>
+            Cần kiểm duyệt (0)
+        </button>
+        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h3m6 0h12m-6-6v12m0 0l-3-3m3 3l3-3" />
+            </svg>
+            Lịch sử kiểm duyệt (0)
+        </button>
+        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l4-4-4-4" />
+            </svg>
+            Mới nhất
+        </button>
+        <button class="ml-auto bg-orange-500 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-orange-600">
+            Kiểm duyệt tất cả bài viết
+        </button>
+    </div>
+
+    <!-- Nội dung bài viết trống -->
+    <div class="max-w-7xl mx-auto bg-white rounded-lg shadow p-20 text-center text-gray-500 text-lg select-none">
+        Không có bài viết nào
+    </div>
+
+</body>
+</html>

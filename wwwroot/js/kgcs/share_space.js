@@ -16,9 +16,9 @@ const currentImageIndexByPost = {};
 // Hiển thị ảnh carousel cho post
 function showImage(postId, index) {
     const images = document.querySelectorAll(`#media-${postId} img`);
-    const indicators = document.querySelectorAll(`#indicators-${postId} div`);
-    if (!images.length) return;
-
+    const indicators = document.querySelectorAll(`#indicators-${postId} button`); // <-- sửa ở đây
+    console.log('Found images:', images.length);
+    console.log('Found indicators:', indicators.length);
     images.forEach((img, i) => {
         img.style.display = i === index ? "block" : "none";
     });
@@ -125,27 +125,7 @@ function openCommentModal(postId, authorName, authorAvatar, authorId, media, com
         console.error('Element commentList không tồn tại');
         return;
     }
-
-    //if (!comments || comments.length === 0) {
-    //    commentList.innerHTML = '<p class="text-center py-4 text-gray-500">Chưa có bình luận nào.</p>';
-    //} else {
-    //    commentList.innerHTML = '';
-    //    comments.forEach(comment => {
-    //        const commentEl = document.createElement('div');
-    //        commentEl.className = 'flex items-start gap-3 mb-4';
-    //        commentEl.innerHTML = `
-    //            <img src="${comment.avatar || '/img/VN.jpg'}" alt="${comment.username || 'User'}" class="rounded-full w-8 h-8" />
-    //            <div class="flex-1">
-    //                <p class="text-gray-800">
-    //                    <span class="font-bold text-orange-600">${comment.username || 'Unknown User'}</span> 
-    //                    ${comment.content || ''}
-    //                </p>
-    //                <p class="text-xs text-gray-400">${formatTimeAgo(comment.createdAt)}</p>
-    //            </div>
-    //        `;
-    //        commentList.appendChild(commentEl);
-    //    });
-    //}
+ 
 }
 
 

@@ -9,85 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Vintellitour_Framework
 build_property.RootNamespace = Vintellitour_Framework
-build_property.ProjectDir = C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET\
+build_property.ProjectDir = C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\giahu\Desktop\DOANWEB\Vintellitour_ASPNET
+build_property.MSBuildProjectDirectory = C:\Users\giahu\Desktop\New folder\Vintellitour_ASPNET
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Account/Login.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Account/Register.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/admin/adminlayout.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/admin/adminlayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cYWRtaW5sYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/admin/dashboard.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/admin/dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cZGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/admin/locations.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/admin/locations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cbG9jYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/admin/posts.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/admin/posts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5ccG9zdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/admin/users.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/admin/users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cdXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Home/Index.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Home/Privacy.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Main/aboutus.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Main/aboutus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxhYm91dHVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Main/mainpage.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Main/mainpage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxtYWlucGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Main/sharespace.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Main/sharespace.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxzaGFyZXNwYWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Shared/Components/_UserProfile.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Shared/Components/_UserProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX1VzZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Shared/Error.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Shared/_Layout.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/_ViewImports.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/giahu/Desktop/DOANWEB/Vintellitour_ASPNET/Views/_ViewStart.cshtml]
+[C:/Users/giahu/Desktop/New folder/Vintellitour_ASPNET/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

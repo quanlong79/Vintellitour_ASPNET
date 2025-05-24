@@ -9,6 +9,7 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<User> _users;
         private readonly IMongoCollection<Post> _posts;
         private readonly IMongoCollection<Provinces> _provinces;
+        private readonly IMongoCollection<LocationsModel> _locations;
 
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
@@ -22,6 +23,7 @@ namespace Vintellitour_Framework.Services
             _users = database.GetCollection<User>("users");
             _posts = database.GetCollection<Post>("posts");
             _provinces = database.GetCollection<Provinces>("provinces");
+            _locations = database.GetCollection<LocationsModel>("locations");
         }
 
         // Phương thức trả về collection Users
@@ -37,6 +39,11 @@ namespace Vintellitour_Framework.Services
         {
             return _provinces;
         }
+        public IMongoCollection<LocationsModel> GetLocationsCollection()
+        {
+            return _locations;
+        }
+
         //Lấy tất cả người dùng
         public async Task<List<User>> GetUsersAsync() =>
             await _users.Find(user => true).ToListAsync();

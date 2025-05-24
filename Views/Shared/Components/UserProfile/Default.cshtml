@@ -5,14 +5,15 @@
     var userId = Context.Session.GetString("UserId");
     var isLoggedIn = !string.IsNullOrEmpty(userId);
     var userName = isLoggedIn ? Context.Session.GetString("Username") ?? "User" : "Khách";
+    var userProfileLink = isLoggedIn ? Url.Action("Details", "User", new { id = userId }) : "#";
     var avatarUrl = isLoggedIn ? Context.Session.GetString("Avatar") ?? "/img/avatar-default-svgrepo-com.svg" : "/img/avatar-default-svgrepo-com.svg";
 }
 
 <div class="flex items-center gap-4">
     @if (isLoggedIn)
     {
-        <!-- Avatar + Tên -->
-        <div class="flex items-center cursor-pointer group">
+        <!-- Avatar + Tên, bọc link đến trang chi tiết người dùng -->
+        <a href="@userProfileLink" class="flex items-center cursor-pointer group" title="Xem trang cá nhân">
             <div class="relative">
                 <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300"></div>
                 <img src="@avatarUrl" alt="User Avatar"
@@ -21,7 +22,7 @@
             <div class="ml-2">
                 <span class="font-medium text-gray-800 group-hover:text-blue-600 transition-colors duration-300">@userName</span>
             </div>
-        </div>
+        </a>
 
         <!-- Badges -->
         <div class="flex gap-2">

@@ -100,7 +100,6 @@
                     </label>
                     <div class="mt-1 relative rounded-md shadow-sm">
                         <input id="confirm-password"
-                               name="cpassword"
                                type="password"
                                asp-for="ConfirmPassword"
                                class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm"
@@ -121,8 +120,9 @@
 
             <div class="mt-6 flex items-center">
                 <input id="terms-agreement"
-                       name="terms-agreement"
+                       name="TermsAgreement"
                        type="checkbox"
+                       asp-for="TermsAgreement"
                        class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
                 <label for="terms-agreement" class="ml-3 block text-sm text-gray-700">
                     Tôi đồng ý với
@@ -131,6 +131,7 @@
                     </a>
                 </label>
             </div>
+            <span asp-validation-for="TermsAgreement" class="text-red-500"></span>
 
             <div class="mt-8">
                 <button type="submit"

@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Quản lý địa điểm";
+}
+@{
+    Layout = "adminlayout";
+}
+@* //fix *@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #leaflet-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #searchBox {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            z-index: 1000;
+            width: 300px;
+            padding: 10px 16px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="map">
+        <input type="text" id="searchBox" placeholder="Tìm kiếm tỉnh" />
+        <div id="leaflet-map"></div>
+    </div>
+
+    <script>
+        function initMap() {
+            const map = L.map("leaflet-map").setView([14.0583, 108.2772], 5);
+
+            L.tileLayer("https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=RCfpOibQtfADVJ8TBhgS", {
+                attribution: '&copy; <a href="https://www.maptiler.com/">MapTiler</a>',
+            }).addTo(map);
+
+            // Bạn có thể thêm GeoJSON hoặc các layer khác ở đây
+        }
+
+        window.onload = initMap;
+    </script>
+</body>
+</html>

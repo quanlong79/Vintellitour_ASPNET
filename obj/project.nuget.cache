@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QVFJK9DbaTI=",
+  "dgSpecHash": "uU3RCaa+SEs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+  "projectFilePath": "C:\\Users\\giahu\\Desktop\\New folder\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\giahu\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\giahu\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",

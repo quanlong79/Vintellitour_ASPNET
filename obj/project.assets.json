@@ -605,11 +605,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+      "projectUniqueName": "C:\\Users\\giahu\\Desktop\\New folder\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
       "projectName": "Vintellitour_Framework",
-      "projectPath": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
+      "projectPath": "C:\\Users\\giahu\\Desktop\\New folder\\Vintellitour_ASPNET\\Vintellitour_Framework.csproj",
       "packagesPath": "C:\\Users\\giahu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\obj\\",
+      "outputPath": "C:\\Users\\giahu\\Desktop\\New folder\\Vintellitour_ASPNET\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

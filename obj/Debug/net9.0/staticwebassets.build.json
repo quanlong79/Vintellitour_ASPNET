@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8vz+2Cf8Mp9fBOTtnfIKy7SpXgZPRQEeJ2drtqg9X0g=",
+  "Hash": "z2zlJ49bZWt4gbfYtQWJgd8+7pR6p2zfB9QSQbZ04dY=",
   "Source": "Vintellitour_Framework",
   "BasePath": "_content/Vintellitour_Framework",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Vintellitour_Framework\\wwwroot",
       "Source": "Vintellitour_Framework",
-      "ContentRoot": "C:\\Users\\giahu\\Desktop\\DOANWEB\\Vintellitour_ASPNET\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\giahu\\Desktop\\New folder\\Vintellitour_ASPNET\\wwwroot\\",
       "BasePath": "_content/Vintellitour_Framework",
       "Pattern": "**"
     }

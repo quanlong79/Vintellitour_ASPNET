@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Vintellitour_Framework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2122ed6430b70c834394e513e9976bda4d86a973")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+214d2a82673f67e19958e8d486360bc6a8459dfb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Vintellitour_Framework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Vintellitour_Framework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

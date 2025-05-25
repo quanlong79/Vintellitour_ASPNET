@@ -24,9 +24,12 @@ namespace Vintellitour_Framework.Models
         public string Avatar { get; set; } = "";
 
         [BsonElement("isVerified")]
-        public bool IsVerified { get; set; } = true;
+        public bool IsVerified { get; set; } = false;
 
-        [BsonElement("createdAt")]
+        public string? VerificationToken
+        { get; set; }
+
+            [BsonElement("createdAt")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime CreatedAt { get; set; }
 

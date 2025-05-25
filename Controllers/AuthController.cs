@@ -23,7 +23,7 @@ namespace Vintellitour_Framework.Controllers
                 return BadRequest(new { message = "Mật khẩu không khớp." });
             }
 
-            var user = await _userService.RegisterUserAsync(registerDto.Username, registerDto.Email, registerDto.Password);
+            var user = await _userService.RegisterUserAsync(registerDto.Username, registerDto.Email, registerDto.Password, Request);
             if (user == null)
             {
                 return BadRequest(new { message = "Email đã được đăng ký." });

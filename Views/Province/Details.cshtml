@@ -1,0 +1,235 @@
+﻿@model Vintellitour_Framework.ViewModels.ProvinceWithLocationsViewModel
+@{
+    Layout = "_Layout"; // hoặc tùy bạn
+}
+
+<div class="bg-gradient-to-br from-slate-50 via-white to-gray-100 min-h-screen">
+    <!-- Enhanced Hero Section -->
+    <div class="relative overflow-hidden rounded-2xl -mx-1 h-[700px]">
+        <!-- Animated background particles -->
+        <div class="absolute inset-0 z-5">
+            <div class="absolute top-20 left-10 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
+            <div class="absolute top-40 right-20 w-1 h-1 bg-white/30 rounded-full animate-ping"></div>
+            <div class="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-white/25 rounded-full animate-pulse"></div>
+        </div>
+
+        <!-- Enhanced overlay with gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-purple-600/10 to-indigo-900/80 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-20"></div>
+
+        <!-- Dynamic background with parallax effect -->
+        <div class="absolute inset-0 overflow-hidden transform scale-105">
+            <img src="/img/Canhdep_Vietnam-1.jpg" alt="@Model.Province.Name background"
+                 class="object-cover w-full h-full transition-transform duration-1000 hover:scale-110 " />
+        </div>
+
+        <!-- Enhanced content with animations -->
+        <div class="relative z-30 py-20 md:py-40 rounded-2xl -mx-1">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="max-w-4xl">
+                    <!-- Province category badge -->
+                    <div class="mb-6 animate-fade-in-up">
+                        <span class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Tỉnh thành Việt Nam
+                        </span>
+                    </div>
+
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl leading-tight animate-fade-in-up">
+                        @Model.Province.Name
+                    </h1>
+
+                    <!-- Enhanced decorative line -->
+                    <div class="flex items-center mb-8 animate-fade-in-up">
+                        <div class="w-16 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                        <div class="w-8 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full ml-2"></div>
+                        <div class="w-4 h-1 bg-red-500 rounded-full ml-2"></div>
+                    </div>
+
+                    <p class="text-xl md:text-2xl text-gray-100 leading-relaxed drop-shadow-lg mb-12 max-w-3xl animate-fade-in-up">
+                        @Model.Province.Description
+                    </p>
+
+                    <!-- Stats or highlights section -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-white">@(Model.Locations?.Count() ?? 0)</div>
+                            <div class="text-sm text-gray-200">Điểm đến</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-white">⭐</div>
+                            <div class="text-sm text-gray-200">Nổi tiếng</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-white">🏛️</div>
+                            <div class="text-sm text-gray-200">Văn hóa</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-white">🍜</div>
+                            <div class="text-sm text-gray-200">Ẩm thực</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+            <div class="animate-bounce">
+                <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-16 px-6">
+        <!-- Enhanced Attractions Section -->
+        <div class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    Điểm đến nổi bật
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Khám phá những địa điểm tuyệt vời nhất tại @Model.Province.Name
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                @if (Model.Locations == null)
+                {
+                    <div class="col-span-full text-center py-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-500 text-lg">Không có điểm đến nổi bật.</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var loc in Model.Locations)
+                    {
+                        <a href="@Url.Action("Details", "Attraction", new { id = loc.Id })"
+                           class="group  bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 flex flex-col h-full border border-gray-100 hover:border-blue-200">
+                            <div class="relative w-full h-64 overflow-hidden">
+                                <img src="@(loc.Image != null && loc.Image.Any() ? loc.Image[0] : "/img/VN.jpg")"
+                                     alt="@loc.Name"
+                                     class="object-cover group-hover:scale-110 transition-transform duration-700 w-full h-full " />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                                <!-- Floating badge -->
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+                                    <span class="text-xs font-medium text-gray-700">Nổi bật</span>
+                                </div>
+
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <h3 class="text-white font-bold text-xl mb-2 drop-shadow-lg group-hover:text-blue-200 transition-colors">
+                                        @loc.Name
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="p-6 flex-1 flex flex-col">
+                                <p class="text-gray-600 line-clamp-3 mb-4 flex-1 leading-relaxed">@loc.Description</p>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
+                                        <span class="mr-2">Khám phá</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                                        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Enhanced Culture and Cuisine Section -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Văn hóa & Ẩm thực</h2>
+                <p class="text-xl text-gray-600">Khám phá bản sắc độc đáo của @Model.Province.Name</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Culture Section -->
+                <div class="group bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 border border-blue-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">@Model.Province.Culture.Title</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-lg">@Model.Province.Culture.Description</p>
+                </div>
+
+                <!-- Cuisine Section -->
+                <div class="group bg-gradient-to-br from-amber-50 to-orange-100 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 border border-amber-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">@Model.Province.Cuisine.Title</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-lg">@Model.Province.Cuisine.Description</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Navigation Section -->
+        <div class="text-center">
+            <div class="inline-flex flex-col items-center p-8 bg-white rounded-3xl shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Khám phá thêm</h3>
+                <p class="text-gray-600 mb-6 max-w-md">Tìm hiểu về các tỉnh thành khác trên khắp Việt Nam</p>
+
+                <a href="@Url.Action("Index", "Home")"
+                   class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Xem tất cả tỉnh thành</span>
+                    <div class="ml-3 w-2 h-2 bg-white/30 rounded-full animate-pulse"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out;
+    }
+
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

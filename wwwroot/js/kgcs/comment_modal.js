@@ -16,17 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
         authorId: null
     };
 
-    function debugLog(message, data = null) {
-        console.log(message, data);
-        const debugOutput = document.getElementById('debugOutput');
-        if (debugOutput) {
-            debugOutput.textContent += `${new Date().toLocaleTimeString()}: ${message}\n`;
-            if (data) {
-                debugOutput.textContent += `Data: ${JSON.stringify(data, null, 2)}\n`;
-            }
-            debugOutput.textContent += '---\n';
-        }
-    }
+    //function debugLog(message, data = null) {
+    //    console.log(message, data);
+    //    const debugOutput = document.getElementById('debugOutput');
+    //    if (debugOutput) {
+    //        debugOutput.textContent += `${new Date().toLocaleTimeString()}: ${message}\n`;
+    //        if (data) {
+    //            debugOutput.textContent += `Data: ${JSON.stringify(data, null, 2)}\n`;
+    //        }
+    //        debugOutput.textContent += '---\n';
+    //    }
+    //}
 
     function formatTimeAgo(timestamp) {
         const now = new Date();
@@ -75,26 +75,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function setupMediaCarousel(media) {
-        debugLog('setupMediaCarousel called', media);
-
         state.postMedia = media || [];
         state.currentImageIndex = 0;
 
         const currentImage = document.getElementById('currentImage');
         const imageNavControls = document.getElementById('imageNavControls');
         const imageIndicators = document.getElementById('imageIndicators');
-
-        if (!currentImage || !imageNavControls || !imageIndicators) {
-            debugLog('ERROR: Required elements not found!');
-            return;
-        }
-
         imageIndicators.innerHTML = '';
 
         if (state.postMedia.length > 0) {
             currentImage.src = state.postMedia[0].mediaUrl;
-            debugLog('First image set', state.postMedia[0].mediaUrl);
-
+           
             if (state.postMedia.length > 1) {
                 imageNavControls.classList.remove('hidden');
 

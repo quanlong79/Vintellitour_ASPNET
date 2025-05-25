@@ -1,76 +1,113 @@
-﻿
-    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800">Comment Modal Debug Tool</h1>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Modal Debug Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
 
-        <!-- Test Button -->
-        <button id="testModalBtn"
-                class="comment-button bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 mb-6"
-                data-postid="123"
-                data-author-name="Test User"
-                data-author-avatar="/img/VN.jpg"
-                data-author-id="456"
-                data-media='[{"mediaUrl": "https://via.placeholder.com/600x400/FF6B6B/FFFFFF?text=Image+1"}, {"mediaUrl": "https://via.placeholder.com/600x400/4ECDC4/FFFFFF?text=Image+2"}]'
-                data-comments='[{"username": "User1", "content": "Bình luận test 1", "avatar": "/img/VN.jpg", "createdAt": "2024-01-15T10:30:00Z"}, {"username": "User2", "content": "Bình luận test 2", "avatar": "/img/VN.jpg", "createdAt": "2024-01-15T11:00:00Z"}]'>
-            Test Modal
-        </button>
+    @section Scripts {
+        <script src="~/js/kgcs/comment_modal.js"></script>
+        <script src="~/js/kgcs/share_space.js"></script>
+    }
 
-        <!-- Debug Info -->
-        <div id="debugInfo" class="bg-gray-50 p-4 rounded-lg mb-6">
-            <h3 class="font-bold mb-2">Debug Information:</h3>
-            <pre id="debugOutput" class="text-sm text-gray-700"></pre>
-        </div>
-    </div>
+        <!-- Comment Modal with enhanced design -->
+    <div id="commentModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <!-- Enhanced overlay -->
+        <div class="modal-overlay absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
-    <!-- Comment Modal -->
-    <div id="commentModal" class="fixed inset-0 z-50 hidden items-center justify-center">
-        <!-- Overlay nền mờ -->
-        <div class="modal-overlay absolute inset-0 bg-black bg-opacity-60"></div>
-        <!-- Container modal -->
-        <div class="bg-white text-black w-full max-w-4xl h-auto rounded-lg flex overflow-hidden relative">
-            <!-- Left - Images Section -->
-            <div id="mediaSection" class="w-1/2 bg-black flex items-center justify-center overflow-hidden rounded-l-lg relative">
+        <!-- Modal container with enhanced styling -->
+        <div class="bg-white text-black w-full max-w-6xl h-auto rounded-2xl flex overflow-hidden relative shadow-2xl border border-white/20">
+            <!-- Left - Images Section with enhanced styling -->
+            <div id="mediaSection" class="w-1/2 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center overflow-hidden rounded-l-2xl relative">
                 <div class="w-full h-[600px] relative">
-                    <img id="currentImage" src="https://via.placeholder.com/600x400/CCCCCC/FFFFFF?text=No+Image" alt="post" class="absolute inset-0 w-full h-full object-cover" />
+                    <img id="currentImage"
+                         src="https://via.placeholder.com/600x400/CCCCCC/FFFFFF?text=No+Image"
+                         alt="post"
+                         class="absolute inset-0 w-full h-full object-cover transition-all duration-500" />
+                    <!-- Image overlay gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20 pointer-events-none"></div>
                 </div>
-                <!-- Image navigation controls -->
+
+                <!-- Enhanced navigation controls -->
                 <div id="imageNavControls" class="hidden">
-                    <button id="prevImageBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
-                        &#10094;
+                    <button id="prevImageBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 group">
+                        <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
                     </button>
-                    <button id="nextImageBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
-                        &#10095;
+                    <button id="nextImageBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 group">
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
                     </button>
-                    <div id="imageIndicators" class="absolute bottom-4 left-0 right-0 flex justify-center gap-1">
+
+                    <!-- Enhanced image indicators -->
+                    <div id="imageIndicators" class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
                         <!-- Image indicators will be generated dynamically -->
                     </div>
                 </div>
             </div>
-            <!-- Right - Comments -->
-            <div class="w-1/2 p-4 flex flex-col h-[600px]">
-                <!-- Header -->
-                <div class="flex items-center gap-2 border-b border-gray-300 pb-2 relative">
-                    <img id="authorAvatar" src="https://via.placeholder.com/32x32/FF6B6B/FFFFFF?text=U" alt="avatar" width="32" height="32" class="rounded-full" />
-                    <p id="authorName" class="font-semibold text-orange-600">Loading...</p>
-                    <div id="authorBadgesContainer" class="flex items-center gap-1 scale-90 transform-origin-left">
-                        <!-- Badges sẽ được chèn bởi JS -->
+
+            <!-- Right - Comments with enhanced styling -->
+            <div class="w-1/2 p-6 flex flex-col h-[600px] bg-gradient-to-b from-white to-gray-50">
+                <!-- Enhanced header -->
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-4 relative">
+                    <div class="relative">
+                        <img id="authorAvatar"
+                             src="https://via.placeholder.com/40x40/FF6B6B/FFFFFF?text=U"
+                             alt="avatar"
+                             width="40"
+                             height="40"
+                             class="rounded-full ring-2 ring-orange-500/20" />
+                        <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                     </div>
-                    <button class="modal-close absolute top-2 right-2 text-black/50 hover:text-indigo-700 cursor-pointer font-bold">
-                        ✕
+                    <div class="flex-1">
+                        <p id="authorName" class="font-bold text-gray-800 text-lg">Loading...</p>
+                        <div id="authorBadgesContainer" class="flex items-center gap-1 mt-1">
+                            <!-- Badges sẽ được chèn bởi JS -->
+                        </div>
+                    </div>
+
+                    <!-- Enhanced close button -->
+                    <button class="modal-close group p-2 hover:bg-gray-100 rounded-full transition-all duration-300">
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-gray-600 group-hover:rotate-90 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
-                <!-- Comments list -->
-                <div id="commentList" class="flex-1 overflow-y-auto py-4 space-y-4 text-sm">
-                    <p class="text-center py-4 text-gray-500">Đang tải bình luận...</p>
+
+                <!-- Enhanced comments list -->
+                <div id="commentList" class="flex-1 overflow-y-auto py-6 space-y-4">
+                    <div class="text-center py-8">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-500 font-medium">Đang tải bình luận...</p>
+                    </div>
                 </div>
-                <!-- Footer - Input -->
-                <div class="border-t border-gray-300 pt-3 mt-auto">
-                    <div class="flex items-center gap-2">
+
+                <!-- Enhanced footer input -->
+                <div class="border-t border-gray-200 pt-4 mt-auto bg-white rounded-b-2xl -mx-6 px-6 pb-6">
+                    <div class="flex items-center gap-3 bg-gray-50 rounded-xl p-3 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-500/20 transition-all duration-300">
+                        <div class="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
                         <input type="text"
                                id="newCommentContent"
                                placeholder="Thêm bình luận..."
-                               class="flex-1 bg-transparent border-none outline-none text-sm text-black placeholder-gray-400 border-b border-gray-200 pb-1" />
+                               class="flex-1 bg-transparent border-none outline-none text-gray-800 placeholder-gray-400" />
                         <button id="btnPostComment"
-                                class="text-sm text-blue-500 font-semibold hover:text-blue-700">
+                                class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
                             Đăng
                         </button>
                     </div>
@@ -78,3 +115,42 @@
             </div>
         </div>
     </div>
+
+    <style>
+        /* Custom scrollbar for comments */
+        #commentList::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #commentList::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        #commentList::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #f97316, #dc2626);
+            border-radius: 3px;
+        }
+
+            #commentList::-webkit-scrollbar-thumb:hover {
+                background: linear-gradient(to bottom, #ea580c, #b91c1c);
+            }
+
+        /* Image indicator dots styling */
+        #imageIndicators .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+            #imageIndicators .indicator-dot.active {
+                background: white;
+                transform: scale(1.2);
+            }
+    </style>
+
+</body>
+</html>

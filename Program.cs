@@ -11,6 +11,9 @@ builder.Services.AddControllersWithViews();
 // Đọc cấu hình MongoDB từ appsettings.json
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
 
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
 // Đăng ký các dịch vụ MongoDbService và UserService
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService

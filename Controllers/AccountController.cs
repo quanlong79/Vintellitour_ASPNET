@@ -8,17 +8,14 @@ namespace Vintellitour_Framework.Controllers
     {
         private readonly IUserService _userService;
         //private readonly MongoDbService _mongoDbService;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(IUserService userService)
+        // Cập nhật constructor để inject IEmailSender
+        public AccountController(IUserService userService, IEmailSender emailSender)
         {
             _userService = userService;
+            _emailSender = emailSender;
         }
-
-        //public AccountController(IUserService userService, MongoDbService mongoDbService)
-        //{
-        //    _userService = userService;
-        //    _mongoDbService = mongoDbService;
-        //}
 
 
         // Trang đăng ký
@@ -37,22 +34,23 @@ namespace Vintellitour_Framework.Controllers
                 if (model.Password != model.ConfirmPassword)
                 {
                     ViewData["Error"] = "Mật khẩu không khớp.";
-                    return View(model); // Trả lại view nếu mật khẩu không khớp
+                    return View(model);
                 }
 
-                var user = await _userService.RegisterUserAsync(model.Username, model.Email, model.Password);
+                var user = await _userService.RegisterUserAsync(model.Username, model.Email, model.Password, Request);
                 if (user == null)
                 {
                     ViewData["Error"] = "Email đã được đăng ký.";
-                    return View(model); // Trả lại view nếu email đã có
+                    return View(model);
                 }
 
-                return RedirectToAction("Login");  // Sau khi đăng ký thành công, chuyển hướng đến trang đăng nhập
+                TempData["Success"] = "Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản.";
+                return RedirectToAction("Login");
             }
 
-            // Trả về lại form nếu model không hợp lệ
             return View(model);
         }
+
 
 
         // Trang đăng nhập
@@ -73,6 +71,13 @@ namespace Vintellitour_Framework.Controllers
                 return View();
             }
 
+            // Kiểm tra nếu tài khoản chưa xác thực
+            if (!user.IsVerified)
+            {
+                ViewData["Error"] = "Tài khoản chưa được xác thực. Vui lòng kiểm tra email.";
+                return View();
+            }
+
             // Lưu thông tin user vào session
             HttpContext.Session.SetString("UserId", user.Id);
             HttpContext.Session.SetString("Username", user.Username);
@@ -89,11 +94,24 @@ namespace Vintellitour_Framework.Controllers
         }
 
 
-        //public async Task<IActionResult> TestRawDb()
-        //{
-        //    var count = await _mongoDbService.GetRawUserCountAsync();
-        //    return Content($"Số user raw từ MongoDbService: {count}");
-        //}
+        public async Task<IActionResult> VerifyEmail(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Token xác thực không hợp lệ.");
+            }
 
+            bool verified = await _userService.VerifyUserAsync(token);
+            if (verified)
+            {
+                // Xác thực thành công, chuyển về trang đăng nhập
+                return RedirectToAction("Login", "Account", new { verified = true });
+            }
+            else
+            {
+                // Xác thực thất bại (token không đúng hoặc đã dùng)
+                return View("VerificationFailed");
+            }
+        }
     }
 }

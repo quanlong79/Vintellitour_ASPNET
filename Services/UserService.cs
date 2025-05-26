@@ -19,6 +19,12 @@ namespace Vintellitour_Framework.Services
         Task<User> GetUserIdAsync(string userId);
         Task UpdateUserAsync(User user);
         Task<bool> VerifyUserAsync(string token);
+        Task<User> GetUserByEmailAsync(string email);
+        // Lấy user theo reset token
+        Task<User> GetUserByResetTokenAsync(string token);
+
+        // Đặt lại mật khẩu mới
+        Task ResetPasswordAsync(User user, string newPassword);
     }
 
     public class UserService : IUserService
@@ -60,6 +66,7 @@ namespace Vintellitour_Framework.Services
                 Password = passwordHash,
                 IsVerified = false,
                 VerificationToken = verificationToken,
+                ResetPasswordToken = null,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
@@ -108,10 +115,12 @@ namespace Vintellitour_Framework.Services
             var update = Builders<User>.Update
                 .Set(u => u.Username, user.Username)
                 .Set(u => u.Avatar, user.Avatar)
+                .Set(u => u.ResetPasswordToken, user.ResetPasswordToken)  // Thêm dòng này
                 .Set(u => u.UpdatedAt, user.UpdatedAt);
 
             await _users.UpdateOneAsync(filter, update);
         }
+
 
         private async Task SendVerificationEmail(HttpRequest request, string email, string token, string username)
         {
@@ -153,6 +162,38 @@ namespace Vintellitour_Framework.Services
                 client.EnableSsl = _smtpSettings.EnableSSL;
                 await client.SendMailAsync(message);
             }
+        }
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Email, email);
+            return await _users.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetUserByResetTokenAsync(string token)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.ResetPasswordToken, token);
+            return await _users.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task ResetPasswordAsync(User user, string newPassword)
+        {
+            string newHashed = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            user.Password = newHashed;
+            user.ResetPasswordToken = null;
+            // Loại bỏ ResetTokenExpiry khỏi update
+            // user.ResetTokenExpiry = null; 
+
+            user.UpdatedAt = DateTime.UtcNow;
+
+            var filter = Builders<User>.Filter.Eq(u => u.Id, user.Id);
+            var update = Builders<User>.Update
+                .Set(u => u.Password, user.Password)
+                .Set(u => u.ResetPasswordToken, null)
+                // Bỏ dòng cập nhật ResetTokenExpiry
+                //.Set(u => u.ResetTokenExpiry, null)
+                .Set(u => u.UpdatedAt, user.UpdatedAt);
+
+            await _users.UpdateOneAsync(filter, update);
         }
 
     }

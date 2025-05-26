@@ -29,7 +29,10 @@ namespace Vintellitour_Framework.Models
         public string? VerificationToken
         { get; set; }
 
-            [BsonElement("createdAt")]
+        [BsonElement("resetPasswordToken")]
+        public string? ResetPasswordToken { get; set; }
+
+        [BsonElement("createdAt")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime CreatedAt { get; set; }
 

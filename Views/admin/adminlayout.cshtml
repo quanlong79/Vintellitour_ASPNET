@@ -1,4 +1,4 @@
-﻿@* //fix *@
+﻿@* adminlayout.cshtml *@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,93 +9,89 @@
     <!-- Link tới CSS site của bạn nếu có -->
     <link href="~/css/site.css" rel="stylesheet" />
 
-    <!-- Thêm Tailwind CSS CDN (chỉ dùng cho dev/test nhanh, production nên build Tailwind) -->
+    <!-- Tailwind CSS CDN (production nên build Tailwind và bundle CSS riêng) -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     @RenderSection("Styles", required: false)
     @* Nếu bạn cần thêm js, css khác thì thêm ở đây *@
+    <!-- Font Awesome CDN (dùng cho icon nếu cần thêm) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-papb4VGHZjmvGJhWwLx4mD9w5qjUg2l3vdy6aTcyKNFHVRPFL1eJQe1Z4MRVzQ/l6vLz3eZ3dfDKP1M6bF9zOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    @* Thêm js hoặc css khác tại đây nếu cần *@
 </head>
-<body class="flex min-h-screen bg-gray-100">
+<body class="flex min-h-screen bg-gray-50 font-sans text-gray-800">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white min-h-screen flex flex-col border-r">
-        <div class="p-4 bg-teal-100 rounded-md mx-3 mt-4 mb-6">
-            <h2 class="text-sm font-semibold uppercase tracking-wide text-teal-900">Navigation</h2>
+    <aside class="w-64 bg-white min-h-screen flex flex-col border-r border-gray-200 shadow-lg">
+        <div class="p-5 bg-teal-600 text-white rounded-b-2xl shadow-md flex items-center justify-center font-extrabold tracking-widest text-xl select-none">
+            VintelliTour Admin
         </div>
 
-        <nav class="flex flex-col px-2 space-y-1">
-            <a href="/admin/dashboard" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-teal-50 text-gray-700 hover:text-teal-700 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 13h18M3 6h18M3 20h18"></path>
-                </svg>
+        <nav class="flex flex-col flex-grow px-4 mt-6 space-y-1 text-gray-700">
+            <a href="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-chart-line fa-lg"></i>
                 Dashboard
             </a>
-            <a href="/admin/locations" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-teal-50 text-gray-700 hover:text-teal-700 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                </svg>
+            <a href="/admin/locations" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-map-marker-alt fa-lg"></i>
                 Quản lý địa điểm
             </a>
-            <a href="/admin/posts" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-teal-50 text-gray-700 hover:text-teal-700 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 12h18M6 16h2M10 8h2M14 12h2"></path>
-                </svg>
+            <a href="/admin/posts" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-pen-nib fa-lg"></i>
                 Quản lý bài đăng
             </a>
-            <a href="/admin/users" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-teal-50 text-gray-700 hover:text-teal-700 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path>
-                </svg>
+            <a href="/admin/users" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-users fa-lg"></i>
                 Quản lý người dùng
             </a>
         </nav>
 
-        <div class="mt-auto p-4 flex items-center gap-3 border-t">
-            <div class="w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-semibold">A</div>
+        <div class="mt-auto p-4 flex items-center gap-3 border-t border-gray-200 bg-gray-100">
+            <div class="w-12 h-12 rounded-full bg-teal-700 text-white flex items-center justify-center font-bold text-lg select-none shadow">
+                A
+            </div>
             <div>
                 <div class="text-sm font-semibold">admin</div>
                 <div class="text-xs text-gray-500">admin@example.com</div>
             </div>
-            <button class="ml-auto p-1 hover:bg-gray-200 rounded-full" title="More options">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="5" r="1"></circle>
-                    <circle cx="12" cy="12" r="1"></circle>
-                    <circle cx="12" cy="19" r="1"></circle>
+            <button class="ml-auto p-2 hover:bg-gray-300 rounded-full transition" title="More options" aria-label="More options">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="19" r="1" />
                 </svg>
             </button>
         </div>
     </aside>
 
     <!-- Main content area -->
-    <div class="flex-1 flex flex-col min-h-screen">
+    <div class="flex-1 flex flex-col min-h-screen bg-gray-50">
         <!-- Header -->
-        <header class="flex items-center gap-2 border-b px-6 h-14 bg-white">
-            <button type="button" class="lg:hidden">
-                <!-- Hamburger menu icon -->
-                <svg class="w-6 h-6 text-green-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <header class="flex items-center gap-4 border-b border-gray-300 px-8 h-16 bg-white shadow-sm sticky top-0 z-10">
+            <button type="button" class="lg:hidden text-teal-600 hover:text-teal-800 transition" aria-label="Toggle sidebar">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
 
-            <h1 class="text-base font-medium text-green-900">Welcome to the admin of VintelliTour</h1>
+            <h1 class="text-xl font-semibold text-teal-700 select-none tracking-wide">Welcome to the Admin Panel</h1>
 
-            <div class="ml-auto flex items-center gap-2">
+            <div class="ml-auto flex items-center gap-3">
                 <a href="https://github.com/minhloc289/VintelliTour" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-4 py-2 text-white font-semibold bg-teal-700 rounded-xl border border-teal-300 hover:bg-teal-600 hover:shadow-md transition duration-300">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.839 21.489C9.339 21.581 9.521 21.284 9.521 21.021C9.521 20.784 9.513 20.133 9.508 19.289C6.726 19.882 6.139 17.891 6.139 17.891C5.685 16.735 5.029 16.439 5.029 16.439C4.132 15.798 5.095 15.81 5.095 15.81C6.089 15.88 6.616 16.852 6.616 16.852C7.5 18.423 8.969 17.938 9.539 17.683C9.631 17.029 9.889 16.545 10.175 16.26C7.954 15.972 5.62 15.085 5.62 11.333C5.62 10.249 6.01 9.358 6.636 8.659C6.533 8.409 6.186 7.406 6.736 6.061C6.736 6.061 7.566 5.795 9.497 7.061C10.2958 6.83886 11.1246 6.72614 11.959 6.726C12.792 6.73 13.646 6.853 14.42 7.061C16.349 5.794 17.179 6.061 17.179 6.061C17.729 7.406 17.384 8.409 17.279 8.659C17.908 9.358 18.294 10.249 18.294 11.333C18.294 15.095 15.955 15.969 13.728 16.252C14.081 16.598 14.394 17.281 14.394 18.334C14.394 19.836 14.383 20.691 14.383 21.021C14.383 21.286 14.562 21.585 15.072 21.488C19.042 20.162 21.904 16.417 21.904 12C21.904 6.477 17.428 2 12 2Z" />
-                    </svg>
-                    GitHub
+                   class="inline-flex items-center gap-2 px-4 py-2 text-white font-semibold bg-teal-600 rounded-lg shadow-md hover:bg-teal-700 transition duration-300">
+                    <i class="fab fa-github fa-lg"></i> GitHub
                 </a>
             </div>
         </header>
 
         <!-- Main content -->
-        <main class="flex-1 p-4 overflow-auto">
+        <main class="flex-1 p-6 overflow-y-auto">
             @RenderBody()
         </main>
     </div>
 
+    <!-- Scripts -->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

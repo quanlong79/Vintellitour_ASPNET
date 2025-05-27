@@ -15,6 +15,8 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService
 builder.Services.AddScoped<IPostService, PostService>(); // Cũng phải đăng ký MongoDB Database instance và kết nối cho PostService nhận
+builder.Services.AddSingleton<ProductService>();
+builder.Services.AddScoped<CartService>();
 
 // Đăng ký session
 builder.Services.AddDistributedMemoryCache();

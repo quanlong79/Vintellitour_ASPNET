@@ -1,52 +1,147 @@
-﻿@{
-    ViewData["Title"] = "Quản lý bài đăng";
-}
+﻿@using Vintellitour_Framework.ViewModels
+@model SharespaceViewModel
 @{
-    Layout = "adminlayout";
+    ViewData["Title"] = "Quản lý bài đăng";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
 }
 
-@* //fix *@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8" />
-    <title>@ViewData["Title"]</title>
+@section Styles {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
-</head>
-<body class="bg-gray-100 min-h-screen p-6">
+    <style>
+        /* Tailwind hỗ trợ line-clamp nhưng nếu chưa dùng plugin, bạn có thể thêm thủ công */
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+}
 
+<div class="p-4 max-w-7xl mx-auto">
     <!-- Toolbar -->
-    <div class="max-w-7xl mx-auto mb-6 flex flex-wrap items-center gap-3">
-        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm">
-            Bài viết thường (0)
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <button class="px-4 py-2 rounded-lg text-white bg-blue-600 font-medium text-sm">
+            Bài viết thường (@Model.Posts?.Count ?? 0)
         </button>
-        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-800 flex items-center gap-1" disabled>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405M19 13V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8m16 0l-4 4m0 0l-4-4m4 4V3" />
             </svg>
             Cần kiểm duyệt (0)
         </button>
-        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-800 flex items-center gap-1" disabled>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h3m6 0h12m-6-6v12m0 0l-3-3m3 3l3-3" />
             </svg>
             Lịch sử kiểm duyệt (0)
         </button>
-        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1">
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-800 flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l4-4-4-4" />
             </svg>
             Mới nhất
         </button>
-        <button class="ml-auto bg-orange-500 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-orange-600">
+        <button class="ml-auto px-4 py-2 rounded-lg text-sm font-medium bg-orange-500 text-white hover:bg-orange-600">
             Kiểm duyệt tất cả bài viết
         </button>
     </div>
 
-    <!-- Nội dung bài viết trống -->
-    <div class="max-w-7xl mx-auto bg-white rounded-lg shadow p-20 text-center text-gray-500 text-lg select-none">
-        Không có bài viết nào
-    </div>
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @if (Model.Posts != null && Model.Posts.Any())
+        {
+            @foreach (var postInfo in Model.Posts)
+            {
+                var post = postInfo.Post;
+                var authorName = postInfo.AuthorName;
+                var authorAvatar = postInfo.AuthorAvatar ?? "/img/VN.jpg";
+                var content = post.Content ?? "";
+                var medias = post.Media ?? new List<Media>(); // Bạn cần map Media từ model hoặc để trống
+                var flagged = post.Status == "flagged";
+                var flaggedReason = postInfo.FlaggedReason; // Nếu có
+                var likes = post.Likes;
+                var commentsCount = post.Comments?.Count ?? 0;
+                var isApproved = post.Status == "approved" || post.Status == "active"; // Ví dụ trạng thái duyệt
 
-</body>
-</html>
+                // Ở đây bạn có thể chuẩn bị một biến để format thời gian (chưa có helper sẵn)
+                <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col">
+                    <!-- Image carousel -->
+                    <div class="relative w-full h-44 bg-gray-100 rounded-t-lg overflow-hidden">
+                        @{
+                            var firstMediaUrl = medias.Count > 0 ? medias[0].MediaUrl : "/img/placeholder.png";
+                        }
+                        <img src="@firstMediaUrl" alt="Post image" class="object-cover w-full h-full" />
+                        @if (flagged)
+                        {
+                            <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded">
+                                @flaggedReason ?? "Bài viết vi phạm"
+                            </div>
+                        }
+                        <div class="absolute top-2 right-2 flex space-x-2">
+                            @* Approve button (hiện khi flagged) *@
+                            @if (flagged)
+                            {
+                                <form asp-action="ApprovePost" asp-route-postId="@post.Id" method="post" class="inline">
+                                    <button type="submit" title="Duyệt bài viết" class="bg-green-600 hover:bg-green-700 p-2 rounded-full text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            }
+                            <form asp-action="DeletePost" asp-route-postId="@post.Id" method="post" class="inline">
+                                <button type="submit" title="Xóa bài viết" class="bg-red-600 hover:bg-red-700 p-2 rounded-full text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="p-4 flex flex-col flex-grow">
+                        <!-- Author info -->
+                        <div class="flex items-center gap-2 mb-2">
+                            <img src="@authorAvatar" alt="Avatar" class="w-8 h-8 rounded-full object-cover" />
+                            <div class="text-sm font-semibold">@authorName</div>
+                            <div class="text-xs text-gray-500 ml-auto">@post.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="text-gray-800 mb-3 flex-grow">
+                            @{
+                                var shortContent = content.Length > 100 ? content.Substring(0, 100) + "..." : content;
+                            }
+                            <p>@shortContent</p>
+                            @* Bạn có thể thêm nút Xem thêm nếu muốn, cần JS để toggle *@
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>@likes</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                    </svg>
+                                    <span>@commentsCount</span>
+                                </div>
+                            </div>
+                            <span class="text-green-600 text-xs font-semibold">@((isApproved) ? "Đã duyệt" : "Chưa duyệt")</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-span-3 text-center py-20 text-gray-500 text-lg select-none">Không có bài viết nào</div>
+        }
+    </div>
+</div>

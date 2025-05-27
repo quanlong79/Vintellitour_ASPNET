@@ -4,12 +4,12 @@ using System;
 
 namespace Vintellitour_Framework.Models
 {
-    [BsonIgnoreExtraElements]  // Bỏ qua các trường extra không khai báo
-    public class User
+    [BsonIgnoreExtraElements] // Bỏ qua các trường không khai báo trong class
+    public class AdminUser
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string Id { get; set; }  // _id
 
         [BsonElement("username")]
         public string Username { get; set; }
@@ -21,23 +21,19 @@ namespace Vintellitour_Framework.Models
         public string Password { get; set; }
 
         [BsonElement("avatar")]
-        public string Avatar { get; set; } = "";
+        public string Avatar { get; set; }
 
         [BsonElement("isVerified")]
-        public bool IsVerified { get; set; } = false;
+        public bool IsVerified { get; set; }
 
-        public string? VerificationToken
-        { get; set; }
-
-        [BsonElement("resetPasswordToken")]
-        public string? ResetPasswordToken { get; set; }
+        [BsonElement("VerificationToken")]
+        [BsonIgnoreIfNull]
+        public string VerificationToken { get; set; }
 
         [BsonElement("createdAt")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime CreatedAt { get; set; }
 
         [BsonElement("updatedAt")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime UpdatedAt { get; set; }
     }
 }

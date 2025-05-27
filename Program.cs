@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Vintellitour_Framework.Services;
 using Vintellitour_Framework.Models;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,26 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService
 builder.Services.AddScoped<IPostService, PostService>(); // Cũng phải đăng ký MongoDB Database instance và kết nối cho PostService nhận
+// Đăng ký MongoClient singleton
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var connectionString = config.GetSection("MongoDB")["ConnectionString"];
+    return new MongoClient(connectionString);
+});
 
+// Đăng ký MongoDatabase scoped
+builder.Services.AddScoped<IMongoDatabase>(sp =>
+{
+    var client = sp.GetRequiredService<IMongoClient>();
+    var config = sp.GetRequiredService<IConfiguration>();
+    var dbName = config.GetSection("MongoDB")["DatabaseName"];
+    return client.GetDatabase(dbName);
+});
+
+// Tạo AdminUserService và DashboardService
+builder.Services.AddScoped<IAdminUserService, AdminUserService>();
+builder.Services.AddScoped<DashboardService>();
 // Đăng ký session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

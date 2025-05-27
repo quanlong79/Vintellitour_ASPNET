@@ -12,6 +12,8 @@
     <!-- Tailwind CSS CDN (production nên build Tailwind và bundle CSS riêng) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    @RenderSection("Styles", required: false)
+    @* Nếu bạn cần thêm js, css khác thì thêm ở đây *@
     <!-- Font Awesome CDN (dùng cho icon nếu cần thêm) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-papb4VGHZjmvGJhWwLx4mD9w5qjUg2l3vdy6aTcyKNFHVRPFL1eJQe1Z4MRVzQ/l6vLz3eZ3dfDKP1M6bF9zOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />

@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+
+using System.Linq;
 using System.Threading.Tasks;
-using Vintellitour_Framework.Models;
 using Vintellitour_Framework.Services;
+using Vintellitour_Framework.Models;
 using Vintellitour_Framework.ViewModels;
+using System.Collections.Generic;
 
 namespace Vintellitour_Framework.Controllers
 {
     public class AdminController : Controller
     {
+
         private readonly IAdminUserService _adminUserService;
         private readonly DashboardService _dashboardService;  // Dùng trực tiếp DashboardService
 
@@ -34,7 +37,6 @@ namespace Vintellitour_Framework.Controllers
         {
             return View();
         }
-
         public IActionResult posts()
         {
             return View();

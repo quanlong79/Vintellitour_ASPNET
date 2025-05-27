@@ -19,6 +19,9 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService
 builder.Services.AddScoped<IPostService, PostService>(); // Cũng phải đăng ký MongoDB Database instance và kết nối cho PostService nhận
+builder.Services.AddSingleton<ProductService>();
+builder.Services.AddScoped<CartService>();
+
 // Đăng ký MongoClient singleton
 builder.Services.AddSingleton<IMongoClient>(sp =>
 {
@@ -35,6 +38,7 @@ builder.Services.AddScoped<IMongoDatabase>(sp =>
     var dbName = config.GetSection("MongoDB")["DatabaseName"];
     return client.GetDatabase(dbName);
 });
+
 
 // Tạo AdminUserService và DashboardService
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();

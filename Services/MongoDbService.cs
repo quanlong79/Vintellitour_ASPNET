@@ -10,6 +10,8 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<Post> _posts;
         private readonly IMongoCollection<Provinces> _provinces;
         private readonly IMongoCollection<LocationsModel> _locations;
+        private readonly IMongoCollection<Product> _products;
+        private readonly IMongoCollection<Cart> _carts;
 
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
@@ -24,6 +26,8 @@ namespace Vintellitour_Framework.Services
             _posts = database.GetCollection<Post>("posts");
             _provinces = database.GetCollection<Provinces>("provinces");
             _locations = database.GetCollection<LocationsModel>("locations");
+            _products = database.GetCollection<Product>("products");
+            _carts = database.GetCollection<Cart>("carts");
         }
 
         // Phương thức trả về collection Users
@@ -42,6 +46,15 @@ namespace Vintellitour_Framework.Services
         public IMongoCollection<LocationsModel> GetLocationsCollection()
         {
             return _locations;
+        }
+        public IMongoCollection<Product> GetProductCollection()
+        {
+            return _products;
+        }
+
+        public IMongoCollection<Cart> GetCartCollection()
+        {
+            return _carts;
         }
 
         //Lấy tất cả người dùng

@@ -539,7 +539,7 @@
             fetch(`/Cart/AddToCart?productId=${selectedProductId}&quantity=${quantity}`, {
                 method: 'POST'
             })
-                .then(res => res.json())s
+                .then(res => res.json())
                 .then(data => {
                     alert(data.success ? '🛒 Đã thêm vào giỏ hàng!' : '❌ Lỗi khi thêm sản phẩm!');
                     updateCartItemCount();

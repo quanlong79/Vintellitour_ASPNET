@@ -1,0 +1,9 @@
+ "AllowedHosts": "*",
+
+  "SmtpSettings": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "EnableSSL": true,
+    "UserName": "22520814@gm.uit.edu.vn",
+    "Password": "ibmn fshv znvt idnx"
+  }

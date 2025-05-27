@@ -97,6 +97,7 @@ namespace Vintellitour_Framework.Models
     public class PostViewModel
     {
         public Post Post { get; set; }
+        public string FlaggedReason { get; set; }
         public string AuthorName { get; set; }
         public string AuthorAvatar { get; set; }
         public bool IsLikedByCurrentUser { get; set; }

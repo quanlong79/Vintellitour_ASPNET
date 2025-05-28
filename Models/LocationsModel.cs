@@ -53,4 +53,30 @@ namespace Vintellitour_Framework.Models
         [BsonElement("tags")]
         public List<string> Tags { get; set; }
     }
+     public class LocationResponse
+    {
+        public bool Success { get; set; }
+        public List<Location> Data { get; set; } = new List<Location>();
+        public string Message { get; set; } = string.Empty;
+    }
+
+    public class ProvinceFeature
+    {
+        public string Type { get; set; } = "Feature";
+        public ProvinceProperties Properties { get; set; } = new ProvinceProperties();
+        public object Geometry { get; set; } = new object();
+    }
+
+    public class ProvinceProperties
+    {
+        public string TenTinh { get; set; } = string.Empty;
+        public int Gid { get; set; }
+    }
+
+    public class MapViewModel
+    {
+        public string ProvinceGeoJson { get; set; } = string.Empty;
+        public int? SelectedProvinceGid { get; set; }
+        public string? SelectedProvinceName { get; set; }
+    }
 }

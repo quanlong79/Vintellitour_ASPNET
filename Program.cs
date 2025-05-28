@@ -1,12 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Vintellitour_Framework.Data;
+using Vintellitour_Framework.Data.Repositories;
 using Vintellitour_Framework.Services;
-using Vintellitour_Framework.Models;
+using Vintellitour_Framework.Services.Interfaces;
+using YourNamespace.Data.Repositories;
+using YourNamespace.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Thêm các dịch vụ vào container
 builder.Services.AddControllersWithViews();
+
+
 
 // Đọc cấu hình MongoDB từ appsettings.json
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
@@ -15,6 +19,20 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<MongoDbService>();  // Singleton cho MongoDbService
 builder.Services.AddScoped<IUserService, UserService>();  // Scoped cho UserService
 builder.Services.AddScoped<IPostService, PostService>(); // Cũng phải đăng ký MongoDB Database instance và kết nối cho PostService nhận
+builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<IProvinceService, ProvinceService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+var connectionString = builder.Configuration["MongoDB:ConnectionString"];
+var databaseName = builder.Configuration["MongoDB:DatabaseName"];
+
+builder.Services.AddSingleton<MongoDbContext>(sp =>
+{
+    return new MongoDbContext(connectionString, databaseName);
+});
+
+
+
 
 // Đăng ký session
 builder.Services.AddDistributedMemoryCache();
@@ -44,10 +62,9 @@ app.UseAuthorization();
 app.UseSession();
 // Xử lý tài nguyên tĩnh (assets)
 app.UseStaticFiles();
-// Định nghĩa route mặc định cho MVC
+app.MapControllers(); // Thêm dòng này để hỗ trợ API Controllers
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");  // Cấu hình route mặc định cho ứng dụng
-
+    pattern: "{controller=Map}/{action=Index}/{id?}");
 // Chạy ứng dụng
 app.Run();

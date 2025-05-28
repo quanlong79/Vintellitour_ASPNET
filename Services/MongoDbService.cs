@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Vintellitour_Framework.Models;
+
 using Microsoft.Extensions.Options;
 
 namespace Vintellitour_Framework.Services
@@ -9,6 +10,7 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<User> _users;
         private readonly IMongoCollection<Post> _posts;
         private readonly IMongoCollection<Provinces> _provinces;
+        private readonly IMongoCollection<Location> _locationRepository;
 
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
@@ -22,6 +24,7 @@ namespace Vintellitour_Framework.Services
             _users = database.GetCollection<User>("users");
             _posts = database.GetCollection<Post>("posts");
             _provinces = database.GetCollection<Provinces>("provinces");
+            _locationRepository =database.GetCollection<Location>("locations");
         }
 
         // Phương thức trả về collection Users

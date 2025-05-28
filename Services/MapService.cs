@@ -1,28 +1,26 @@
-﻿using Vintellitour_Framework.Data.Repositories;
-using Vintellitour_Framework.Models.DTOs;
+﻿
 using Vintellitour_Framework.Services.Interfaces;
-
-namespace YourNamespace.Services
+using Vintellitour_Framework.Data.Repositories;
+using Vintellitour_Framework.Models.DTOs;
+namespace Vintellitour_Framework.Services
 {
-    public class ProvinceService : IProvinceService
+    public class MapService : IMapService
     {
         private readonly IProvinceRepository _provinceRepository;
 
-        public ProvinceService(IProvinceRepository provinceRepository)
+        public MapService(IProvinceRepository provinceRepository)
         {
             _provinceRepository = provinceRepository;
         }
 
-        public async Task<ProvinceDto?> GetProvinceByGid(int gid)
+        public async Task<ProvinceDto> GetProvinceByGid(int gid)
         {
             var province = await _provinceRepository.GetByGidAsync(gid);
-            if (province == null) return null;
-
             return new ProvinceDto
             {
                 Gid = province.Gid,
                 Name = province.Name,
-                // Map thêm các trường nếu cần
+                // Map other properties
             };
         }
 

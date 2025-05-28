@@ -1,13 +1,11 @@
 ﻿    using Microsoft.AspNetCore.Mvc;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Vintellitour_Framework.ViewModels;  // namespace chứa SharespaceViewModel
+    using Vintellitour_Framework.ViewModels;  
     using Vintellitour_Framework.Services;
     using Vintellitour_Framework.Models;
     using MongoDB.Bson;
 
-// IUserService giả sử có lấy badges, provinces
-//\Controllers\PostController.cs
 [Route("post")]
 public class PostController : Controller
 {

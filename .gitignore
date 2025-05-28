@@ -3,5 +3,6 @@ bin/
 obj/
 
 # Bỏ qua file project
-*.csproj
+Vintellitour_Framework.csproj
 *.user
+*.csproj

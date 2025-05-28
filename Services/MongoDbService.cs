@@ -1,4 +1,4 @@
-﻿using MongoDB.Driver;
+using MongoDB.Driver;
 using Vintellitour_Framework.Models;
 using Microsoft.Extensions.Options;
 

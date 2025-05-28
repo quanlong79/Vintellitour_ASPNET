@@ -12,6 +12,8 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<LocationsModel> _locations;
         private readonly IMongoCollection<Product> _products;
         private readonly IMongoCollection<Cart> _carts;
+        private readonly IMongoCollection<Location> _locationRepository;
+
 
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
@@ -28,6 +30,7 @@ namespace Vintellitour_Framework.Services
             _locations = database.GetCollection<LocationsModel>("locations");
             _products = database.GetCollection<Product>("products");
             _carts = database.GetCollection<Cart>("carts");
+            _locationRepository =database.GetCollection<Location>("locations");
         }
 
         // Phương thức trả về collection Users

@@ -1,0 +1,97 @@
+﻿@* adminlayout.cshtml *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - VintelliTour Admin</title>
+
+    <!-- Link tới CSS site của bạn nếu có -->
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN (production nên build Tailwind và bundle CSS riêng) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    @RenderSection("Styles", required: false)
+    @* Nếu bạn cần thêm js, css khác thì thêm ở đây *@
+    <!-- Font Awesome CDN (dùng cho icon nếu cần thêm) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-papb4VGHZjmvGJhWwLx4mD9w5qjUg2l3vdy6aTcyKNFHVRPFL1eJQe1Z4MRVzQ/l6vLz3eZ3dfDKP1M6bF9zOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @* Thêm js hoặc css khác tại đây nếu cần *@
+</head>
+<body class="flex min-h-screen bg-gray-50 font-sans text-gray-800">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white min-h-screen flex flex-col border-r border-gray-200 shadow-lg">
+        <div class="p-5 bg-teal-600 text-white rounded-b-2xl shadow-md flex items-center justify-center font-extrabold tracking-widest text-xl select-none">
+            VintelliTour Admin
+        </div>
+
+        <nav class="flex flex-col flex-grow px-4 mt-6 space-y-1 text-gray-700">
+            <a href="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-chart-line fa-lg"></i>
+                Dashboard
+            </a>
+            <a href="/admin/locations" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-map-marker-alt fa-lg"></i>
+                Quản lý địa điểm
+            </a>
+            <a href="/admin/posts" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-pen-nib fa-lg"></i>
+                Quản lý bài đăng
+            </a>
+            <a href="/admin/users" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition duration-300 font-semibold">
+                <i class="fas fa-users fa-lg"></i>
+                Quản lý người dùng
+            </a>
+        </nav>
+
+        <div class="mt-auto p-4 flex items-center gap-3 border-t border-gray-200 bg-gray-100">
+            <div class="w-12 h-12 rounded-full bg-teal-700 text-white flex items-center justify-center font-bold text-lg select-none shadow">
+                A
+            </div>
+            <div>
+                <div class="text-sm font-semibold">admin</div>
+                <div class="text-xs text-gray-500">admin@example.com</div>
+            </div>
+            <button class="ml-auto p-2 hover:bg-gray-300 rounded-full transition" title="More options" aria-label="More options">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="flex-1 flex flex-col min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="flex items-center gap-4 border-b border-gray-300 px-8 h-16 bg-white shadow-sm sticky top-0 z-10">
+            <button type="button" class="lg:hidden text-teal-600 hover:text-teal-800 transition" aria-label="Toggle sidebar">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <h1 class="text-xl font-semibold text-teal-700 select-none tracking-wide">Welcome to the Admin Panel</h1>
+
+            <div class="ml-auto flex items-center gap-3">
+                <a href="https://github.com/minhloc289/VintelliTour" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-4 py-2 text-white font-semibold bg-teal-600 rounded-lg shadow-md hover:bg-teal-700 transition duration-300">
+                    <i class="fab fa-github fa-lg"></i> GitHub
+                </a>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

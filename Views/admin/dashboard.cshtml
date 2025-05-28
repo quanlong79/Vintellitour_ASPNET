@@ -1,0 +1,162 @@
+﻿@model Vintellitour_Framework.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "adminlayout";
+}
+
+<h1 class="text-4xl font-extrabold mb-12 text-center text-teal-700 select-none tracking-wide drop-shadow-md">
+    Admin Dashboard
+</h1>
+
+<section class="bg-white shadow-lg rounded-xl p-6 mb-12">
+    <h2 class="text-2xl font-semibold mb-10 text-gray-800 border-b border-teal-200 pb-3 select-none">
+        🏞️ Top 5 Provinces & 👤 User Post Status
+    </h2>
+
+    <div class="flex flex-wrap gap-8 justify-center items-stretch">
+        <!-- Bar Chart Container -->
+        <div class="flex-1 min-w-[300px] max-w-[600px] h-[400px] bg-white rounded-xl shadow p-4">
+            <canvas id="provinceChart" class="w-full h-full"></canvas>
+        </div>
+
+        <!-- Pie Chart Container -->
+        <div class="w-full sm:w-1/3 max-w-[400px] h-[400px] bg-white rounded-xl shadow p-4">
+            <canvas id="userPostStatusChart" class="w-full h-full"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- Post Stats by Month Full Width -->
+<section class="bg-white shadow-lg rounded-xl p-6 transform transition duration-300 hover:scale-[1.01] hover:shadow-xl">
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800 border-b border-teal-200 pb-3 select-none">
+        📈 Post Stats by Month
+    </h2>
+    <div class="w-full h-[500px]">
+        <canvas id="postsMonthChart" class="w-full h-full"></canvas>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Dữ liệu từ ViewModel
+        const provinces = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ProvinceEngagements));
+        const userPostStatus = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.UserPostStatus));
+        const postsByMonth = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.PostStatsByMonth));
+
+        // --- Bar Chart Top 5 Provinces ---
+        const ctxProvince = document.getElementById('provinceChart').getContext('2d');
+        new Chart(ctxProvince, {
+            type: 'bar',
+            data: {
+                labels: provinces.map(p => p.ProvinceName),
+                datasets: [{
+                    label: 'Engagement (Likes + Comments)',
+                    data: provinces.map(p => p.TotalEngagement),
+                    backgroundColor: ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#8E24AA'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: { maxRotation: 0, minRotation: 0, autoSkip: false }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                        title: {
+                            display: true,
+                            text: 'Engagement Count'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    title: {
+                        display: true,
+                        text: 'Top 5 Provinces by Engagement',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Engagement: ${context.parsed.y.toLocaleString()}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- Pie Chart User Post Status ---
+        const ctxUserPostStatus = document.getElementById('userPostStatusChart').getContext('2d');
+        new Chart(ctxUserPostStatus, {
+            type: 'pie',
+            data: {
+                labels: ['Users with Posts', 'Users without Posts'],
+                datasets: [{
+                    data: [userPostStatus.UsersWithPosts, userPostStatus.UsersWithoutPosts],
+                    backgroundColor: ['rgba(76, 175, 80, 0.7)', 'rgba(255, 87, 34, 0.7)'],
+                    borderColor: ['rgba(76, 175, 80, 1)', 'rgba(255, 87, 34, 1)'],
+                    borderWidth: 2,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // --- Line Chart Posts per Month ---
+        const ctxPostsMonth = document.getElementById('postsMonthChart').getContext('2d');
+        new Chart(ctxPostsMonth, {
+            type: 'line',
+            data: {
+                labels: [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ],
+                datasets: [{
+                    label: 'Posts per Month',
+                    data: Array(12).fill(0).map((_, i) => {
+                        const stat = postsByMonth.find(p => p.Month === i + 1);
+                        return stat ? stat.PostCount : 0;
+                    }),
+                    fill: true,
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    </script>
+}

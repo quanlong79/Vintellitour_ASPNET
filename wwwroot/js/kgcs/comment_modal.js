@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function debugLog(message, data = null) {
-        console.log(message, data);
+        console.log(`[CommentModal] ${message}`, data);
         const debugOutput = document.getElementById('debugOutput');
         if (debugOutput) {
             debugOutput.textContent += `${new Date().toLocaleTimeString()}: ${message}\n`;
@@ -75,25 +75,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function setupMediaCarousel(media) {
-        debugLog('setupMediaCarousel called', media);
-
         state.postMedia = media || [];
         state.currentImageIndex = 0;
 
         const currentImage = document.getElementById('currentImage');
         const imageNavControls = document.getElementById('imageNavControls');
         const imageIndicators = document.getElementById('imageIndicators');
-
-        if (!currentImage || !imageNavControls || !imageIndicators) {
-            debugLog('ERROR: Required elements not found!');
-            return;
-        }
-
         imageIndicators.innerHTML = '';
 
         if (state.postMedia.length > 0) {
             currentImage.src = state.postMedia[0].mediaUrl;
-            debugLog('First image set', state.postMedia[0].mediaUrl);
 
             if (state.postMedia.length > 1) {
                 imageNavControls.classList.remove('hidden');
@@ -283,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
             postBtn.disabled = false;
         }
     }
+
     function addCommentToUI(comment) {
         const commentList = document.getElementById('commentList');
 
@@ -304,6 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         commentList.appendChild(commentEl);
     }
+
     // Event listeners
     const prevBtn = document.getElementById('prevImageBtn');
     const nextBtn = document.getElementById('nextImageBtn');
@@ -368,7 +361,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Comment button handlers
+    // Tạo global object để share_space.js có thể gọi
+    window.commentModal = {
+        show: showModal,
+        hide: hideModal
+    };
+
+    // XỬ LÝ COMMENT BUTTON - CHỈ TẠI ĐÂY
+    // Xóa phần xử lý comment button trong share_space.js
     document.querySelectorAll('.comment-button').forEach(button => {
         button.addEventListener('click', function () {
             debugLog('Comment button clicked');
@@ -397,7 +397,6 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (error) {
                 debugLog('Error parsing comments data', error);
             }
-
 
             showModal(postId, authorName, authorAvatar, authorId, media, comments);
         });

@@ -29,33 +29,47 @@ public class UserProfileViewComponent : ViewComponent
             };
             return View(emptyViewModel);
         }
+
         var posts = await _postService.GetPostsWithAuthorInfoAsync();
-        // Badges 
+
+        // Tính thống kê bài viết và comment theo author
         var authorStats = posts
-        .GroupBy(p => p.Post.AuthorId)
-        .ToDictionary(
-            g => g.Key,
-            g => new
-            {
-                PostsCount = g.Count(),
-                CommentsCount = g.Sum(p => p.Post.Comments?.Count ?? 0)
-            }
-        );
+            .GroupBy(p => p.Post.AuthorId)
+            .ToDictionary(
+                g => g.Key,
+                g => new
+                {
+                    PostsCount = g.Count(),
+                    CommentsCount = g.Sum(p => p.Post.Comments?.Count ?? 0)
+                }
+            );
+
         var badgesList = new Dictionary<string, List<BadgeViewModel>>();
-        var stats = authorStats[currentUserId];
+
+        // Dùng TryGetValue để tránh lỗi KeyNotFoundException
+        authorStats.TryGetValue(currentUserId, out var stats);
+
         List<BadgeViewModel> badges = new();
 
-
-        if (stats.PostsCount >= 5 && stats.CommentsCount > 15)
-            badges.Add(new BadgeViewModel { Type = "expert", Label = "Chuyên Gia Tương Tác" });
-        else if (stats.PostsCount >= 5)
-            badges.Add(new BadgeViewModel { Type = "creator", Label = "Người Sáng Tạo" });
-        else if (stats.CommentsCount > 15)
-            badges.Add(new BadgeViewModel { Type = "connector", Label = "Người Kết Nối" });
+        if (stats != null)
+        {
+            if (stats.PostsCount >= 5 && stats.CommentsCount > 15)
+                badges.Add(new BadgeViewModel { Type = "expert", Label = "Chuyên Gia Tương Tác" });
+            else if (stats.PostsCount >= 5)
+                badges.Add(new BadgeViewModel { Type = "creator", Label = "Người Sáng Tạo" });
+            else if (stats.CommentsCount > 15)
+                badges.Add(new BadgeViewModel { Type = "connector", Label = "Người Kết Nối" });
+            else
+                badges.Add(new BadgeViewModel { Type = "rookie", Label = "Tân Binh" });
+        }
         else
+        {
+            // Nếu user chưa có bài viết hoặc comment, gán badge mặc định
             badges.Add(new BadgeViewModel { Type = "rookie", Label = "Tân Binh" });
+        }
 
         badgesList[currentUserId] = badges;
+
         List<BadgeViewModel> currentUserBadges = new List<BadgeViewModel>();
         if (!string.IsNullOrEmpty(currentUserId) && badgesList.ContainsKey(currentUserId))
         {
@@ -67,6 +81,8 @@ public class UserProfileViewComponent : ViewComponent
             AuthorBadges = badgesList,
             CurrentUserBadges = currentUserBadges
         };
+
         return View(viewModel);
     }
+
 }

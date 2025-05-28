@@ -1,223 +1,325 @@
 ﻿@model Vintellitour_Framework.ViewModels.SharespaceViewModel
 
 @{
-    Layout = "_Layout"; // hoặc tùy bạn
+    Layout = "_Layout";
 }
-@* \Views\Main\sharespace.cshtml *@
+
 @section Scripts {
     <script src="~/js/kgcs/comment_modal.js"></script>
     <script src="~/js/kgcs/share_space.js"></script>
 }
 
-<div class="flex flex-col md:flex-row px-4 md:px-16 py-8 gap-8">
-    <div class="flex-1">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-2 border-gray-300 mb-6">
-            <div class="flex flex-col">
-                <h2 class="text-xl text-gray-700 font-semibold">
-                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
-                    {
-                        var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
-                        <text>Tỉnh: @p?.Name</text>
-                    }
-                    else
-                    {
-                        <text>Tất cả tỉnh</text>
-                    }
-                </h2>
-                <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
-            </div>
-            <div>
-                <form id="filterForm" method="get" class="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50">
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-                    <input type="hidden" id="selectedProvinceId" name="selectedProvinceId" value="@Model.SelectedProvinceId" />
-                    <input type="hidden" id="showOnlyMyPostsInput" name="showOnlyMyPosts" value="@Model.ShowOnlyMyPosts.ToString().ToLower()" />
-                    <input type="hidden" id="sortOrderInput" name="sortOrder" value="@Model.SortOrder" />
+            <!-- MAIN CONTENT -->
+            <div class="lg:col-span-3">
+                <!-- HEADER SECTION -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-8">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
 
-                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
-                    {
-                        <button type="button" id="ClearfilterProvinces"
-                                class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition-colors duration-200 font-semibold shadow-sm"
-                                title="Xóa bộ lọc tỉnh">
-                            ✕ Xóa lọc
-                        </button>
-
-
-                    }
-                    <!-- Nút Bài viết của tôi -->
-                    <button type="button" id="toggleShowMyPostsBtn"
-                            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all duration-300 shadow-sm focus:outline-none
-            @(Model.ShowOnlyMyPosts
-                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium"
-                : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500")">
-                        <span class="text-xs font-semibold flex items-center">
-                            @if (Model.ShowOnlyMyPosts)
-                            {
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        <!-- Title Section -->
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <text>ĐANG XEM:</text>
-                            }
-                            else
-                            {
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
-                                <text>XEM:</text>
-                            }
-                        </span>
-                        <span class="font-medium @(Model.ShowOnlyMyPosts ? "text-white" : "text-blue-600") cursor-pointer mb-0.5">
-                            Bài viết của tôi
-                        </span>
-                    </button>
-
-                    @if (Model.ShowOnlyMyPosts)
-                    {
-                        <span id="resetShowMyPosts" title="Bỏ lọc bài viết của tôi"
-                              class="ml-2 bg-white bg-opacity-20 text-white rounded-full h-5 w-5 flex items-center justify-center cursor-pointer hover:bg-opacity-30 select-none">
-                            ✕
-                        </span>
-                    }
-
-                    <!-- Nút sắp xếp -->
-                    <button type="button" id="toggleSortOrderBtn"
-                            class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            @if (Model.SortOrder == "newest")
-                            {
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-                            }
-                            else
-                            {
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
-                            }
-                        </svg>
-                        <span class="font-medium cursor-pointer">@((Model.SortOrder == "newest") ? "Mới nhất" : "Cũ nhất")</span>
-                    </button>
-                </form>
-
-            </div>
-        </div>
-
-        @if (Model.Posts.Count == 0)
-        {
-            <p class="text-center text-gray-500">Không có bài viết nào phù hợp.</p>
-        }
-        else
-        {
-            @foreach (var post in Model.Posts)
-            {
-                <div class="mb-12">
-                    <div class="flex items-center gap-3 mb-2">
-                        <img src="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)" alt="@post.AuthorName" class="rounded-full" width="50" height="50" />
-                        <div>
-                            <p class="text-sm font-bold text-orange-600">@post.AuthorName</p>
-                            @* Hiển thị badges cho tác giả nếu có *@
-                            <div class="flex gap-1 mt-1 ">
-                                <div class="scale-[0.85] transform-origin-right ml-[-12px]">
-                                    @if (Model.AuthorBadges != null && Model.AuthorBadges.TryGetValue(post.Post.AuthorId, out var badges))
+                            </div>
+                            <div>
+                                <h1 class="text-2xl font-bold text-slate-800">
+                                    @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
                                     {
-                                        foreach (var badge in badges)
-                                        {
-                                            @await Html.PartialAsync("_PremiumBadge", badge)
-                                        }
+                                        var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
+                                        <text>@p?.Name</text>
                                     }
-                                </div>
+                                    else
+                                    {
+                                        <text>Tất cả tỉnh thành</text>
+                                    }
+                                </h1>
+                                <p class="text-slate-500 text-sm mt-1">Khám phá và chia sẻ những trải nghiệm tuyệt vời</p>
                             </div>
-
-                            <p class="text-sm text-gray-500">@post.Post.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</p>
                         </div>
-                    </div>
-                    
-                    <p id="content-@post.Post.Id" class="text-gray-800 mb-3 line-clamp-3">@post.Post.Content</p>
-                    @if (post.Post.Content.Length > 100)
-                    {
-                        <button id="btn-expand-@post.Post.Id" class="text-blue-500 text-xs" onclick="toggleExpand('@post.Post.Id')">Xem thêm</button>
-                    }
 
-                    @if (post.Post.Media != null && post.Post.Media.Count > 0)
-                    {
-                        <div id="media-@post.Post.Id" class="relative w-full max-w-[600px] h-[400px] mb-4">
-                            @for (int i = 0; i < post.Post.Media.Count; i++)
-                            {
-                                var media = post.Post.Media[i];
-                                <img src="@media.MediaUrl" alt="media" class="absolute inset-0 w-full h-full object-cover rounded-md" style="display:@(i == 0 ? "block" : "none");" />
-                            }
-                            <div id="indicators-@post.Post.Id" class="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
-                                @for (int i = 0; i < post.Post.Media.Count; i++)
+                        <!-- Filter Controls -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <form id="filterForm" method="get" class="flex flex-wrap items-center gap-3">
+                                <input type="hidden" id="selectedProvinceId" name="selectedProvinceId" value="@Model.SelectedProvinceId" />
+                                <input type="hidden" id="showOnlyMyPostsInput" name="showOnlyMyPosts" value="@Model.ShowOnlyMyPosts.ToString().ToLower()" />
+                                <input type="hidden" id="sortOrderInput" name="sortOrder" value="@Model.SortOrder" />
+
+                                @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
                                 {
-                                    <div onclick="showImage('@post.Post.Id', @i)" class="w-2 h-2 rounded-full cursor-pointer @(i == 0 ? "bg-white" : "bg-white/50")"></div>
+                                    <button type="button" id="ClearfilterProvinces"
+                                            class="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl transition-all duration-200 font-medium shadow-sm hover:shadow-md transform hover:scale-105">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        <span>Xóa bộ lọc</span>
+                                    </button>
                                 }
-                            </div>
 
-                            <!-- Nút điều hướng ảnh -->
-                            <button onclick="showPrevImage('@post.Post.Id')" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
-                                &#10094;
-                            </button>
-                            <button onclick="showNextImage('@post.Post.Id')" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
-                                &#10095;
-                            </button>
-                        </div>
-                    }
+                                <!-- My Posts Toggle -->
+                                <button type="button" id="toggleShowMyPostsBtn"
+                                        class="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
+                                        @(Model.ShowOnlyMyPosts
+                                            ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                                            : "bg-white border-2 border-slate-200 text-slate-700 hover:border-purple-300 hover:bg-purple-50")">
 
-                    <div class="flex gap-6 mt-3 text-gray-700">
-                        <div class="flex items-center gap-1 cursor-pointer like-button"
-                             data-postid="@post.Post.Id"
-                             data-liked="@post.IsLikedByCurrentUser.ToString().ToLower()">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 fill="@((post.IsLikedByCurrentUser) ? "red" : "none")"
-                                 stroke="currentColor" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
-                 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
-                 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg>
-                            <span class="likes-count">@post.Post.Likes</span>
-                        </div>
-                        <div class="flex items-center gap-1 cursor-pointer comment-button"
-                             data-postid="@post.Post.Id"
-                             data-author-name="@post.AuthorName"
-                             data-author-avatar="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)"
-                             data-author-id="@post.Post.AuthorId"
-                             data-media='@Json.Serialize(post.Post.Media)'
-                             data-comments='@Html.Raw(Json.Serialize(Model.CommentsForPosts.ContainsKey(post.Post.Id) ? Model.CommentsForPosts[post.Post.Id] : new List<CommentViewModel>()))'
-                             data-badges="@Html.Raw(Json.Serialize(Model.AuthorBadges?.ContainsKey(post.Post.AuthorId) == true ? Model.AuthorBadges[post.Post.AuthorId] : new List<object>()))">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-2xl text-gray-700" fill="none" stroke="currentColor" width="24" height="24" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-6 4h10a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <span>@(post.Post.Comments?.Count ?? 0)</span>
+                                    @if (Model.ShowOnlyMyPosts)
+                                    {
+                                        <div class="flex items-center gap-2">
+                                            <div class="p-1 bg-white/20 rounded-full">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <span>Bài viết của tôi</span>
+                                            <span id="resetShowMyPosts" title="Bỏ lọc"
+                                                  class="ml-1 p-1 bg-white/20 hover:bg-white/30 rounded-full cursor-pointer transition-colors">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        <span>Bài viết của tôi</span>
+                                    }
+                                </button>
+
+                                <!-- Sort Button -->
+                                <button type="button" id="toggleSortOrderBtn"
+                                        class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-slate-200 text-slate-700 hover:border-purple-300 hover:bg-purple-50 rounded-xl transition-all duration-200 font-medium shadow-sm hover:shadow-md transform hover:scale-105">
+                                    @if (Model.SortOrder == "newest")
+                                    {
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                                        </svg>
+                                        <span>Mới nhất</span>
+                                    }
+                                    else
+                                    {
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                                        </svg>
+                                        <span>Cũ nhất</span>
+                                    }
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            }
-        }
-    </div>
 
-    <!-- RIGHT COLUMN -->
-    <div class="w-full md:w-64">
-        <div class="bg-purple-100 p-4 rounded-lg">
-            <h2 class="text-xl text-gray-700 font-semibold border-b pb-2 border-gray-300 mb-6">
-                @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
+                <!-- POSTS SECTION -->
+                @if (Model.Posts.Count == 0)
                 {
-                    var p = Model.Provinces.FirstOrDefault(x => x.Id == Model.SelectedProvinceId);
-                    <text>Tỉnh: @p?.Name</text>
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center">
+                        <div class="max-w-md mx-auto">
+                            <div class="p-4 bg-slate-100 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-2">Chưa có bài viết nào</h3>
+                            <p class="text-slate-500">Hãy thử thay đổi bộ lọc hoặc quay lại sau để xem các bài viết mới.</p>
+                        </div>
+                    </div>
                 }
                 else
                 {
-                    <text>Tất cả tỉnh</text>
-                }
-            </h2>
-            <div class="w-25 h-1 bg-purple-500 mt-1 rounded-full"></div>
+                    <div class="space-y-6">
+                        @foreach (var post in Model.Posts)
+                        {
+                            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 overflow-hidden">
+                                <!-- Author Info -->
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="relative">
+                                            <img src="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)"
+                                                 alt="@post.AuthorName"
+                                                 class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100" />
+                                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
+                                        </div>
 
-            <ul class="space-y-3 text-gray-800 max-h-[500px] overflow-y-auto">
-                @foreach (var province in Model.Provinces)
-                {
-                    <li class="flex justify-between bg-purple-400 text-sm rounded-full px-4 py-1 cursor-pointer hover:bg-purple-600 @(Model.SelectedProvinceId == province.Id ? "ring-2 ring-white" : "")"
-                        onclick="document.getElementById('selectedProvinceId').value='@province.Id'; document.getElementById('filterForm').submit();">
-                        <span>@province.Name</span>
-                    </li>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <h3 class="font-semibold text-slate-800 truncate">@post.AuthorName</h3>
+
+                                                <!-- Author Badges -->
+                                                @if (Model.AuthorBadges != null && Model.AuthorBadges.TryGetValue(post.Post.AuthorId, out var badges))
+                                                {
+                                                    <div class="flex gap-1">
+                                                        @foreach (var badge in badges)
+                                                        {
+                                                            @await Html.PartialAsync("_PremiumBadge", badge)
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+
+                                            <div class="flex items-center gap-2 text-sm text-slate-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <time>@post.Post.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Post Content -->
+                                <div class="px-6 pb-4">
+                                    <div id="content-@post.Post.Id" class="text-slate-800 leading-relaxed line-clamp-3">
+                                        @post.Post.Content
+                                    </div>
+                                    @if (post.Post.Content.Length > 100)
+                                    {
+                                        <button id="btn-expand-@post.Post.Id"
+                                                class="mt-2 text-purple-600 hover:text-purple-700 font-medium text-sm transition-colors duration-200"
+                                                onclick="toggleExpand('@post.Post.Id')">
+                                            Xem thêm
+                                        </button>
+                                    }
+                                </div>
+
+                                <!-- Media Gallery -->
+                                @if (post.Post.Media != null && post.Post.Media.Count > 0)
+                                {
+                                    <div class="px-6 pb-4">
+                                        <div id="media-@post.Post.Id" class="relative bg-slate-100 rounded-xl overflow-hidden" style="aspect-ratio: 4/2; max-height: 400px;">
+                                            @for (int i = 0; i < post.Post.Media.Count; i++)
+                                            {
+                                                var media = post.Post.Media[i];
+                                                <img src="@media.MediaUrl"
+                                                     alt="media"
+                                                     class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+                                                     style="display:@(i == 0 ? "block" : "none");" />
+                                            }
+
+                                            @if (post.Post.Media.Count > 1)
+                                            {
+                                                <!-- Navigation Buttons -->
+                                                <button onclick="showPrevImage('@post.Post.Id')"
+                                                        class="absolute left-3 top-1/2 transform -translate-y-1/2 p-2 bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-200 backdrop-blur-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                                    </svg>
+                                                </button>
+                                                <button onclick="showNextImage('@post.Post.Id')"
+                                                        class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-200 backdrop-blur-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </button>
+
+                                                <!-- Indicators -->
+                                                <div id="indicators-@post.Post.Id" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                                                    @for (int i = 0; i < post.Post.Media.Count; i++)
+                                                    {
+                                                        <buttn onclick="showImage('@post.Post.Id', @i)"
+                                                                class="w-2 h-2 rounded-full transition-all duration-200 @(i == 0 ? "bg-white" : "bg-white/50 hover:bg-white/75")"></buttn>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- Post Actions -->
+                                <div class="px-6 py-4 bg-slate-50 border-t border-slate-100">
+                                    <div class="flex items-center gap-6">
+                                        <!-- Like Button -->
+                                        <button class="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:bg-red-50 like-button group"
+                                                data-postid="@post.Post.Id"
+                                                data-liked="@post.IsLikedByCurrentUser.ToString().ToLower()">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 class="h-5 w-5 transition-all duration-200 @(post.IsLikedByCurrentUser ? "text-red-500" : "text-slate-400 group-hover:text-red-400")"
+                                                 fill="@(post.IsLikedByCurrentUser ? "currentColor" : "none")"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                            <span class="likes-count font-medium text-slate-700">@post.Post.Likes</span>
+                                        </button>
+
+                                        <!-- Comment Button -->
+                                        <button class="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:bg-blue-50 comment-button group"
+                                                data-postid="@post.Post.Id"
+                                                data-author-name="@post.AuthorName"
+                                                data-author-avatar="@(string.IsNullOrEmpty(post.AuthorAvatar) ? "/img/VN.jpg" : post.AuthorAvatar)"
+                                                data-author-id="@post.Post.AuthorId"
+                                                data-media='@Json.Serialize(post.Post.Media)'
+                                                data-comments='@Html.Raw(Json.Serialize(Model.CommentsForPosts.ContainsKey(post.Post.Id) ? Model.CommentsForPosts[post.Post.Id] : new List<CommentViewModel>()))'
+                                                data-badges="@Html.Raw(Json.Serialize(Model.AuthorBadges?.ContainsKey(post.Post.AuthorId) == true ? Model.AuthorBadges[post.Post.AuthorId] : new List<object>()))">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 class="h-5 w-5 text-slate-400 group-hover:text-blue-400 transition-colors duration-200"
+                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                            <span class="font-medium text-slate-700">@(post.Post.Comments?.Count ?? 0)</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        }
+                    </div>
                 }
-            </ul>   
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-8">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <!-- Sidebar Header -->
+                        <div class="bg-gradient-to-r from-purple-500 to-blue-500 p-6 text-white">
+                            <div class="flex items-center gap-3 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                </svg>
+                                <h2 class="text-lg font-semibold">Chọn tỉnh thành</h2>
+                            </div>
+                            <p class="text-purple-100 text-sm">Khám phá theo địa điểm</p>
+                        </div>
+
+                        <!-- Province List -->
+                        <div class="p-4">
+                            <div class="py-2 px-2 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-200 scrollbar-track-transparent">
+                                <div class="space-y-2">
+                                    @foreach (var province in Model.Provinces)
+                                    {
+                                        <button type="button"
+                                                class="w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium text-sm
+                                                @(Model.SelectedProvinceId == province.Id
+                                                    ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-md transform scale-105"
+                                                    : "bg-slate-50 text-slate-700 hover:bg-purple-50 hover:text-purple-700 hover:shadow-sm")"
+                                                onclick="document.getElementById('selectedProvinceId').value='@province.Id'; document.getElementById('filterForm').submit();">
+                                            <div class="flex items-center justify-between">
+                                                <span>@province.Name</span>
+                                                @if (Model.SelectedProvinceId == province.Id)
+                                                {
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                }
+                                            </div>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 @await Html.PartialAsync("Components/_CommentModal")

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Tạo tài khoản mới";
 }
 
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+<div class="min-h-screen flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
     <div class="max-w-4xl w-full space-y-8 bg-white shadow-xl rounded-2xl p-8 border border-slate-200">
         <div class="text-center">
             <img src="~/img/Logo_merus.png" alt="Logo" class="mx-auto w-40 h-auto " width="160" height="30" />
@@ -100,7 +100,6 @@
                     </label>
                     <div class="mt-1 relative rounded-md shadow-sm">
                         <input id="confirm-password"
-                               name="cpassword"
                                type="password"
                                asp-for="ConfirmPassword"
                                class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm"
@@ -121,16 +120,18 @@
 
             <div class="mt-6 flex items-center">
                 <input id="terms-agreement"
-                       name="terms-agreement"
+                       name="TermsAgreement"
                        type="checkbox"
+                       asp-for="TermsAgreement"
                        class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
                 <label for="terms-agreement" class="ml-3 block text-sm text-gray-700">
                     Tôi đồng ý với
-                    <a href="/uploads/Điều Khoản và Điều Kiện của VintelliTour.pdf" class="font-medium text-blue-600 hover:text-blue-500 underline" target="_blank">
+                    <a href="/uploads/dieukhoanvadieukien.pdf" class="font-medium text-blue-600 hover:text-blue-500 underline" target="_blank">
                         Điều khoản và Điều kiện
                     </a>
                 </label>
             </div>
+            <span asp-validation-for="TermsAgreement" class="text-red-500"></span>
 
             <div class="mt-8">
                 <button type="submit"
@@ -150,3 +151,19 @@
         </form>
     </div>
 </div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-md mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-green-700">@TempData["Success"]</p>
+            </div>
+        </div>
+    </div>
+}

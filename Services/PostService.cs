@@ -1,7 +1,6 @@
 ﻿using MongoDB.Driver;
 using Vintellitour_Framework.Models;
 using Vintellitour_Framework.Services;
-
 public interface IPostService
 {
     Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync();
@@ -10,6 +9,9 @@ public interface IPostService
     Task<Post> GetPostByIdAsync(string postId);
     Task<List<Comment>> GetCommentsByPostIdAsync(string postId);
     Task<bool> AddCommentToPostAsync(string postId, Comment comment);
+    Task<bool> UpdatePostStatusAsync(string postId, string status);
+    Task<bool> DeletePostAsync(string postId);
+
 }
 public class PostService : IPostService
 {
@@ -93,5 +95,22 @@ public class PostService : IPostService
     {
         return await _provinces.Find(_ => true).ToListAsync();
     }
+
+    public async Task<bool> UpdatePostStatusAsync(string postId, string status)
+    {
+        var filter = Builders<Post>.Filter.Eq(p => p.Id, postId);
+        var update = Builders<Post>.Update.Set(p => p.Status, status);
+
+        var result = await _posts.UpdateOneAsync(filter, update);
+        return result.ModifiedCount > 0;
+    }
+
+    public async Task<bool> DeletePostAsync(string postId)
+    {
+        var filter = Builders<Post>.Filter.Eq(p => p.Id, postId);
+        var result = await _posts.DeleteOneAsync(filter);
+        return result.DeletedCount > 0;
+    }
+
 }
 

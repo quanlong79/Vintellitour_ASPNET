@@ -16,9 +16,9 @@ const currentImageIndexByPost = {};
 // Hiển thị ảnh carousel cho post
 function showImage(postId, index) {
     const images = document.querySelectorAll(`#media-${postId} img`);
-    const indicators = document.querySelectorAll(`#indicators-${postId} div`);
-    if (!images.length) return;
-
+    const indicators = document.querySelectorAll(`#indicators-${postId} button`);
+    console.log('Found images:', images.length);
+    console.log('Found indicators:', indicators.length);
     images.forEach((img, i) => {
         img.style.display = i === index ? "block" : "none";
     });
@@ -110,47 +110,9 @@ function initLikeButtons() {
     });
 }
 
-// Hàm gọi mở modal comment (được xử lý riêng trong commentModal.js)
-function openCommentModal(postId, authorName, authorAvatar, authorId, media, comments) {
-    if (typeof window.commentModal === 'object' && typeof window.commentModal.show === 'function') {
-        window.commentModal.show(postId, authorName, authorAvatar, authorId, media,comments);
-    } else {
-        console.error('commentModal module chưa được load');
-        return;
-    }
-
-    const commentList = document.getElementById('commentList');
-
-    if (!commentList) {
-        console.error('Element commentList không tồn tại');
-        return;
-    }
-
-    //if (!comments || comments.length === 0) {
-    //    commentList.innerHTML = '<p class="text-center py-4 text-gray-500">Chưa có bình luận nào.</p>';
-    //} else {
-    //    commentList.innerHTML = '';
-    //    comments.forEach(comment => {
-    //        const commentEl = document.createElement('div');
-    //        commentEl.className = 'flex items-start gap-3 mb-4';
-    //        commentEl.innerHTML = `
-    //            <img src="${comment.avatar || '/img/VN.jpg'}" alt="${comment.username || 'User'}" class="rounded-full w-8 h-8" />
-    //            <div class="flex-1">
-    //                <p class="text-gray-800">
-    //                    <span class="font-bold text-orange-600">${comment.username || 'Unknown User'}</span> 
-    //                    ${comment.content || ''}
-    //                </p>
-    //                <p class="text-xs text-gray-400">${formatTimeAgo(comment.createdAt)}</p>
-    //            </div>
-    //        `;
-    //        commentList.appendChild(commentEl);
-    //    });
-    //}
-}
-
-
-    
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[ShareSpace] Initializing...');
+
     initFilters();
     initLikeButtons();
 
@@ -160,36 +122,5 @@ document.addEventListener('DOMContentLoaded', () => {
         currentImageIndexByPost[postId] = 0;
     });
 
-    // Gắn sự kiện gọi modal comment
-    document.querySelectorAll('.comment-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const postId = button.getAttribute('data-postid');
-            const authorName = button.getAttribute('data-author-name') || '';
-            const authorAvatar = button.getAttribute('data-author-avatar') || '/img/VN.jpg';
-            const authorId = button.getAttribute('data-author-id') || '';
-
-            let media = [];
-            try {
-                const mediaAttr = button.getAttribute('data-media');
-                if (mediaAttr && mediaAttr !== 'null') {
-                    media = JSON.parse(mediaAttr);
-                }
-            } catch (e) {
-                console.error('Error parsing media JSON:', e);
-            }
-
-            let comments = [];
-            try {
-                const commentsAttr = button.getAttribute('data-comments');
-                if (commentsAttr && commentsAttr !== 'null') {
-                    comments = JSON.parse(commentsAttr);
-                }
-            } catch (e) {
-                console.error('Error parsing comments JSON:', e);
-            }
-
-            console.log('Opening modal with:', { postId, authorName, comments }); // Debug log
-            openCommentModal(postId, authorName, authorAvatar, authorId, media, comments);
-        });
-    });
+    console.log('[ShareSpace] Initialized successfully');
 });

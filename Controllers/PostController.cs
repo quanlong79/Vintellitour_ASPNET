@@ -240,6 +240,37 @@ public class PostController : Controller
         }
     }
 
+    [HttpGet("admin")]
+    [HttpGet("/admin/posts")]  // Thêm route tuyệt đối
+    public async Task<IActionResult> AdminPosts()
+    {
+        // Kiểm tra quyền admin (tạm thời bỏ qua để test)
+        // var userRole = HttpContext.Session.GetString("UserRole");
+        // if (userRole != "Admin") return RedirectToAction("Login", "Account");
+
+        try
+        {
+            // Lấy tất cả posts với thông tin tác giả
+            var posts = await _postService.GetPostsWithAuthorInfoAsync();
+
+            // Sắp xếp theo thời gian mới nhất
+            posts = posts.OrderByDescending(p => p.Post.Timestamp).ToList();
+
+            // Sử dụng SharespaceViewModel có sẵn
+            var viewModel = new SharespaceViewModel
+            {
+                Posts = posts,
+                CurrentUserId = HttpContext.Session.GetString("UserId") // Có thể null cho admin
+            };
+
+            return View("~/Views/Admin/Posts.cshtml", viewModel);
+        }
+        catch (Exception ex)
+        {
+            // Tạm thời trả về view rỗng nếu có lỗi
+            return View("~/Views/Admin/Posts.cshtml", new SharespaceViewModel());
+        }
+    }
     // Thêm class request model:
     public class PostCommentRequest
     {

@@ -10,14 +10,14 @@ namespace Vintellitour_Framework.Services
     public class DashboardService
     {
         private readonly IMongoCollection<Post> _postsCollection;
-        private readonly IMongoCollection<Location> _locationsCollection;
+        private readonly IMongoCollection<LocationsModel> _locationsCollection;
         private readonly IMongoCollection<Provinces> _provincesCollection;
         private readonly IMongoCollection<User> _usersCollection;
 
         public DashboardService(IMongoDatabase database)
         {
             _postsCollection = database.GetCollection<Post>("posts");
-            _locationsCollection = database.GetCollection<Location>("locations");
+            _locationsCollection = database.GetCollection<LocationsModel>("locations");
             _provincesCollection = database.GetCollection<Provinces>("provinces");
             _usersCollection = database.GetCollection<User>("users");
         }
@@ -25,7 +25,7 @@ namespace Vintellitour_Framework.Services
         public async Task<List<ProvinceEngagementViewModel>> GetTop5ProvincesByEngagementAsync()
         {
             var posts = await _postsCollection.Find(FilterDefinition<Post>.Empty).ToListAsync();
-            var locations = await _locationsCollection.Find(FilterDefinition<Location>.Empty).ToListAsync();
+            var locations = await _locationsCollection.Find(FilterDefinition<LocationsModel>.Empty).ToListAsync();
             var provinces = await _provincesCollection.Find(FilterDefinition<Provinces>.Empty).ToListAsync();
 
             // Tính tổng tương tác cho mỗi post: likes + comments count

@@ -3,7 +3,7 @@ using Vintellitour_Framework.Models;
 using Vintellitour_Framework.Services;
 public interface IPostService
 {
-    Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync();
+    Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync(string statusFilter = null);
     Task<List<Provinces>> GetProvincesAsync();
     Task UpdatePostLikesAsync(string postId, List<string> usersLiked, int likesCount);
     Task<Post> GetPostByIdAsync(string postId);
@@ -26,14 +26,19 @@ public class PostService : IPostService
         _provinces = mongoDbService.GetProvincesCollection();
     }
 
-    public async Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync()
+    public async Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync(string statusFilter = null)
     {
-        var posts = await _posts.Find(_ => true).ToListAsync();
+
+        var filter = statusFilter == null
+            ? Builders<Post>.Filter.Empty
+            : Builders<Post>.Filter.Eq(p => p.Status, statusFilter);
+
+        var posts = await _posts.Find(filter).ToListAsync();
 
         var authorIds = posts.Select(p => p.AuthorId).Distinct().ToList();
 
-        var filter = Builders<User>.Filter.In(u => u.Id, authorIds);
-        var users = await _users.Find(filter).ToListAsync();
+        var userFilter = Builders<User>.Filter.In(u => u.Id, authorIds);
+        var users = await _users.Find(userFilter).ToListAsync();
 
         var result = posts.Select(p =>
         {

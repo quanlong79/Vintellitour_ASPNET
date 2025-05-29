@@ -29,6 +29,7 @@ builder.Services.AddSingleton<IMongoClient>(sp =>
     var connectionString = config.GetSection("MongoDB")["ConnectionString"];
     return new MongoClient(connectionString);
 });
+builder.Services.AddHttpClient();
 
 // Đăng ký MongoDatabase scoped
 builder.Services.AddScoped<IMongoDatabase>(sp =>

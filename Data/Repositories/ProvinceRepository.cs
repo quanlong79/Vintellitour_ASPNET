@@ -5,7 +5,7 @@ using Vintellitour_Framework.Data;
 using Vintellitour_Framework.Data.Repositories;
 using Vintellitour_Framework.Models.Entities;
 
-namespace YourNamespace.Data.Repositories
+namespace Vintellitour_Framework.Data.Repositories
 {
     public class ProvinceRepository : IProvinceRepository
     {

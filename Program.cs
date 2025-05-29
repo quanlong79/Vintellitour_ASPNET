@@ -49,7 +49,13 @@ builder.Services.AddScoped<IMongoDatabase>(sp =>
     return client.GetDatabase(dbName);
 });
 
+var connectionString = builder.Configuration["MongoDB:ConnectionString"];
+var databaseName = builder.Configuration["MongoDB:DatabaseName"];
 
+builder.Services.AddSingleton<MongoDbContext>(sp =>
+{
+    return new MongoDbContext(connectionString, databaseName);
+});
 
 // Tạo AdminUserService và DashboardService
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
@@ -62,6 +68,11 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+//momo
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
+
 // Tạo ứng dụng
 var app = builder.Build();
 

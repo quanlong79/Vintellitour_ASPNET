@@ -2,7 +2,7 @@ using Vintellitour_Framework.Data.Repositories;
 using Vintellitour_Framework.Models.DTOs;
 using Vintellitour_Framework.Services.Interfaces;
 
-namespace YourNamespace.Services
+namespace Vintellitour_Framework.Services
 {
     public class ProvinceService : IProvinceService
     {

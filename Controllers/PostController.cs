@@ -1,10 +1,11 @@
-﻿    using Microsoft.AspNetCore.Mvc;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using Vintellitour_Framework.ViewModels;  
-    using Vintellitour_Framework.Services;
-    using Vintellitour_Framework.Models;
-    using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Vintellitour_Framework.ViewModels;
+using Vintellitour_Framework.Services;
+using Vintellitour_Framework.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 [Route("post")]
 public class PostController : Controller
@@ -13,32 +14,32 @@ public class PostController : Controller
     private readonly IUserService _userService;
     public PostController(IPostService postService, IUserService userService)
     {
-            _postService = postService;
-            _userService = userService;
+        _postService = postService;
+        _userService = userService;
+    }
+
+    [HttpGet("sharespace")]
+    public async Task<IActionResult> Sharespace(string selectedProvinceId = null, bool showOnlyMyPosts = false, string sortOrder = "newest")
+    {
+        var currentUserId = HttpContext.Session.GetString("UserId");
+
+        var provincesFromDb = await _postService.GetProvincesAsync();
+        var posts = await _postService.GetPostsWithAuthorInfoAsync();
+
+        if (!string.IsNullOrEmpty(selectedProvinceId))
+        {
+            posts = posts.FindAll(p => p.Post.ProvinceGid.ToString() == selectedProvinceId);
         }
 
-        [HttpGet("sharespace")]
-        public async Task<IActionResult> Sharespace(string selectedProvinceId = null, bool showOnlyMyPosts = false, string sortOrder = "newest")
+        if (showOnlyMyPosts && !string.IsNullOrEmpty(currentUserId))
         {
-            var currentUserId = HttpContext.Session.GetString("UserId");
-
-            var provincesFromDb = await _postService.GetProvincesAsync();
-            var posts = await _postService.GetPostsWithAuthorInfoAsync();
-
-            if (!string.IsNullOrEmpty(selectedProvinceId))
-            {
-                posts = posts.FindAll(p => p.Post.ProvinceGid.ToString() == selectedProvinceId);
-            }
-
-            if (showOnlyMyPosts && !string.IsNullOrEmpty(currentUserId))
-            {
-                posts = posts.FindAll(p => p.Post.AuthorId == currentUserId);
-            }
-            posts = sortOrder switch
-            {
-                "oldest" => posts.OrderBy(p => p.Post.Timestamp).ToList(),
-                _ => posts.OrderByDescending(p => p.Post.Timestamp).ToList(),  // Mặc định newest
-            };
+            posts = posts.FindAll(p => p.Post.AuthorId == currentUserId);
+        }
+        posts = sortOrder switch
+        {
+            "oldest" => posts.OrderBy(p => p.Post.Timestamp).ToList(),
+            _ => posts.OrderByDescending(p => p.Post.Timestamp).ToList(),  // Mặc định newest
+        };
 
         // Gán trạng thái like cho từng post
         if (!string.IsNullOrEmpty(currentUserId))
@@ -73,12 +74,12 @@ public class PostController : Controller
                 }
             );
 
-        
+
         var provinces = provincesFromDb.Select(p => new ProvinceViewModel
-            {
-                Id = p.Id.ToString(),
-                Name = p.Name
-            }).ToList();
+        {
+            Id = p.Id.ToString(),
+            Name = p.Name
+        }).ToList();
         var badgesList = new Dictionary<string, List<BadgeViewModel>>();
         foreach (var authorId in authorStats.Keys)
         {
@@ -132,51 +133,51 @@ public class PostController : Controller
 
 
         var viewModel = new SharespaceViewModel
-            {
-                SelectedProvinceId = selectedProvinceId,
-                Provinces = provinces,
-                Posts = posts,
-                ShowOnlyMyPosts = showOnlyMyPosts,
-                CurrentUserId = currentUserId,
-                SortOrder = sortOrder,
-                AuthorBadges = badgesList,
-                CommentsForPosts = commentsDict
+        {
+            SelectedProvinceId = selectedProvinceId,
+            Provinces = provinces,
+            Posts = posts,
+            ShowOnlyMyPosts = showOnlyMyPosts,
+            CurrentUserId = currentUserId,
+            SortOrder = sortOrder,
+            AuthorBadges = badgesList,
+            CommentsForPosts = commentsDict
 
         };
-        
+
         return View(viewModel);
-        }
+    }
 
-        [HttpPost("togglelike")]
-        public async Task<IActionResult> ToggleLike([FromBody] LikeToggleRequest request)
+    [HttpPost("togglelike")]
+    public async Task<IActionResult> ToggleLike([FromBody] LikeToggleRequest request)
+    {
+        var userId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+        var post = await _postService.GetPostByIdAsync(request.PostId);
+        if (post == null) return NotFound();
+
+        bool isLiked;
+
+        if (post.UsersLiked.Contains(userId))
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            if (string.IsNullOrEmpty(userId)) return Unauthorized();
-
-            var post = await _postService.GetPostByIdAsync(request.PostId);
-            if (post == null) return NotFound();
-
-            bool isLiked;
-
-            if (post.UsersLiked.Contains(userId))
-            {
-                post.UsersLiked.Remove(userId);
-                post.Likes--;
-                isLiked = false;
-            }
-            else
-            {
-                post.UsersLiked.Add(userId);
-                post.Likes++;
-                isLiked = true;
-            }
-            post.UsersLiked ??= new List<string>();
-            if (post.Likes < 0) post.Likes = 0;
+            post.UsersLiked.Remove(userId);
+            post.Likes--;
+            isLiked = false;
+        }
+        else
+        {
+            post.UsersLiked.Add(userId);
+            post.Likes++;
+            isLiked = true;
+        }
+        post.UsersLiked ??= new List<string>();
+        if (post.Likes < 0) post.Likes = 0;
 
         // Cập nhật chỉ trường likes và usersLiked
         await _postService.UpdatePostLikesAsync(post.Id, post.UsersLiked, post.Likes);
 
-            return Json(new { success = true, isLiked, likesCount = post.Likes });
+        return Json(new { success = true, isLiked, likesCount = post.Likes });
     }
 
 
@@ -269,6 +270,95 @@ public class PostController : Controller
             return View("~/Views/Admin/Posts.cshtml", new SharespaceViewModel());
         }
     }
+
+
+
+    [HttpGet("flagged-posts")]
+    public async Task<IActionResult> GetFlaggedPosts()
+    {
+        try
+        {
+            var flaggedPosts = await _postService.GetPostsWithAuthorInfoAsync("flagged");
+            return Json(new { success = true, posts = flaggedPosts });
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = ex.Message });
+        }
+    }
+    [HttpDelete("posts/{postId}")]
+    public async Task<IActionResult> DeletePost(string postId)
+    {
+        if (string.IsNullOrEmpty(postId))
+        {
+            return Json(new { success = false, message = "PostId không hợp lệ." });
+        }
+
+        try
+        {
+            var deleted = await _postService.DeletePostAsync(postId); // Giả sử bạn có hàm này trong service
+            if (!deleted)
+            {
+                return Json(new { success = false, message = "Không tìm thấy bài viết hoặc không thể xóa." });
+            }
+            return Json(new { success = true });
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = ex.Message });
+        }
+    }
+    [HttpPost]
+    public async Task<IActionResult> ApprovePost(string postId)
+    {
+        if (string.IsNullOrEmpty(postId))
+            return Json(new { success = false, message = "PostId không hợp lệ." });
+
+        try
+        {
+            // Giả sử có method cập nhật trạng thái bài post
+            var updated = await _postService.UpdatePostStatusAsync(postId, "active");
+            if (!updated)
+                return Json(new { success = false, message = "Không tìm thấy bài viết hoặc không thể cập nhật." });
+
+            return Json(new { success = true });
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = ex.Message });
+        }
+    }
+
+    [HttpPost("confirm-flagged")]
+    public async Task<IActionResult> ConfirmFlagged([FromBody] List<string> postIds)
+    {
+        if (postIds == null || postIds.Count == 0)
+            return BadRequest(new { success = false, message = "No post IDs provided." });
+
+        int updatedCount = 0;
+
+        foreach (var postId in postIds)
+        {
+
+            var updated = await _postService.UpdatePostStatusAsync(postId, "flagged");
+            if (updated) updatedCount++;
+        }
+
+        if (updatedCount == 0)
+        {
+            return NotFound(new { success = false, message = "No posts were updated. Please check the provided post IDs." });
+        }
+
+        return Ok(new
+        {
+            success = true,
+            modifiedCount = updatedCount,
+            message = $"{updatedCount} posts were flagged successfully."
+        });
+    }
+
+
+
     // Thêm class request model:
     public class PostCommentRequest
     {

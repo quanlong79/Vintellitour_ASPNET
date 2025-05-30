@@ -34,7 +34,6 @@ namespace Vintellitour_Framework.Controllers
 
         // API endpoint cho AJAX calls từ JavaScript
         [HttpGet]
-        [HttpGet]
         public async Task<IActionResult> GetProducts(string category = "", int maxPrice = 2000000, string search = "", string sort = "featured")
         {
             try
@@ -92,6 +91,16 @@ namespace Vintellitour_Framework.Controllers
 
                 return View("Index", new List<Product>());
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetDetails(string id)
+        {
+            var product = await _productService.GetByIdAsync(id);
+            if (product == null)
+                return NotFound();
+
+            return Json(product);
         }
 
 

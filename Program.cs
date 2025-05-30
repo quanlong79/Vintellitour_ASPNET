@@ -31,6 +31,7 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 
 builder.Services.AddScoped<PaymentService>();
 
+builder.Services.AddScoped<IProductService, AdminProductService>();
 builder.Services.AddSingleton<ProductService>();
 builder.Services.AddScoped<CartService>();
 
@@ -41,6 +42,7 @@ builder.Services.AddSingleton<IMongoClient>(sp =>
     var connectionString = config.GetSection("MongoDB")["ConnectionString"];
     return new MongoClient(connectionString);
 });
+builder.Services.AddHttpClient();
 // Đăng ký MongoDatabase scoped
 builder.Services.AddScoped<IMongoDatabase>(sp =>
 {

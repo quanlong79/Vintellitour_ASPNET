@@ -43,6 +43,9 @@ namespace Vintellitour_Framework.Models
 
         [BsonElement("stock")]
         public int Stock { get; set; } = 0; // 👈 Thêm dòng này để quản lý tồn kho
+        
+        [BsonElement("details")]
+        public string Details { get; set; } = "";
 
         [BsonElement("createdAt")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]

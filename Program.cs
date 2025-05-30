@@ -29,6 +29,7 @@ builder.Services.AddScoped<IProvinceService, ProvinceService>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 
 
+builder.Services.AddScoped<PaymentService>();
 
 builder.Services.AddSingleton<ProductService>();
 builder.Services.AddScoped<CartService>();

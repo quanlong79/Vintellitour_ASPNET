@@ -121,7 +121,20 @@
                     <span>Thành tiền</span>
                     <span id="grandTotal">@string.Format("{0:N0} ₫", Model.GrandTotal)</span>
                 </div>
-                <button class="w-full mt-6 bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700 transition font-semibold">Tiến hành thanh toán</button>
+                @* <button class="w-full mt-6 bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700 transition font-semibold">Tiến hành thanh toán</button> *@
+                <form method="POST" asp-action="CreatePaymentUrl" asp-controller="Payment" id="paymentForm">
+                    <input type="hidden" name="FullName" value="@User.Identity.Name" />
+                    <input type="hidden" name="Amount" value="@Model.GrandTotal" />
+                    <input type="hidden" name="OrderInfo" value="Thanh toán đặt hàng qua Momo tại HieuTanStore" />
+
+                    <input type="hidden" name="CartItemsJson" id="CartItemsJson" />
+
+                    <button type="submit" class="w-full mt-6 bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700 transition font-semibold">
+                        Tiến hành thanh toán
+                    </button>
+                </form>
+
+
             </div>
         </div>
     </div>
@@ -190,9 +203,43 @@
                 });
             }
 
+            document.getElementById('paymentForm').addEventListener('submit', function(e) {
+                const cartItems = [];
+
+                document.querySelectorAll('#cartItemsContainer > div').forEach(itemDiv => {
+                    const checkbox = itemDiv.querySelector('.select-item');
+                    if (!checkbox || !checkbox.checked) return; // chỉ lấy sản phẩm được chọn
+
+                    const productId = itemDiv.getAttribute('data-product-id');
+                    const quantity = parseInt(checkbox.dataset.quantity || "1");
+                    const price = parseInt(checkbox.dataset.price || "0");
+                    const originalPrice = parseInt(checkbox.dataset.original || "0");
+                    const productName = itemDiv.querySelector('p.font-semibold')?.innerText || "";
+
+                    cartItems.push({
+                        ProductId: productId,
+                        ProductName: productName,
+                        Quantity: quantity,
+                        Price: price,
+                        OriginalPrice: originalPrice
+                    });
+            });
+
+            // Gán JSON string vào input ẩn
+            document.getElementById('CartItemsJson').value = JSON.stringify(cartItems);
+        });
+
+
             registerDynamicEvents();
             updateSummary(); // Lần đầu tải trang
         });
+        @if (TempData["Message"] != null)
+            {
+            <div class="alert alert-info">
+                @TempData["Message"]
+            </div>
+        }
+
     </script>
 
 }

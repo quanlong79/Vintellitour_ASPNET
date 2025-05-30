@@ -9,11 +9,12 @@ namespace Vintellitour_Framework.Controllers
     {
         private readonly CartService _cartService;
         private readonly ProductService _productService;
-
-        public CartController(CartService cartService, ProductService productService)
+        private readonly PaymentService _paymentService;
+        public CartController(CartService cartService, ProductService productService, PaymentService paymentService)
         {
             _cartService = cartService;
             _productService = productService;
+            _paymentService = paymentService;
         }
 
         [HttpPost]
@@ -100,6 +101,29 @@ namespace Vintellitour_Framework.Controllers
         private string GetUserId()
         {
             return HttpContext.Session.GetString("UserId");
+        }
+        [HttpGet("/Cart/PaymentResult")]
+        public async Task<IActionResult> PaymentResult(string orderId)
+        {
+            var payment = await _paymentService.GetByIdAsync(orderId);
+
+            if (payment == null)
+                return RedirectToAction("Index", "Map");
+
+            if (payment.Status == "Success")
+            {
+                TempData["Message"] = "Thanh toán thành công!";
+            }
+            else if (payment.Status == "Cancel")
+            {
+                TempData["Message"] = "Thanh toán thất bại hoặc bị hủy.";
+            }
+            else
+            {
+                TempData["Message"] = "Chờ xác nhận thanh toán...";
+            }
+
+            return RedirectToAction("Index", "Map"); // chuyển về giỏ hàng
         }
     }
 }

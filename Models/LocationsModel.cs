@@ -56,7 +56,7 @@ namespace Vintellitour_Framework.Models
      public class LocationResponse
     {
         public bool Success { get; set; }
-        public List<Location> Data { get; set; } = new List<Location>();
+        public List<LocationsModel> Data { get; set; } = new List<LocationsModel>();
         public string Message { get; set; } = string.Empty;
     }
 

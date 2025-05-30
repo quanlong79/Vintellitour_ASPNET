@@ -15,6 +15,7 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<Cart> _carts;
         private readonly IMongoCollection<LocationsModel> _locationRepository;
 
+
         public MongoDbService(IOptions<MongoDbSettings> mongoDbSettings)
         {
             if (mongoDbSettings?.Value?.ConnectionString == null || mongoDbSettings?.Value?.DatabaseName == null)

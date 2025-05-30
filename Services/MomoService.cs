@@ -19,7 +19,6 @@ namespace Vintellitour_Framework.Services
         }
         public async Task<MomoCreatePaymentResponseModel> CreatePaymentAsync(OrderInfoModel model)
         {
-            model.OrderId = DateTime.UtcNow.Ticks.ToString();
             model.OrderInfo = "Khách hàng: " + model.FullName + ". Nội dung: " + model.OrderInfo;
             var rawData =
                 $"partnerCode={_options.Value.PartnerCode}" +

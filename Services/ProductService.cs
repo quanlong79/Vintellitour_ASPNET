@@ -32,6 +32,11 @@ namespace Vintellitour_Framework.Services
             return await _products.Find(p => p.Category == category && p.Stock > 0).ToListAsync();
         }
 
+        public async Task<Product> GetByIdAsync(string id)
+        {
+            return await _products.Find(p => p.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Product>> GetFilteredProductsAsync(string category, int minPrice, int maxPrice)
         {
             var filterBuilder = Builders<Product>.Filter;

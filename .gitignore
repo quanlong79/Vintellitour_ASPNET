@@ -3,6 +3,6 @@ bin/
 obj/
 
 # Bỏ qua file project
-Vintellitour_Framework.csproj
 *.user
 *.csproj
+appsettings.json

@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using Vintellitour_Framework.Models;
 using Microsoft.Extensions.Options;
+using Vintellitour_Framework.Models.Entities;
 
 namespace Vintellitour_Framework.Services
 {

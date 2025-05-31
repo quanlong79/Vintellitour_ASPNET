@@ -9,11 +9,12 @@ namespace Vintellitour_Framework.Controllers
     {
         private readonly CartService _cartService;
         private readonly ProductService _productService;
-
-        public CartController(CartService cartService, ProductService productService)
+        private readonly PaymentService _paymentService;
+        public CartController(CartService cartService, ProductService productService, PaymentService paymentService)
         {
             _cartService = cartService;
             _productService = productService;
+            _paymentService = paymentService;
         }
 
         [HttpPost]
@@ -100,6 +101,36 @@ namespace Vintellitour_Framework.Controllers
         private string GetUserId()
         {
             return HttpContext.Session.GetString("UserId");
+        }
+        [HttpGet("/Cart/PaymentResult")]
+        public async Task<IActionResult> PaymentResult(string orderId, string resultCode, string message)
+        {
+            Console.WriteLine($"PaymentResult called with orderId={orderId}, resultCode={resultCode}, message={message}");
+
+            var payment = await _paymentService.GetByIdAsync(orderId);
+
+            if (payment == null)
+            {
+                TempData["Message"] = "Không tìm thấy đơn hàng, vui lòng kiểm tra lại.";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            Console.WriteLine("Payment status in DB: " + payment.Status);
+
+            if (payment.Status == "Success")
+            {
+                TempData["Message"] = "Thanh toán thành công!";
+            }
+            else if (payment.Status == "Cancel")
+            {
+                TempData["Message"] = "Thanh toán thất bại hoặc bị hủy.";   
+            }
+            else
+            {
+                TempData["Message"] = "Chờ xác nhận thanh toán...";
+            }
+
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

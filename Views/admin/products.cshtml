@@ -1,0 +1,170 @@
+﻿@model List<Vintellitour_Framework.ViewModels.ProductViewModel>
+@{
+    Layout = "~/Views/admin/adminlayout.cshtml";
+}
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+    var counts = ViewBag.CategoryCounts as Dictionary<string, int> ?? new();
+    var values = ViewBag.CategoryValues as Dictionary<string, decimal> ?? new();
+
+    Func<string, string> GetCategoryIcon = category => category switch
+    {
+        "Bản đồ" => "fa-map",
+        "Balo" => "fa-backpack",
+        "Phụ kiện" => "fa-box-open",
+        "Điện tử" => "fa-mobile-screen",
+        _ => "fa-box"
+    };
+
+    Func<string, string> GetCategoryColor = category => category switch
+    {
+        "Bản đồ" => "bg-blue-100 text-blue-600",
+        "Balo" => "bg-green-100 text-green-600",
+        "Phụ kiện" => "bg-purple-100 text-purple-600",
+        "Điện tử" => "bg-orange-100 text-orange-600",
+        _ => "bg-gray-100 text-gray-600"
+    };
+
+    // Tính tổng số lượng sản phẩm theo danh mục
+    var totalStockByCategory = Model.GroupBy(p => p.CategoryName)
+                                    .ToDictionary(g => g.Key, g => g.Sum(p => p.StockQuantity));
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="max-w-7xl mx-auto p-6 space-y-6 bg-gray-50 min-h-screen">
+    <!-- Thống kê danh mục -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        @foreach (var category in counts.Keys)
+        {
+            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-600 text-sm font-medium">@category</h3>
+                    <div class="w-10 h-10 @GetCategoryColor(category) rounded-full flex items-center justify-center">
+                        <i class="fas @GetCategoryIcon(category) text-lg"></i>
+                    </div>
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mb-1">@counts[category]</div>
+                <div class="text-sm text-gray-500 mb-1">Tổng kho: @totalStockByCategory.GetValueOrDefault(category, 0) sản phẩm</div>
+                <div class="text-sm text-gray-500">Giá trị: @string.Format("{0:N0}", values.GetValueOrDefault(category, 0)) ₫</div>
+            </div>
+        }
+    </div>
+
+    <!-- Tổng quan -->
+    <div class="flex justify-between items-center text-sm text-gray-600">
+        <div class="flex gap-6">
+            <div>
+                <i class="fa fa-box mr-1 text-gray-400"></i>
+                <span class="font-semibold text-base text-black">@Model.Count</span> sản phẩm
+            </div>
+            <div>
+                <i class="fa fa-layer-group mr-1 text-gray-400"></i>
+                <span class="font-semibold text-base text-black">@counts.Count</span> danh mục
+            </div>
+        </div>
+    </div>
+
+    <!-- Thanh tìm kiếm và nút thêm -->
+    <div class="flex items-center gap-4">
+        <!-- Tìm kiếm -->
+        <div class="flex-1 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+            </div>
+            <input type="text" placeholder="Tìm kiếm sản phẩm..."
+                   class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Dropdown danh mục -->
+        <div class="relative">
+            <select class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[160px]">
+                <option>Tất cả danh mục</option>
+                @foreach (var category in counts.Keys)
+                {
+                    <option>@category</option>
+                }
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <i class="fas fa-filter text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- Nút thêm sản phẩm -->
+        <a href="@Url.Action("Create", "AdminProduct")" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap">
+            <i class="fas fa-plus mr-2"></i>Thêm sản phẩm
+        </a>
+    </div>
+
+    <!-- Bảng danh sách sản phẩm -->
+    <div class="bg-white rounded-lg shadow-sm border">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900">Danh sách sản phẩm</h2>
+            <p class="text-sm text-gray-500 mt-1">Hiển thị @Model.Count trong tổng số @Model.Count sản phẩm</p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sản phẩm</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Danh mục</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kho</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trạng thái</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var product in Model)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-12 w-12">
+                                        <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? "/images/default-product.png" : product.ImageUrl)"
+                                             class="h-12 w-12 rounded border object-cover"
+                                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yNCAxNkMyMS43OTA5IDE2IDE5Ljk5OTkgMTcuNzkwOSAxOS45OTk5IDIwQzE5Ljk5OTkgMjIuMjA5MSAyMS43OTA5IDI0IDI0IDI0QzI2LjIwOTEgMjQgMjggMjIuMjA5MSAyOCAyMEMyOCAxNy43OTA5IDI2LjIwOTEgMTYgMjQgMTZaIiBmaWxsPSIjOUI5QjlCIi8+CjxwYXRoIGQ9Ik0xNiAzMkMxNiAyOC42ODYzIDE4LjY4NjMgMjYgMjIgMjZIMjZDMjkuMzEzNyAyNiAzMiAyOC42ODYzIDMyIDMyVjM0SDE2VjMyWiIgZmlsbD0iIzlCOUI5QiIvPgo8L3N2Zz4K'" />
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">@product.Name</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 @GetCategoryColor(product.CategoryName) rounded flex items-center justify-center mr-2">
+                                        <i class="fas @GetCategoryIcon(product.CategoryName) text-xs"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-900">@product.CategoryName</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@product.Price.ToString("N0") ₫</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium @(product.StockQuantity > 0 ? "text-green-600" : "text-red-600")">@product.StockQuantity</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if (product.StockQuantity > 10)
+                                {
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Còn hàng</span>
+                                }
+                                else if (product.StockQuantity > 0)
+                                {
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Sắp hết</span>
+                                }
+                                else
+                                {
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Hết hàng</span>
+                                }
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex space-x-3">
+                                    <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="text-blue-600 hover:text-blue-900"><i class="fas fa-edit"></i></a>
+                                    <a href="@Url.Action("Delete", "Product", new { id = product.Id })" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

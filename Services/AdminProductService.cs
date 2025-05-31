@@ -26,7 +26,15 @@ namespace Vintellitour_Framework.Services
 
         public async Task CreateProductAsync(Product product)
         {
-            await _products.InsertOneAsync(product);
+            try
+            {
+                await _products.InsertOneAsync(product);
+            }
+            catch (Exception ex)
+            {
+                // Log hoặc throw lại để controller bắt lỗi
+                throw new Exception("Lỗi khi thêm sản phẩm: " + ex.Message, ex);
+            }
         }
 
         public async Task UpdateProductAsync(Product product)

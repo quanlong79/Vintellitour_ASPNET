@@ -1,5 +1,8 @@
 ﻿@model List<Vintellitour_Framework.ViewModels.ProductViewModel>
 @{
+    Layout = "~/Views/admin/adminlayout.cshtml";
+}
+@{
     ViewData["Title"] = "Quản lý sản phẩm";
     var counts = ViewBag.CategoryCounts as Dictionary<string, int> ?? new();
     var values = ViewBag.CategoryValues as Dictionary<string, decimal> ?? new();
@@ -88,7 +91,7 @@
         </div>
 
         <!-- Nút thêm sản phẩm -->
-        <a href="@Url.Action("Create", "Product")" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap">
+        <a href="@Url.Action("Create", "AdminProduct")" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap">
             <i class="fas fa-plus mr-2"></i>Thêm sản phẩm
         </a>
     </div>

@@ -103,12 +103,19 @@ namespace Vintellitour_Framework.Controllers
             return HttpContext.Session.GetString("UserId");
         }
         [HttpGet("/Cart/PaymentResult")]
-        public async Task<IActionResult> PaymentResult(string orderId)
+        public async Task<IActionResult> PaymentResult(string orderId, string resultCode, string message)
         {
+            Console.WriteLine($"PaymentResult called with orderId={orderId}, resultCode={resultCode}, message={message}");
+
             var payment = await _paymentService.GetByIdAsync(orderId);
 
             if (payment == null)
-                return RedirectToAction("Index", "Map");
+            {
+                TempData["Message"] = "Không tìm thấy đơn hàng, vui lòng kiểm tra lại.";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            Console.WriteLine("Payment status in DB: " + payment.Status);
 
             if (payment.Status == "Success")
             {
@@ -116,14 +123,14 @@ namespace Vintellitour_Framework.Controllers
             }
             else if (payment.Status == "Cancel")
             {
-                TempData["Message"] = "Thanh toán thất bại hoặc bị hủy.";
+                TempData["Message"] = "Thanh toán thất bại hoặc bị hủy.";   
             }
             else
             {
                 TempData["Message"] = "Chờ xác nhận thanh toán...";
             }
 
-            return RedirectToAction("Index", "Map"); // chuyển về giỏ hàng
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

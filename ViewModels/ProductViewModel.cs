@@ -15,5 +15,6 @@
         public int Reviews { get; set; }
         public bool IsNew { get; set; }
         public bool IsBestSeller { get; set; }
+        public string Details { get; set; }
     }
 }

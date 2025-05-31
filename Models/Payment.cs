@@ -20,6 +20,9 @@ namespace Vintellitour_Framework.Models
         [BsonElement("status")]
         public string Status { get; set; } // Pending, Success, Cancel
 
+        [BsonElement("noteOrder")]
+        public string NoteOrder { get; set; }  // <--- Thêm thuộc tính này
+
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -29,4 +32,5 @@ namespace Vintellitour_Framework.Models
         [BsonElement("details")]
         public List<DetailPayment> Details { get; set; }
     }
+
 }

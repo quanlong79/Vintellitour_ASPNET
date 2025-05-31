@@ -125,14 +125,25 @@
                 <form method="POST" asp-action="CreatePaymentUrl" asp-controller="Payment" id="paymentForm">
                     <input type="hidden" name="FullName" value="@User.Identity.Name" />
                     <input type="hidden" name="Amount" value="@Model.GrandTotal" />
-                    <input type="hidden" name="OrderInfo" value="Thanh toán đặt hàng qua Momo tại HieuTanStore" />
+                    <input type="hidden" name="OrderInfo" value="Thanh toán đặt hàng qua Momo tại Vintellitour" />
+                    <label for="OrderNote" class="block mb-1 font-semibold">Ghi chú đơn hàng & số đăng kí MOMO:</label>
+                    <textarea id="OrderNote" name="OrderNote" rows="3" class="w-full border rounded p-2 mb-4" placeholder="Nhập ghi chú nếu có..." required></textarea>
 
                     <input type="hidden" name="CartItemsJson" id="CartItemsJson" />
 
-                    <button type="submit" class="w-full mt-6 bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700 transition font-semibold">
+                    <!-- Checkbox đồng ý điều khoản -->
+                    <div class="flex items-center gap-2 mt-4">
+                        <input type="checkbox" id="agreeTerms" class="w-4 h-4" />
+                        <label for="agreeTerms" class="text-sm text-gray-700 cursor-pointer select-none">
+                            Tôi đồng ý với <a href="/pdf/payment_terms.pdf" target="_blank" class="text-blue-600 underline">điều khoản thanh toán</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full mt-6 bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700 transition font-semibold" id="submitBtn" disabled>
                         Tiến hành thanh toán
                     </button>
                 </form>
+
 
 
             </div>
@@ -145,28 +156,50 @@
         document.addEventListener('DOMContentLoaded', () => {
             const formatCurrency = amount => amount.toLocaleString('vi-VN') + ' ₫';
 
-            function updateSummary() {
-                let total = 0;
-                let discount = 0;
+        function updateSummary() {
+            let total = 0;
+            let discount = 0;
 
-                document.querySelectorAll('.select-item:checked').forEach(cb => {
-                    const price = parseInt(cb.dataset.price || "0");
-                    const original = parseInt(cb.dataset.original || "0");
-                    const quantity = parseInt(cb.dataset.quantity || "1");
+            document.querySelectorAll('.select-item:checked').forEach(cb => {
+                const price = parseInt(cb.dataset.price || "0");
+                const original = parseInt(cb.dataset.original || "0");
+                const quantity = parseInt(cb.dataset.quantity || "1");
 
-                    total += price * quantity;
-                    discount += (original - price) * quantity;
-                });
+                total += price * quantity;
+                discount += (original - price) * quantity;
+            });
 
-                const shippingInput = document.querySelector('.shipping-method:checked');
-                let shippingFee = shippingInput && shippingInput.value === 'express' ? 50000 : 0;
+            const shippingInput = document.querySelector('.shipping-method:checked');
+            let shippingFee = shippingInput && shippingInput.value === 'express' ? 50000 : 0;
 
-                document.getElementById('totalAmount').textContent = formatCurrency(total);
-                document.getElementById('discountAmount').textContent = '-' + formatCurrency(discount);
-                document.getElementById('shippingFee').textContent = shippingFee > 0 ? formatCurrency(shippingFee) : 'Miễn phí';
-                document.getElementById('shippingFee').classList.toggle('text-green-600', shippingFee === 0);
-                document.getElementById('grandTotal').textContent = formatCurrency(total + shippingFee);
+            document.getElementById('totalAmount').textContent = formatCurrency(total);
+            document.getElementById('discountAmount').textContent = '-' + formatCurrency(discount);
+            document.getElementById('shippingFee').textContent = shippingFee > 0 ? formatCurrency(shippingFee) : 'Miễn phí';
+            document.getElementById('shippingFee').classList.toggle('text-green-600', shippingFee === 0);
+            document.getElementById('grandTotal').textContent = formatCurrency(total + shippingFee);
+
+            // Update lại giá trị amount trong input hidden form
+            const amountInput = document.querySelector('input[name="Amount"]');
+            if (amountInput) {
+                amountInput.value = total + shippingFee;
             }
+                    const agreeCheckbox = document.getElementById('agreeTerms');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Bỏ disable nút submit (luôn cho phép click)
+        submitBtn.disabled = false;
+
+        // Bắt sự kiện submit form, kiểm tra checkbox
+        document.getElementById('paymentForm').addEventListener('submit', function (e) {
+            if (!agreeCheckbox.checked) {
+                e.preventDefault(); // chặn gửi form
+                toastr.error('Bạn phải đồng ý với điều khoản thanh toán để tiếp tục.');
+                agreeCheckbox.focus();
+                return false;
+            }
+        });
+        }
+
 
             // Gọi lại updateSummary sau mỗi lần số lượng, checkbox hoặc phương thức vận chuyển thay đổi
             function registerDynamicEvents() {
@@ -233,13 +266,40 @@
             registerDynamicEvents();
             updateSummary(); // Lần đầu tải trang
         });
-        @if (TempData["Message"] != null)
-            {
-            <div class="alert alert-info">
-                @TempData["Message"]
-            </div>
-        }
 
+         document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            const cartItems = [];
+
+            document.querySelectorAll('#cartItemsContainer > div').forEach(itemDiv => {
+                const checkbox = itemDiv.querySelector('.select-item');
+                if (!checkbox || !checkbox.checked) return;
+
+                cartItems.push({
+                    ProductId: itemDiv.getAttribute('data-product-id'),
+                    Quantity: parseInt(checkbox.dataset.quantity || "1"),
+                    Price: parseInt(checkbox.dataset.price || "0"),
+                    ProductName: itemDiv.querySelector('p.font-semibold')?.innerText || "",
+                    OriginalPrice: parseInt(checkbox.dataset.original || "0")
+                });
+            });
+
+            if (cartItems.length === 0) {
+                e.preventDefault();  // chặn submit form
+                toastr.error('Vui lòng chọn ít nhất một sản phẩm để thanh toán!');
+                return;
+            }
+
+            document.getElementById('CartItemsJson').value = JSON.stringify(cartItems);
+        });
+
+        $(function () {
+            var message = '@Html.Raw(TempData["Message"])';
+            var messageType = '@TempData["MessageType"]' || 'info'; // success, info, warning, error
+
+            if (message) {
+                toastr[messageType](message);
+            }
+        });
     </script>
 
 }

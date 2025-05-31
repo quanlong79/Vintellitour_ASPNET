@@ -22,5 +22,6 @@
         public decimal Amount { get; set; }
         public string OrderInfo { get; set; }
         public string CartItemsJson { get; set; }
+        public string OrderNote { get; set; }  // Thêm dòng này
     }
 }

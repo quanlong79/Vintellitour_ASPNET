@@ -1,0 +1,150 @@
+﻿@model Vintellitour_Framework.Models.Product
+@{
+    ViewData["Title"] = "Chỉnh sửa sản phẩm";
+}
+
+<div class="min-h-screen bg-gradient-to-br from-teal-50 to-cyan-50 py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-100 rounded-full mb-4">
+                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17h2m-1-1v2m6-6h-2m1 1v-2M5 7h2m-1 1v-2m0 10h2m-1 1v-2m12-8h-2m1 1v-2"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">@ViewData["Title"]</h1>
+            <p class="text-gray-600">Điền thông tin để chỉnh sửa sản phẩm</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-teal-600 to-cyan-600 px-8 py-6">
+                <h2 class="text-xl font-semibold text-white">Thông tin sản phẩm</h2>
+            </div>
+
+            <form id="productEditForm" method="post" action="@Url.Action("Edit", "AdminProduct", new { id = Model.Id })" class="p-8 space-y-8" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                @* Hidden field để giữ Id *@
+                <input type="hidden" asp-for="Id" />
+
+                <!-- Các trường tương tự Create.cshtml -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-teal-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin cơ bản</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="lg:col-span-2">
+                            <label asp-for="Name" class="block text-sm font-semibold text-gray-700 mb-2">Tên sản phẩm</label>
+                            <input asp-for="Name" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="Nhập tên sản phẩm..." />
+                            <span asp-validation-for="Name" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+
+                        <div class="lg:col-span-2">
+                            <label asp-for="Description" class="block text-sm font-semibold text-gray-700 mb-2">Mô tả sản phẩm</label>
+                            <textarea asp-for="Description" rows="4" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white resize-none" placeholder="Mô tả chi tiết về sản phẩm..."></textarea>
+                            <span asp-validation-for="Description" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+
+                        <div class="lg:col-span-2">
+                            <label asp-for="Image" class="block text-sm font-semibold text-gray-700 mb-2">URL ảnh sản phẩm</label>
+                            <input asp-for="Image" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="/img/placeholder.png" />
+                            <span asp-validation-for="Image" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+
+                        <div>
+                            <label asp-for="Category" class="block text-sm font-semibold text-gray-700 mb-2">Danh mục</label>
+                            <select asp-for="Category" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white">
+                                <option value="">-- Chọn danh mục --</option>
+                                <option value="Bản đồ">Bản đồ</option>
+                                <option value="Balo">Ba lô</option>
+                                <option value="Điện tử">Điện tử</option>
+                                <option value="Phụ kiện">Phụ kiện</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+
+                        <div>
+                            <label asp-for="Stock" class="block text-sm font-semibold text-gray-700 mb-2">Số lượng tồn kho</label>
+                            <input asp-for="Stock" type="number" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="0" />
+                            <span asp-validation-for="Stock" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Section -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-teal-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin giá cả</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="relative">
+                            <label asp-for="Price" class="block text-sm font-semibold text-gray-700 mb-2">Giá bán</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₫</span>
+                                <input asp-for="Price" type="number" step="0.01" class="w-full border-2 border-gray-200 rounded-lg pl-8 pr-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="0.00" />
+                            </div>
+                            <span asp-validation-for="Price" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+
+                        <div class="relative">
+                            <label asp-for="OriginalPrice" class="block text-sm font-semibold text-gray-700 mb-2">Giá gốc</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₫</span>
+                                <input asp-for="OriginalPrice" type="number" step="0.01" class="w-full border-2 border-gray-200 rounded-lg pl-8 pr-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="0.00" />
+                            </div>
+                            <span asp-validation-for="OriginalPrice" class="text-red-500 text-sm mt-1 block"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Status Section -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-teal-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Trạng thái sản phẩm</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg p-4 border border-teal-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input asp-for="IsNew" type="checkbox" class="w-5 h-5 text-teal-600 border-2 border-gray-300 rounded focus:ring-teal-500 focus:ring-2" />
+                                <span class="ml-3 text-sm font-medium text-gray-700 flex items-center">Sản phẩm mới</span>
+                            </label>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg p-4 border border-teal-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input asp-for="IsBestSeller" type="checkbox" class="w-5 h-5 text-teal-600 border-2 border-gray-300 rounded focus:ring-teal-500 focus:ring-2" />
+                                <span class="ml-3 text-sm font-medium text-gray-700 flex items-center">Sản phẩm bán chạy</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details Section -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-teal-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Chi tiết bổ sung</h3>
+                    </div>
+
+                    <div>
+                        <label asp-for="Details" class="block text-sm font-semibold text-gray-700 mb-2">Chi tiết sản phẩm</label>
+                        <textarea asp-for="Details" rows="5" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 bg-gray-50 focus:bg-white resize-none" placeholder="Thêm thông tin chi tiết về sản phẩm, đặc điểm nổi bật, cách sử dụng..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                        Cập nhật sản phẩm
+                    </button>
+                    <a href="@Url.Action("Index", "AdminProduct")" class="flex-1 sm:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-4 rounded-lg font-semibold border border-gray-300 transition-all duration-200 text-center">
+                        Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

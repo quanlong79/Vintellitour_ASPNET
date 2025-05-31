@@ -2,7 +2,40 @@
 @{
     ViewData["Title"] = "Thêm sản phẩm mới";
 }
+@section Styles {
+    <style>
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
+        .toast {
+            background: #333;
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 1;
+            transition: opacity 0.4s ease;
+            font-weight: 600;
+        }
+
+        .toast-success {
+            background-color: #16a34a;
+        }
+
+        .toast.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+
+}
 <div class="min-h-screen bg-gradient-to-br from-teal-50 to-cyan-50 py-8">
     <div class="max-w-4xl mx-auto px-4">
         <!-- Header Section -->
@@ -221,6 +254,7 @@
         </div>
     </div>
 </div>
+<div id="toastContainer" class="toast-container"></div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -238,11 +272,6 @@
             for (let [key, value] of formData.entries()) {
               console.log(key, value);
             }
-
-            // KHÔNG tự tạo Id, để server tạo
-            // if (!formData.get('Id')) {
-            //   formData.append('Id', generateObjectId());
-            // }
 
             fetch('/admin/product/create', {
               method: 'POST',
@@ -287,7 +316,7 @@
               }
 
               if (data.success) {
-                alert(data.message);
+                showToast(data.message, 'success');
                 form.reset();
                 // window.location.href = '/admin/product';
               } else {
@@ -309,5 +338,21 @@
             });
           });
         });
+
+            function showToast(message, type = 'success', duration = 3000) {
+          const container = document.getElementById('toastContainer');
+          if (!container) return;
+
+          const toast = document.createElement('div');
+          toast.className = `toast toast-${type}`;
+          toast.textContent = message;
+
+          container.appendChild(toast);
+
+          setTimeout(() => {
+            toast.classList.add('fade-out');
+            toast.addEventListener('transitionend', () => toast.remove());
+          }, duration);
+        }
     </script>
 }

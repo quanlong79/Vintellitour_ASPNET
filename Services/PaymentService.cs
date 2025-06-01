@@ -157,11 +157,11 @@ namespace Vintellitour_Framework.Services
             return await _payments.Find(_ => true).ToListAsync();
         }
 
-        public async Task<Payment?> GetByUserIdAsync(string userId)
+        public async Task<List<Payment>> GetByUserIdAsync(string userId)
         {
             return await _payments.Find(p => p.UserId == userId)
-                                 .SortByDescending(p => p.CreatedAt)
-                                 .FirstOrDefaultAsync();
+                                  .SortByDescending(p => p.CreatedAt)
+                                  .ToListAsync();
         }
 
         public async Task<bool> UpdateShippingStatusAsync(string paymentId, string shippingStatus)
@@ -177,6 +177,7 @@ namespace Vintellitour_Framework.Services
             var result = await _payments.UpdateOneAsync(filter, update);
             return result.ModifiedCount > 0;
         }
+
 
     }
 }

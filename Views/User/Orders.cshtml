@@ -1,0 +1,460 @@
+﻿@model List<Vintellitour_Framework.Models.Payment>
+
+@{
+    ViewData["Title"] = "Lịch sử đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">📦 Lịch sử đơn hàng</h1>
+                    <p class="text-gray-600">Theo dõi và quản lý tất cả đơn hàng của bạn</p>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="bg-white rounded-lg px-4 py-2 shadow-sm border">
+                        <span class="text-sm text-gray-500">Tổng đơn hàng:</span>
+                        <span class="font-bold text-blue-600 ml-1">@(Model?.Count ?? 0)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model == null || !Model.Any())
+        {
+            <!-- Empty State -->
+            <div class="text-center py-16">
+                <div class="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
+                    <div class="text-6xl mb-6">🛍️</div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Chưa có đơn hàng nào</h3>
+                    <p class="text-gray-500 mb-6">Bạn chưa thực hiện đơn hàng nào. Hãy khám phá các sản phẩm tuyệt vời của chúng tôi!</p>
+                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 font-semibold">
+                        Khám phá sản phẩm
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Filter and Search Section -->
+            <div class="bg-white rounded-xl shadow-sm border mb-6 p-6">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm đơn hàng..."
+                                   class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 w-full sm:w-64">
+                            <div class="absolute left-3 top-2.5 text-gray-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <select id="statusFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="Success">Thành công</option>
+                            <option value="Pending">Đang chờ xử lý</option>
+                            <option value="Cancel">Đã hủy</option>
+                        </select>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        Hiển thị <span id="visibleCount">@Model.Count</span> trên tổng <span>@Model.Count</span> đơn hàng
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Grid for Mobile -->
+            <div class="block lg:hidden space-y-4" id="mobileOrderList">
+                @foreach (var order in Model)
+                {
+                    <div class="order-card bg-white rounded-xl shadow-sm border hover:shadow-md transition-all duration-300"
+                         data-status="@order.Status" data-id="@order.Id.ToString()">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Đơn hàng #@order.Id.ToString().Substring(0, Math.Min(8, order.Id.ToString().Length))</h3>
+                                    <p class="text-sm text-gray-500">@order.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-lg text-green-600 mb-1">@String.Format("{0:N0} VNĐ", order.Amount)</div>
+                                    @if (order.Status == "Success")
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+                                            Thành công
+                                        </span>
+                                    }
+                                    else if (order.Status == "Pending")
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            <span class="w-2 h-2 bg-yellow-400 rounded-full mr-1"></span>
+                                            Đang chờ xử lý
+                                        </span>
+                                    }
+                                    else if (order.Status == "Cancel")
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            <span class="w-2 h-2 bg-red-400 rounded-full mr-1"></span>
+                                            Đã hủy
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <button type="button" class="w-full text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-all duration-200 flex items-center justify-center"
+                                        onclick="toggleMobileDetails('@order.Id')">
+                                    <span class="mr-2">Xem chi tiết</span>
+                                    <svg class="w-4 h-4 transform transition-transform duration-200" id="arrow-@order.Id" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div id="mobile-details-@order.Id" class="hidden mt-4 pt-4 border-t bg-gray-50 -mx-6 px-6 pb-6 rounded-b-xl">
+                                <h4 class="font-semibold text-gray-800 mb-3">Chi tiết đơn hàng:</h4>
+                                <div class="space-y-2">
+                                    @foreach (var detail in order.Details)
+                                    {
+                                        <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                            <div>
+                                                <div class="font-medium text-gray-800">@detail.ProductName</div>
+                                                <div class="text-sm text-gray-500">Số lượng: @detail.Quantity</div>
+                                            </div>
+                                            <div class="font-semibold text-gray-900">@String.Format("{0:N0} VNĐ", detail.Price)</div>
+                                        </div>
+                                    }
+                                </div>
+
+                                @if (order.Status == "Success")
+                                {
+                                    <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                                        <div class="text-sm font-medium text-blue-800 mb-1">Trạng thái vận chuyển:</div>
+                                        @if (string.IsNullOrEmpty(order.ShippingStatus))
+                                        {
+                                            <div class="text-blue-600">Chờ vận chuyển</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-blue-600">@order.ShippingStatus</div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Desktop Table -->
+            <div class="hidden lg:block bg-white rounded-xl shadow-sm border overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" id="desktopOrderTable">
+                        <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span>Mã đơn hàng</span>
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                        </svg>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Ngày tạo</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Số tiền</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Trạng thái thanh toán</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Trạng thái vận chuyển</th>
+                                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach (var order in Model)
+                            {
+                                <tr class="order-row hover:bg-gray-50 transition-all duration-200" data-status="@order.Status" data-id="@order.Id.ToString()">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-sm font-medium text-gray-900">#@order.Id.ToString().Substring(0, Math.Min(8, order.Id.ToString().Length))</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        @order.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-lg font-bold text-green-600">@String.Format("{0:N0} VNĐ", order.Amount)</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if (order.Status == "Success")
+                                        {
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                Thành công
+                                            </span>
+                                        }
+                                        else if (order.Status == "Pending")
+                                        {
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                                </svg>
+                                                Đang chờ xử lý
+                                            </span>
+                                        }
+                                        else if (order.Status == "Cancel")
+                                        {
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                                </svg>
+                                                Đã hủy
+                                            </span>
+                                        }
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                        @if (order.Status == "Success")
+                                        {
+                                            if (string.IsNullOrEmpty(order.ShippingStatus))
+                                            {
+                                                <span class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-blue-100 text-blue-800">
+                                                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                                                    </svg>
+                                                    Chờ vận chuyển
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-blue-600 font-medium">@order.ShippingStatus</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="text-gray-400">-</span>
+                                        }
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200"
+                                                onclick="toggleDetails('@order.Id')">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr id="details-@order.Id" class="hidden bg-gradient-to-r from-blue-50 to-purple-50">
+                                    <td colspan="6" class="px-6 py-6">
+                                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                </svg>
+                                                Chi tiết đơn hàng #@order.Id.ToString().Substring(0, Math.Min(8, order.Id.ToString().Length))
+                                            </h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                @foreach (var detail in order.Details)
+                                                {
+                                                    <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-all duration-200">
+                                                        <div class="flex justify-between items-start">
+                                                            <div class="flex-1">
+                                                                <h5 class="font-medium text-gray-800 mb-1">@detail.ProductName</h5>
+                                                                <p class="text-sm text-gray-600">Số lượng: <span class="font-semibold">@detail.Quantity</span></p>
+                                                            </div>
+                                                            <div class="text-right ml-3">
+                                                                <div class="font-bold text-green-600">@String.Format("{0:N0} VNĐ", detail.Price)</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden text-center py-12">
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Không tìm thấy đơn hàng</h3>
+                    <p class="text-gray-500">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Toggle details for desktop
+        function toggleDetails(orderId) {
+            const detailsRow = document.getElementById("details-" + orderId);
+            if (!detailsRow) return;
+
+            if (detailsRow.classList.contains("hidden")) {
+                detailsRow.classList.remove("hidden");
+                detailsRow.classList.add("animate-fadeIn");
+            } else {
+                detailsRow.classList.add("hidden");
+                detailsRow.classList.remove("animate-fadeIn");
+            }
+        }
+
+        // Toggle details for mobile
+        function toggleMobileDetails(orderId) {
+            const detailsDiv = document.getElementById("mobile-details-" + orderId);
+            const arrow = document.getElementById("arrow-" + orderId);
+
+            if (!detailsDiv) return;
+
+            if (detailsDiv.classList.contains("hidden")) {
+                detailsDiv.classList.remove("hidden");
+                arrow.classList.add("rotate-180");
+            } else {
+                detailsDiv.classList.add("hidden");
+                arrow.classList.remove("rotate-180");
+            }
+        }
+
+        // Search and filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const statusFilter = document.getElementById('statusFilter');
+            const visibleCountSpan = document.getElementById('visibleCount');
+            const noResults = document.getElementById('noResults');
+
+            function filterOrders() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const statusValue = statusFilter.value;
+
+                // Filter desktop table rows
+                const desktopRows = document.querySelectorAll('#desktopOrderTable .order-row');
+                // Filter mobile cards
+                const mobileCards = document.querySelectorAll('#mobileOrderList .order-card');
+
+                let visibleCount = 0;
+
+                // Filter desktop rows
+                desktopRows.forEach(row => {
+                    const orderId = row.getAttribute('data-id');
+                    const status = row.getAttribute('data-status');
+                    const text = row.textContent.toLowerCase();
+
+                    const matchesSearch = text.includes(searchTerm);
+                    const matchesStatus = !statusValue || status === statusValue;
+
+                    if (matchesSearch && matchesStatus) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                        // Hide details row if parent is hidden
+                        const detailsRow = document.getElementById('details-' + orderId);
+                        if (detailsRow) {
+                            detailsRow.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Filter mobile cards
+                mobileCards.forEach(card => {
+                    const orderId = card.getAttribute('data-id');
+                    const status = card.getAttribute('data-status');
+                    const text = card.textContent.toLowerCase();
+
+                    const matchesSearch = text.includes(searchTerm);
+                    const matchesStatus = !statusValue || status === statusValue;
+
+                    if (matchesSearch && matchesStatus) {
+                        card.style.display = '';
+                        if (!desktopRows.length) visibleCount++; // Only count mobile if no desktop
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update visible count
+                if (visibleCountSpan) {
+                    visibleCountSpan.textContent = visibleCount;
+                }
+
+                // Show/hide no results message
+                if (noResults) {
+                    if (visibleCount === 0) {
+                        noResults.classList.remove('hidden');
+                    } else {
+                        noResults.classList.add('hidden');
+                    }
+                }
+            }
+
+            // Add event listeners
+            if (searchInput) {
+                searchInput.addEventListener('input', filterOrders);
+            }
+            if (statusFilter) {
+                statusFilter.addEventListener('change', filterOrders);
+            }
+        });
+    </script>
+
+    <style>
+        @@keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .order-card {
+            transition: all 0.3s ease;
+        }
+
+            .order-card:hover {
+                transform: translateY(-2px);
+            }
+
+        .order-row:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Custom scrollbar */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+            .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+                background: #94a3b8;
+            }
+    </style>
+}

@@ -32,7 +32,7 @@ namespace Vintellitour_Framework.Models
         public string Status { get; set; }
 
         [BsonElement("tags")]
-        public List<string> Tags { get; set; }
+        public List<string>? Tags { get; set; }
 
         [BsonElement("likes")]
         [BsonRepresentation(BsonType.Int64)]

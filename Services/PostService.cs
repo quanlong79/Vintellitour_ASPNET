@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Vintellitour_Framework.Models;
+using Vintellitour_Framework.Models.Entities;
 using Vintellitour_Framework.Services;
 public interface IPostService
 {
@@ -11,6 +12,9 @@ public interface IPostService
     Task<bool> AddCommentToPostAsync(string postId, Comment comment);
     Task<bool> UpdatePostStatusAsync(string postId, string status);
     Task<bool> DeletePostAsync(string postId);
+    Task CreatePostAsync(Post post);
+    Task<LocationsModel> GetLocationByIdAsync(string locationId);
+
 
 }
 public class PostService : IPostService
@@ -18,12 +22,13 @@ public class PostService : IPostService
     private readonly IMongoCollection<Post> _posts;
     private readonly IMongoCollection<User> _users;
     private readonly IMongoCollection<Provinces> _provinces;
-
+    private readonly IMongoCollection<LocationsModel> _locations;
     public PostService(MongoDbService mongoDbService)
     {
         _posts = mongoDbService.GetPostCollection();
         _users = mongoDbService.GetUserCollection();
         _provinces = mongoDbService.GetProvincesCollection();
+        _locations = mongoDbService.GetLocationsCollection();
     }
 
     public async Task<List<PostViewModel>> GetPostsWithAuthorInfoAsync(string statusFilter = null)
@@ -115,6 +120,15 @@ public class PostService : IPostService
         var filter = Builders<Post>.Filter.Eq(p => p.Id, postId);
         var result = await _posts.DeleteOneAsync(filter);
         return result.DeletedCount > 0;
+    }
+    public async Task CreatePostAsync(Post post)
+    {
+        await _posts.InsertOneAsync(post);
+    }
+    public async Task<LocationsModel> GetLocationByIdAsync(string locationId)
+    {
+        var filter = Builders<LocationsModel>.Filter.Eq(l => l.Id, locationId);
+        return await _locations.Find(filter).FirstOrDefaultAsync();
     }
 
 }

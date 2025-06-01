@@ -16,6 +16,9 @@ namespace Vintellitour_Framework.ViewModels
         public int CommentsCount { get; set; }
         public List<BadgeViewModel> CurrentUserBadges { get; set; } = new List<BadgeViewModel>();
         public Dictionary<string, List<CommentViewModel>> CommentsForPosts { get; set; }
+        public string SelectedLocationRawId { get; set; }  // thêm trường này
+        public bool CanPost { get; set; }  // Thêm dòng này vào
+        public int SelectedprovinceGid { get; set; }
     }
 
     public class ProvinceViewModel

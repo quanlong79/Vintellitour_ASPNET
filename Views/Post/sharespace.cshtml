@@ -7,6 +7,7 @@
 @section Scripts {
     <script src="~/js/kgcs/comment_modal.js"></script>
     <script src="~/js/kgcs/share_space.js"></script>
+    <script src="~/js/kgcs/openPublishModal.js"></script>
 }
 
 <div class="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50">
@@ -18,7 +19,6 @@
                 <!-- HEADER SECTION -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-8">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-
                         <!-- Title Section -->
                         <div class="flex items-center gap-4">
                             <div class="p-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl">
@@ -49,7 +49,7 @@
                                 <input type="hidden" id="selectedProvinceId" name="selectedProvinceId" value="@Model.SelectedProvinceId" />
                                 <input type="hidden" id="showOnlyMyPostsInput" name="showOnlyMyPosts" value="@Model.ShowOnlyMyPosts.ToString().ToLower()" />
                                 <input type="hidden" id="sortOrderInput" name="sortOrder" value="@Model.SortOrder" />
-
+                                <input type="hidden" id="selectedLocationRawId" name="selectedLocationRawId" value="@Model.SelectedLocationRawId" />
                                 @if (!string.IsNullOrEmpty(Model.SelectedProvinceId))
                                 {
                                     <button type="button" id="ClearfilterProvinces"
@@ -316,10 +316,35 @@
                             </div>
                         </div>
                     </div>
+                    @if (Model.SelectedLocationRawId != null)
+                    {
+                        <div class="mt-4 sticky bottom-0 bg-gradient-to-t from-white via-white to-transparent p-6 z-10">
+                            <button id="btnAddPost"
+                                    class="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-700 hover:via-purple-800 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 w-full justify-center overflow-hidden">
+
+                                <!-- Hiệu ứng shine -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                                <!-- Icon với hiệu ứng -->
+                                <div class="relative z-10 bg-white/20 rounded-full p-2 group-hover:rotate-180 transition-transform duration-500">
+                                    <i class="fas fa-plus text-lg"></i>
+                                </div>
+
+                                <!-- Text -->
+                                <span class="relative z-10 text-lg tracking-wide">Thêm bài đăng</span>
+
+                                <!-- Hiệu ứng glow -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 -z-10"></div>
+                            </button>
+                        </div>
+                    }
+
                 </div>
+                
             </div>
         </div>
     </div>
 </div>
 
+@await Html.PartialAsync("Components/_PublishPostModal")
 @await Html.PartialAsync("Components/_CommentModal")

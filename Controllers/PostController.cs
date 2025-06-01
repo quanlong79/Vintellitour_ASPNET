@@ -10,16 +10,22 @@ using MongoDB.Driver;
 [Route("post")]
 public class PostController : Controller
 {
+    private readonly IWebHostEnvironment _env;
     private readonly IPostService _postService;
     private readonly IUserService _userService;
-    public PostController(IPostService postService, IUserService userService)
+    public PostController(IPostService postService, IUserService userService, IWebHostEnvironment env)
     {
         _postService = postService;
         _userService = userService;
+        _env = env;
     }
 
     [HttpGet("sharespace")]
-    public async Task<IActionResult> Sharespace(string selectedProvinceId = null, bool showOnlyMyPosts = false, string sortOrder = "newest")
+    public async Task<IActionResult> Sharespace(
+        string selectedProvinceId = null, 
+        bool showOnlyMyPosts = false,
+        string sortOrder = "newest", 
+        string selectedLocationRawId = null, bool canPost = false)
     {
         var currentUserId = HttpContext.Session.GetString("UserId");
 
@@ -29,6 +35,23 @@ public class PostController : Controller
         if (!string.IsNullOrEmpty(selectedProvinceId))
         {
             posts = posts.FindAll(p => p.Post.ProvinceGid.ToString() == selectedProvinceId);
+        }
+
+        // Lọc theo locationRaw nếu có (bổ sung thêm, lọc tiếp)
+        if (!string.IsNullOrEmpty(selectedLocationRawId))
+        {
+            posts = posts.FindAll(p => p.Post.LocationRaw == selectedLocationRawId);
+        }
+
+        // Lấy ProvinceGid dựa trên selectedLocationRawId
+        int SelectedprovinceGid = 0;
+        if (!string.IsNullOrEmpty(selectedLocationRawId))
+        {
+            var location = await _postService.GetLocationByIdAsync(selectedLocationRawId);
+            if (location != null)
+            {
+                SelectedprovinceGid = location.ProvinceGid;
+            }
         }
 
         if (showOnlyMyPosts && !string.IsNullOrEmpty(currentUserId))
@@ -141,12 +164,120 @@ public class PostController : Controller
             CurrentUserId = currentUserId,
             SortOrder = sortOrder,
             AuthorBadges = badgesList,
-            CommentsForPosts = commentsDict
-
+            CommentsForPosts = commentsDict,
+            CanPost = canPost || (!string.IsNullOrEmpty(currentUserId) && (!string.IsNullOrEmpty(selectedProvinceId) || !string.IsNullOrEmpty(selectedLocationRawId))),
+            SelectedLocationRawId = selectedLocationRawId,
+            SelectedprovinceGid = SelectedprovinceGid
         };
 
         return View(viewModel);
     }
+
+
+    [HttpPost("CreatePost")]
+    public async Task<IActionResult> CreatePost([FromForm] CreatePostViewModel model)
+    {
+        // Debug logging
+        Console.WriteLine($"Content: {model.Content}");
+        Console.WriteLine($"LocationRawId: {model.LocationRawId}");
+        Console.WriteLine($"ProvinceGid: {model.ProvinceGid}");
+        Console.WriteLine($"UploadedFiles count: {model.UploadedFiles?.Count ?? 0}");
+
+        var currentUserId = HttpContext.Session.GetString("UserId");
+        if (string.IsNullOrEmpty(currentUserId))
+        {
+            return Unauthorized("Bạn cần đăng nhập để đăng bài.");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            // Log validation errors
+            foreach (var error in ModelState)
+            {
+                Console.WriteLine($"Key: {error.Key}");
+                foreach (var err in error.Value.Errors)
+                {
+                    Console.WriteLine($"Error: {err.ErrorMessage}");
+                }
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        // Lấy location từ database dựa trên LocationRawId
+        var location = await _postService.GetLocationByIdAsync(model.LocationRawId);
+        if (location == null)
+        {
+            ModelState.AddModelError("LocationRawId", "Địa điểm không tồn tại.");
+            return BadRequest(ModelState);
+        }
+
+        // Xử lý upload ảnh
+        List<Media> mediaList = new List<Media>();
+        if (model.UploadedFiles != null && model.UploadedFiles.Count > 0)
+        {
+            foreach (var file in model.UploadedFiles)
+            {
+                // Debug file info
+                Console.WriteLine($"File: {file.FileName}, Size: {file.Length}, Type: {file.ContentType}");
+
+                string url = await SaveFileAndGetUrlAsync(file);
+                if (!string.IsNullOrEmpty(url))
+                {
+                    mediaList.Add(new Media
+                    {
+                        MediaType = file.ContentType,
+                        MediaUrl = url
+                    });
+                }
+            }
+        }
+
+        var newPost = new Post
+        {
+            AuthorId = currentUserId,
+            Content = model.Content,
+            LocationRaw = model.LocationRawId,
+            ProvinceGid = location.ProvinceGid,
+            Timestamp = DateTime.UtcNow,
+            Status = "active",
+            Media = mediaList,
+            Likes = 0,
+            UsersLiked = new List<string>(),
+            Comments = new List<Comment>(),
+            FlagInfo = null
+        };
+
+        await _postService.CreatePostAsync(newPost);
+        return RedirectToAction("Sharespace");
+    }
+
+
+    private async Task<string> SaveFileAndGetUrlAsync(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return null;
+
+        var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
+
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(fileStream);
+        }
+
+        // Trả về đường dẫn URL dạng "/uploads/uniqueFileName.ext"
+        return "/uploads/" + uniqueFileName;
+    }
+
 
     [HttpPost("togglelike")]
     public async Task<IActionResult> ToggleLike([FromBody] LikeToggleRequest request)
@@ -384,3 +515,4 @@ public class PostCommentRequest
     public string PostId { get; set; }
     public string Content { get; set; }
 }
+

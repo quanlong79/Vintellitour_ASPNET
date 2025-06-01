@@ -78,13 +78,11 @@ namespace Vintellitour_Framework.Controllers.Admin
         {
             try
             {
-                // Log thông tin model để debug
-                System.Diagnostics.Debug.WriteLine($"Creating product: {model?.Name}");
+                // Loại bỏ lỗi validation liên quan tới Id vì client không gửi hoặc gửi sai
+                ModelState.Remove(nameof(model.Id));
 
-                // Kiểm tra validation
                 if (!ModelState.IsValid)
                 {
-                    // Tạo dictionary lỗi để trả về client
                     var errors = new Dictionary<string, string[]>();
 
                     foreach (var modelError in ModelState.Where(x => x.Value.Errors.Count > 0))
@@ -92,7 +90,6 @@ namespace Vintellitour_Framework.Controllers.Admin
                         var errorMessages = modelError.Value.Errors.Select(e => e.ErrorMessage).ToArray();
                         errors.Add(modelError.Key, errorMessages);
 
-                        // Log lỗi để debug
                         System.Diagnostics.Debug.WriteLine($"Validation Error - Field: {modelError.Key}, Errors: {string.Join(", ", errorMessages)}");
                     }
 
@@ -104,32 +101,26 @@ namespace Vintellitour_Framework.Controllers.Admin
                     });
                 }
 
-                // Thiết lập thời gian tạo và cập nhật
                 model.CreatedAt = DateTime.UtcNow;
                 model.UpdatedAt = DateTime.UtcNow;
 
-                // Tự tạo Id nếu chưa có hoặc rỗng
                 if (string.IsNullOrEmpty(model.Id))
                 {
                     model.Id = MongoDB.Bson.ObjectId.GenerateNewId().ToString();
                 }
 
-                // Gọi service lưu product
                 await _productService.CreateProductAsync(model);
 
                 System.Diagnostics.Debug.WriteLine($"Product created successfully: {model.Name}");
 
-                // Trả về JSON thành công kèm Id mới tạo
                 return Json(new
                 {
                     success = true,
-                    message = "Thêm sản phẩm thành công!",
-                    productId = model.Id
+                    message = "Thêm sản phẩm thành công!"
                 });
             }
             catch (ArgumentException argEx)
             {
-                // Lỗi do dữ liệu sai từ service
                 System.Diagnostics.Debug.WriteLine($"Argument Error: {argEx.Message}");
                 return BadRequest(new
                 {
@@ -139,7 +130,6 @@ namespace Vintellitour_Framework.Controllers.Admin
             }
             catch (InvalidOperationException opEx)
             {
-                // Lỗi logic nghiệp vụ
                 System.Diagnostics.Debug.WriteLine($"Operation Error: {opEx.Message}");
                 return BadRequest(new
                 {
@@ -152,17 +142,15 @@ namespace Vintellitour_Framework.Controllers.Admin
                 System.Diagnostics.Debug.WriteLine($"System Error: {ex.Message}");
                 System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
 
-                // Có thể ghi log ở đây hoặc lưu vào file log nếu có hệ thống logging
-
                 return StatusCode(500, new
                 {
                     success = false,
                     message = "Có lỗi xảy ra khi thêm sản phẩm. Vui lòng thử lại sau.",
-                    details = ex.Message  // Nếu môi trường development thì show thêm lỗi chi tiết
+                    details = ex.Message
                 });
             }
-
         }
+
 
 
         // Route: /admin/product/edit/{id} (GET)
@@ -182,7 +170,7 @@ namespace Vintellitour_Framework.Controllers.Admin
                     return NotFound(new { message = "Không tìm thấy sản phẩm" });
                 }
 
-                return View(product);
+                return View("~/Views/admin/Product/Edit.cshtml", product);
             }
             catch (Exception ex)
             {
@@ -208,11 +196,12 @@ namespace Vintellitour_Framework.Controllers.Admin
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("~/Views/admin/Product/Edit.cshtml", model);
             }
 
             try
             {
+               
                 model.UpdatedAt = DateTime.UtcNow;
                 await _productService.UpdateProductAsync(model);
 
@@ -222,7 +211,7 @@ namespace Vintellitour_Framework.Controllers.Admin
             {
                 System.Diagnostics.Debug.WriteLine($"Error updating product {id}: {ex.Message}");
                 ModelState.AddModelError("", "Có lỗi xảy ra khi cập nhật sản phẩm");
-                return View(model);
+                return View("~/Views/admin/Product/Edit.cshtml", model);
             }
         }
 
@@ -243,7 +232,7 @@ namespace Vintellitour_Framework.Controllers.Admin
                     return NotFound(new { message = "Không tìm thấy sản phẩm" });
                 }
 
-                return View(product);
+                return View("~/Views/admin/Product/Delete.cshtml", product);
             }
             catch (Exception ex)
             {
@@ -254,27 +243,26 @@ namespace Vintellitour_Framework.Controllers.Admin
 
         // Route: /admin/product/delete/{id} (POST)
         [HttpPost("delete/{id}")]
-        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
-                return BadRequest(new { message = "ID sản phẩm không hợp lệ" });
+                return BadRequest(new { success = false, message = "ID sản phẩm không hợp lệ" });
             }
 
             try
             {
                 await _productService.DeleteProductAsync(id);
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Xóa sản phẩm thành công" });
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error deleting product {id}: {ex.Message}");
-                TempData["Error"] = "Có lỗi xảy ra khi xóa sản phẩm";
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = false, message = "Có lỗi xảy ra khi xóa sản phẩm" });
             }
         }
+
 
         // API endpoint để lấy thông tin sản phẩm (dùng cho AJAX)
         [HttpGet("api/{id}")]

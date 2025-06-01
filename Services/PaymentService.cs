@@ -163,5 +163,20 @@ namespace Vintellitour_Framework.Services
                                  .SortByDescending(p => p.CreatedAt)
                                  .FirstOrDefaultAsync();
         }
+
+        public async Task<bool> UpdateShippingStatusAsync(string paymentId, string shippingStatus)
+        {
+            if (!ObjectId.TryParse(paymentId, out ObjectId objId))
+                return false;
+
+            var filter = Builders<Payment>.Filter.Eq(p => p.Id, objId);
+            var update = Builders<Payment>.Update
+                .Set(p => p.ShippingStatus, shippingStatus)
+                .Set(p => p.UpdatedAt, DateTime.UtcNow);
+
+            var result = await _payments.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
+        }
+
     }
 }

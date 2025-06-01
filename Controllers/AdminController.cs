@@ -42,6 +42,11 @@ namespace Vintellitour_Framework.Controllers
             return View();
         }
 
+        public IActionResult orders()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Users()
         {
             var users = await _adminUserService.GetAllAsync();

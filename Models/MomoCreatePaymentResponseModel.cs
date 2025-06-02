@@ -9,6 +9,7 @@
         public string LocalMessage { get; set; }
         public string RequestType { get; set; }
         public string PayUrl { get; set; }
+        public int ResultCode { get; set; }
         public string Signature { get; set; }
         public string QrCodeUrl { get; set; }
         public string Deeplink { get; set; }

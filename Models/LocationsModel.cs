@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System.Collections.Generic;
+using Vintellitour_Framework.Models.Entities;
 
 namespace Vintellitour_Framework.Models
 {
@@ -53,10 +54,10 @@ namespace Vintellitour_Framework.Models
         [BsonElement("tags")]
         public List<string> Tags { get; set; }
     }
-     public class LocationResponse
+    public class LocationResponse
     {
         public bool Success { get; set; }
-        public List<Location> Data { get; set; } = new List<Location>();
+        public List<LocationsModel> Data { get; set; } = new List<LocationsModel>();
         public string Message { get; set; } = string.Empty;
     }
 

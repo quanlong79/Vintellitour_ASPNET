@@ -1,0 +1,287 @@
+﻿<div class="bg-gray-100 p-8">
+
+    <!-- Modern Post Modal -->
+    <div id="addPostModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 relative overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <i class="fas fa-pen-fancy text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Tạo bài đăng mới</h2>
+                            <p class="text-purple-100 text-sm">Chia sẻ khoảnh khắc đặc biệt của bạn</p>
+                        </div>
+                    </div>
+                    <button id="btnCloseAddPostModal" class="text-white hover:bg-white hover:bg-opacity-20 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <form id="formAddPost" method="post" action="/Post/CreatePost" enctype="multipart/form-data" class="p-6">
+                <input type="hidden" name="LocationRawId" value="@Model.SelectedLocationRawId" />
+                <input type="hidden" name="ProvinceGid" value="@Model.SelectedprovinceGid" />
+
+                <!-- Content Input -->
+                <div class="mb-6">
+                    <label for="postContent" class="block text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-align-left text-purple-500 mr-2"></i>Nội dung bài viết
+                    </label>
+                    <textarea id="postContent" name="Content" rows="4" required maxlength="1000"
+                              class="w-full border-2 border-gray-200 rounded-xl p-4 resize-none focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200"
+                              placeholder="Chia sẻ suy nghĩ, trải nghiệm của bạn..."></textarea>
+                    <div class="text-right text-xs text-gray-400 mt-1">
+                        <span id="contentCount">0</span>/1000 ký tự
+                    </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-image text-purple-500 mr-2"></i>Hình ảnh
+                    </label>
+
+                    <!-- Image Upload Area -->
+                    <div id="imageUploadArea" class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-purple-400 transition-colors duration-200 cursor-pointer">
+                        <div id="uploadPrompt">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                            <p class="text-gray-600 font-medium mb-2">Kéo thả hình ảnh vào đây hoặc nhấp để chọn</p>
+                            <p class="text-sm text-gray-400">Hỗ trợ JPG, PNG, GIF (tối đa 5MB mỗi ảnh)</p>
+                        </div>
+
+                        <!-- Image Previews -->
+                        <div id="imagePreviews" class="hidden">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4" id="previewGrid"></div>
+                            <button type="button" id="addMoreImages" class="mt-4 px-4 py-2 border-2 border-dashed border-purple-300 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors duration-200">
+                                <i class="fas fa-plus mr-2"></i>Thêm ảnh khác
+                            </button>
+                        </div>
+                    </div>
+
+                    <input type="file" id="imageInput" name="UploadedFiles" multiple accept="image/*" class="hidden" />
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200">
+                    <button type="button" id="btnCancelAddPost"
+                            class="px-6 py-3 rounded-xl border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium">
+                        <i class="fas fa-times mr-2"></i>Hủy bỏ
+                    </button>
+                    <button type="submit" id="btnSubmitPost"
+                            class="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 font-medium shadow-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>Đăng bài
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+ <script>
+             document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('addPostModal');
+            const closeBtn = document.getElementById('btnCloseAddPostModal');
+            const cancelBtn = document.getElementById('btnCancelAddPost');
+            const form = document.getElementById('formAddPost');
+            const imageInput = document.getElementById('imageInput');
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const uploadPrompt = document.getElementById('uploadPrompt');
+            const imagePreviews = document.getElementById('imagePreviews');
+            const previewGrid = document.getElementById('previewGrid');
+            const addMoreBtn = document.getElementById('addMoreImages');
+            const contentInput = document.getElementById('postContent');
+            const contentCount = document.getElementById('contentCount');
+
+            let selectedFiles = [];
+
+            // Character counter for content only
+            contentInput.addEventListener('input', function () {
+                contentCount.textContent = this.value.length;
+            });
+
+            // Modal controls
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            // Image upload handling
+            imageUploadArea.addEventListener('click', function(e) {
+                // Chỉ trigger khi click vào chính upload area, không phải các button bên trong
+                if (e.target === imageUploadArea || e.target.closest('#uploadPrompt')) {
+                    imageInput.click();
+                }
+            });
+
+            addMoreBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Ngăn event bubbling
+                imageInput.click();
+            });
+
+            imageUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.add('border-purple-400', 'bg-purple-50');
+            });
+
+            imageUploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.remove('border-purple-400', 'bg-purple-50');
+            });
+
+            imageUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.remove('border-purple-400', 'bg-purple-50');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            imageInput.addEventListener('change', (e) => {
+                // Reset input để có thể chọn lại cùng file
+                const files = Array.from(e.target.files);
+                handleFiles(files);
+                // Reset input value để có thể chọn lại cùng file
+                e.target.value = '';
+            });
+
+            function handleFiles(files) {
+                files.forEach(file => {
+                    if (file.type.startsWith('image/') && file.size <= 5 * 1024 * 1024) {
+                        // Kiểm tra trùng lặp
+                        const exists = selectedFiles.some(existing =>
+                            existing.name === file.name && existing.size === file.size
+                        );
+
+                        if (!exists) {
+                            selectedFiles.push(file);
+                            displayImagePreview(file);
+                        }
+                    } else if (file.size > 5 * 1024 * 1024) {
+                        alert(`File "${file.name}" quá lớn. Vui lòng chọn file nhỏ hơn 5MB.`);
+                    } else if (!file.type.startsWith('image/')) {
+                        alert(`File "${file.name}" không phải là hình ảnh hợp lệ.`);
+                    }
+                });
+
+                updateUI();
+            }
+
+            function displayImagePreview(file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'relative group';
+                    previewDiv.dataset.fileName = file.name; // Để dễ tìm khi xóa
+                    previewDiv.innerHTML = `
+                        <img src="${e.target.result}" class="w-full h-24 object-cover rounded-lg shadow-md" />
+                        <button type="button" class="remove-image-btn absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600" data-file-name="${file.name}">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                    `;
+                    previewGrid.appendChild(previewDiv);
+
+                    // Add event listener cho button xóa
+                    const removeBtn = previewDiv.querySelector('.remove-image-btn');
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        removeImageByName(file.name);
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function removeImageByName(fileName) {
+                // Xóa từ selectedFiles array
+                selectedFiles = selectedFiles.filter(file => file.name !== fileName);
+
+                // Xóa preview element
+                const previewElement = previewGrid.querySelector(`[data-file-name="${fileName}"]`);
+                if (previewElement) {
+                    previewElement.remove();
+                }
+
+                updateUI();
+                updateFileInput();
+            }
+
+            function updateUI() {
+                if (selectedFiles.length > 0) {
+                    uploadPrompt.classList.add('hidden');
+                    imagePreviews.classList.remove('hidden');
+                } else {
+                    uploadPrompt.classList.remove('hidden');
+                    imagePreviews.classList.add('hidden');
+                }
+            }
+
+            function updateFileInput() {
+                // Update file input với selectedFiles
+                const dt = new DataTransfer();
+                selectedFiles.forEach(file => {
+                    dt.items.add(file);
+                });
+                imageInput.files = dt.files;
+            }
+
+            // Global function for backward compatibility (nếu có code khác dùng)
+            window.removeImage = function (button, fileName) {
+                removeImageByName(fileName);
+            };
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                form.reset();
+                selectedFiles = [];
+                previewGrid.innerHTML = '';
+                uploadPrompt.classList.remove('hidden');
+                imagePreviews.classList.add('hidden');
+                contentCount.textContent = '0';
+            }
+
+            // Form submission
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Đảm bảo file input được update
+                updateFileInput();
+
+                // Tạo FormData từ form
+                const formData = new FormData(form);
+
+                // Debug: Log toàn bộ các trường trong FormData
+                console.log('FormData contents:');
+                for (let pair of formData.entries()) {
+                    console.log(pair[0] + ':', pair[1]);
+                }
+
+                // Validate form
+                if (!formData.get('Content') || formData.get('Content').trim() === '') {
+                    alert('Vui lòng nhập nội dung bài viết!');
+                    return;
+                }
+
+                // Submit form
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        closeModal();
+                        window.location.reload();
+                    } else {
+                        // Log detailed error for debugging
+                        response.text().then(text => {
+                            console.error('Server response:', text);
+                            alert('Có lỗi xảy ra khi đăng bài. Vui lòng thử lại!');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi đăng bài. Vui lòng thử lại!');
+                });
+            }); // THIẾU DÒNG NÀY TRƯỚC ĐÂY!
+
+        }); // End DOMContentLoaded
+ </script>
+
+</div>

@@ -33,6 +33,8 @@ builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("Mo
 
 // Email Services
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+// Payment Services
+builder.Services.AddScoped<PaymentService>();
 
 // MongoDB Services
 builder.Services.AddSingleton<MongoDbService>();

@@ -349,25 +349,30 @@
     function createPopupContent(feature) {
         if (!feature || !feature.properties) return '';
 
+        const url = 'https://localhost:7128/province/details?provinceGid=' + (feature.properties.gid || '');
+
         return '<div style="font-family: Arial, sans-serif; padding: 8px; max-width: 250px;">' +
-            '<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: bold; color: #333;">' + 
+            '<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: bold; color: #333;">' +
             (feature.properties.ten_tinh || 'Unknown Province') + '</h3>' +
             (feature.properties.gid
                 ? '<p style="margin: 4px 0 12px 0; font-size: 14px; color: #555;"><strong>Mã tỉnh:</strong> ' + feature.properties.gid + '</p>'
                 : ""
             ) +
             '<div style="text-align: center;">' +
-            '<a href="/province/' + (feature.properties.gid || '') + '" target="_blank" ' +
-            'style="display: inline-block; padding: 8px 16px; background-color: #28a745; color: white; ' +
-            'text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; ' +
+            // Button thay cho a href, dùng onclick mở tab mới
+            '<button onclick="window.open(\'' + url + '\', \'_blank\')" ' +
+            'style="cursor: pointer; padding: 8px 16px; background-color: #28a745; color: white; ' +
+            'border: none; border-radius: 8px; font-weight: bold; font-size: 14px; ' +
             'transition: background-color 0.2s ease;" ' +
             'onmouseover="this.style.backgroundColor=\'#218838\'" ' +
             'onmouseout="this.style.backgroundColor=\'#28a745\'">' +
             'Xem thông tin và tham quan' +
-            '</a>' +
+            '</button>' +
             '</div>' +
             '</div>';
     }
+
+
 
     // Enhanced search input styling (matching Next.js exactly)
     function styleSearchInput() {

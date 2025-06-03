@@ -29,6 +29,8 @@ namespace Vintellitour_Framework.Controllers
             ViewBag.MinPrice = min;
             ViewBag.MaxPrice = max;
 
+            ViewBag.IsLoggedIn = !string.IsNullOrEmpty(HttpContext.Session.GetString("UserId"));
+
             return View(products);
         }
 
@@ -124,5 +126,6 @@ namespace Vintellitour_Framework.Controllers
                 return BadRequest(new { error = "Có lỗi xảy ra" });
             }
         }
+
     }
 }

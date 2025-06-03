@@ -8,6 +8,7 @@ using Vintellitour_Framework.ViewModels;
 
 namespace Vintellitour_Framework.Controllers
 {
+    [Route("province")]
     public class ProvinceController : Controller
     {
         private readonly MongoDbService _mongoDbService;
@@ -19,6 +20,7 @@ namespace Vintellitour_Framework.Controllers
         }
 
         // Action Details nhận param provinceId (hoặc gid) để tìm province và locations
+        [HttpGet("{provinceGid:int}")]
         public async Task<IActionResult> Details(int provinceGid)
         {
             // Lấy collection provinces và locations

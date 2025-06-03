@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Vintellitour_Framework.Services;
 using Vintellitour_Framework.ViewModels;
@@ -28,7 +29,9 @@ namespace Vintellitour_Framework.Controllers
             {
                 ProvinceEngagements = await _dashboardService.GetTop5ProvincesByEngagementAsync(),
                 UserPostStatus = await _dashboardService.GetUserPostStatusAsync(),
-                PostStatsByMonth = await _dashboardService.GetPostStatsByMonthAsync(System.DateTime.Now.Year)
+                PostStatsByMonth = await _dashboardService.GetPostStatsByMonthAsync(System.DateTime.Now.Year),
+                MonthlyRevenue = await _dashboardService.GetMonthlyRevenueAsync(DateTime.Now.Year),
+                YearlyRevenue = await _dashboardService.GetYearlyRevenueAsync()
             };
             return View(model);
         }

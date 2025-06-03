@@ -13,6 +13,7 @@ namespace Vintellitour_Framework.Services
         private readonly IMongoCollection<LocationsModel> _locationsCollection;
         private readonly IMongoCollection<Provinces> _provincesCollection;
         private readonly IMongoCollection<User> _usersCollection;
+        private readonly IMongoCollection<Payment> _paymentsCollection;
 
         public DashboardService(IMongoDatabase database)
         {
@@ -20,6 +21,7 @@ namespace Vintellitour_Framework.Services
             _locationsCollection = database.GetCollection<LocationsModel>("locations");
             _provincesCollection = database.GetCollection<Provinces>("provinces");
             _usersCollection = database.GetCollection<User>("users");
+            _paymentsCollection = database.GetCollection<Payment>("payments");
         }
 
         public async Task<List<ProvinceEngagementViewModel>> GetTop5ProvincesByEngagementAsync()
@@ -111,5 +113,63 @@ namespace Vintellitour_Framework.Services
                 PostCount = r.GetValue("PostCount").AsInt32
             }).ToList();
         }
+        public async Task<List<MonthlyRevenueViewModel>> GetMonthlyRevenueAsync(int year)
+        {
+            var filter = Builders<Payment>.Filter.And(
+                Builders<Payment>.Filter.Eq(p => p.Status, "Success"), // chỉ tính đơn thành công
+                Builders<Payment>.Filter.Gte(p => p.CreatedAt, new System.DateTime(year, 1, 1)),
+                Builders<Payment>.Filter.Lt(p => p.CreatedAt, new System.DateTime(year + 1, 1, 1))
+            );
+
+            var pipeline = _paymentsCollection.Aggregate()
+                .Match(filter)
+                .Group(new MongoDB.Bson.BsonDocument
+                {
+            { "_id", new MongoDB.Bson.BsonDocument { { "month", new MongoDB.Bson.BsonDocument("$month", "$createdAt") } } },
+            { "totalRevenue", new MongoDB.Bson.BsonDocument("$sum", "$amount") }
+                })
+                .Project(new MongoDB.Bson.BsonDocument
+                {
+            { "Month", "$_id.month" },
+            { "Revenue", "$totalRevenue" },
+            { "_id", 0 }
+                })
+                .Sort(new MongoDB.Bson.BsonDocument("Month", 1));
+
+            var result = await pipeline.ToListAsync();
+
+            return result.Select(r => new MonthlyRevenueViewModel
+            {
+                Month = r.GetValue("Month").AsInt32,
+                Revenue = r.GetValue("Revenue").ToDecimal()
+            }).ToList();
+        }
+
+        public async Task<List<YearlyRevenueViewModel>> GetYearlyRevenueAsync()
+        {
+            var pipeline = _paymentsCollection.Aggregate()
+                .Match(Builders<Payment>.Filter.Eq(p => p.Status, "Success"))
+                .Group(new MongoDB.Bson.BsonDocument
+                {
+            { "_id", new MongoDB.Bson.BsonDocument { { "year", new MongoDB.Bson.BsonDocument("$year", "$createdAt") } } },
+            { "totalRevenue", new MongoDB.Bson.BsonDocument("$sum", "$amount") }
+                })
+                .Project(new MongoDB.Bson.BsonDocument
+                {
+            { "Year", "$_id.year" },
+            { "Revenue", "$totalRevenue" },
+            { "_id", 0 }
+                })
+                .Sort(new MongoDB.Bson.BsonDocument("Year", 1));
+
+            var result = await pipeline.ToListAsync();
+
+            return result.Select(r => new YearlyRevenueViewModel
+            {
+                Year = r.GetValue("Year").AsInt32,
+                Revenue = r.GetValue("Revenue").ToDecimal()
+            }).ToList();
+        }
+
     }
 }

@@ -5,6 +5,8 @@
         public List<ProvinceEngagementViewModel> ProvinceEngagements { get; set; }
         public UserPostStatusViewModel UserPostStatus { get; set; }
         public List<PostStatsByMonthViewModel> PostStatsByMonth { get; set; }
+        public List<MonthlyRevenueViewModel> MonthlyRevenue { get; set; }
+        public List<YearlyRevenueViewModel> YearlyRevenue { get; set; }
     }
     public class ProvinceEngagementViewModel
     {
@@ -24,4 +26,17 @@
         public int Month { get; set; }
         public int PostCount { get; set; }
     }
+
+    public class MonthlyRevenueViewModel
+    {
+        public int Month { get; set; }      // Tháng (1 - 12)
+        public decimal Revenue { get; set; } // Doanh thu tháng đó
+    }
+
+    public class YearlyRevenueViewModel
+    {
+        public int Year { get; set; }
+        public decimal Revenue { get; set; }
+    }
+
 }

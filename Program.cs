@@ -5,6 +5,7 @@ using Vintellitour_Framework.Services.Interfaces;
 using Vintellitour_Framework.Models;
 using MongoDB.Driver;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("Mo
 
 // Email Services
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+// Payment Services
+builder.Services.AddScoped<PaymentService>();
 
 // MongoDB Services
 builder.Services.AddSingleton<MongoDbService>();
@@ -53,6 +56,34 @@ builder.Services.AddScoped<CartService>();
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddScoped<IMomoService, MomoService>();
+builder.Services.AddScoped<AdminAuthService>();
+
+builder.Services.AddAuthentication("AdminAuthScheme")
+    .AddCookie("AdminAuthScheme", options =>
+    {
+        options.LoginPath = "/admin/login";           // Đường dẫn trang login admin
+        options.AccessDeniedPath = "/admin/login";    // Trang khi bị từ chối quyền truy cập
+        options.Cookie.Name = "AdminAuthCookie";      // Tên cookie lưu session đăng nhập admin
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+        options.SlidingExpiration = true;
+
+        options.Events = new CookieAuthenticationEvents
+        {
+            OnRedirectToLogin = ctx =>
+            {
+                // Luôn redirect về đúng đường dẫn login không kèm ReturnUrl
+                ctx.Response.Redirect(ctx.Options.LoginPath);
+                return Task.CompletedTask;
+            },
+            OnRedirectToAccessDenied = ctx =>
+            {
+                ctx.Response.Redirect(ctx.Options.AccessDeniedPath);
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+
 
 // MongoDB Client Configuration
 builder.Services.AddSingleton<IMongoClient>(sp =>
@@ -110,7 +141,9 @@ app.UseRouting();
 
 // Session must come BEFORE Authorization
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<AdminAuthMiddleware>();
 
 // Map routes
 app.MapControllers();

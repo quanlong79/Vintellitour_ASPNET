@@ -37,6 +37,26 @@
     </div>
 </section>
 
+<section class="bg-white shadow-lg rounded-xl p-6 mt-10">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold text-gray-800 border-b border-teal-200 pb-3 select-none">💰 Doanh thu</h2>
+        <div class="flex items-center space-x-3">
+            <span class="text-gray-700 select-none">Monthly</span>
+            <label for="toggleRevenue" class="inline-flex relative items-center cursor-pointer">
+                <input type="checkbox" value="" id="toggleRevenue" class="sr-only peer" />
+                <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300
+                            peer-checked:bg-blue-600 transition-colors duration-300"></div>
+                <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full
+                            peer-checked:translate-x-full transition-transform duration-300"></div>
+            </label>
+            <span class="text-gray-700 select-none">Yearly</span>
+        </div>
+    </div>
+    <div class="w-full h-[400px]">
+        <canvas id="revenueChart" class="w-full h-full"></canvas>
+    </div>
+</section>
+
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -157,6 +177,83 @@
                     legend: { position: 'top' }
                 }
             }
+        });
+
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+
+        const monthlyData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.MonthlyRevenue));
+        const yearlyData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.YearlyRevenue));
+
+        // Hàm format tiền Việt Nam
+        const formatCurrency = (value) => value.toLocaleString('vi-VN') + ' ₫';
+
+        // Khởi tạo chart với dữ liệu tháng mặc định
+        let chartConfig = {
+            type: 'line',
+            data: {
+                labels: [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ],
+                datasets: [{
+                    label: 'Revenue (VNĐ)',
+                    data: Array(12).fill(0).map((_, i) => {
+                        const month = monthlyData.find(m => m.Month === i + 1);
+                        return month ? month.Revenue : 0;
+                    }),
+                    fill: true,
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: formatCurrency
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: context => formatCurrency(context.parsed.y)
+                        }
+                    }
+                }
+            }
+        };
+
+        let revenueChart = new Chart(ctx, chartConfig);
+
+        const toggle = document.getElementById('toggleRevenue');
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                // Hiển thị doanh thu theo năm
+                revenueChart.data.labels = yearlyData.map(y => y.Year.toString());
+                revenueChart.data.datasets[0].data = yearlyData.map(y => y.Revenue);
+                revenueChart.data.datasets[0].label = 'Yearly Revenue (VNĐ)';
+            } else {
+                // Hiển thị doanh thu theo tháng
+                revenueChart.data.labels = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                revenueChart.data.datasets[0].data = Array(12).fill(0).map((_, i) => {
+                    const month = monthlyData.find(m => m.Month === i + 1);
+                    return month ? month.Revenue : 0;
+                });
+                revenueChart.data.datasets[0].label = 'Monthly Revenue (VNĐ)';
+            }
+            revenueChart.update();
         });
     </script>
 }

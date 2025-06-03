@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "Quản lý đơn hàng";
-}
-@{
     Layout = "~/Views/admin/adminlayout.cshtml";
 }
 
@@ -119,9 +117,10 @@
                                     }
                                     else if (shippingStatus == "Vận chuyển thất bại")
                                     {
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 border border-red-200">
-                                            ❌ Giao thất bại
-                                        </span>
+                                        <button data-id="@payment.Id" data-action="confirm"
+                                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg">
+                                            🔄 Xác nhận vận chuyển
+                                        </button>
                                     }
                                     else
                                     {
@@ -198,11 +197,10 @@
 </div>
 
 <script>
-    // JavaScript thuần để toggle chi tiết đơn hàng
     document.getElementById("orders-table-body").addEventListener("click", function(e){
         const target = e.target;
 
-        // Toggle details
+        // Toggle chi tiết đơn hàng
         if(target.tagName === "BUTTON" && target.getAttribute("aria-label") === "Toggle details"){
             const id = target.getAttribute("data-id");
             const detailsRow = document.getElementById("details-" + id);
@@ -218,15 +216,16 @@
             }
         }
 
-        // Handle shipping status buttons
+        // Xử lý các nút cập nhật trạng thái vận chuyển
         if(target.tagName === "BUTTON" && target.dataset.action){
             const paymentId = target.dataset.id;
             const row = target.closest('tr');
-            const shippingCell = row.cells[5]; // Shipping status column
-            const actionCell = row.cells[6]; // Action column
+            const shippingCell = row.cells[5]; // Cột trạng thái vận chuyển
+            const actionCell = row.cells[6];   // Cột hành động
 
             let newShippingBadge = "";
             let newActionContent = "";
+            let newShippingStatus = "";
 
             switch(target.dataset.action){
                 case "start":
@@ -241,26 +240,56 @@
                             </button>
                         </div>
                     `;
+                    newShippingStatus = "Đang vận chuyển";
                     break;
                 case "success":
                     newShippingBadge = '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">✅ Đã giao</span>';
                     newActionContent = '<span class="text-green-600 font-medium text-sm">Vận chuyển thành công</span>';
+                    newShippingStatus = "Vận chuyển thành công";
                     break;
                 case "fail":
                     newShippingBadge = '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 border border-red-200">❌ Giao thất bại</span>';
-                    newActionContent = '<span class="text-red-600 font-medium text-sm">Vận chuyển thất bại</span>';
+                    newActionContent = `
+                        <button data-id="${paymentId}" data-action="confirm"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            🔄 Xác nhận vận chuyển
+                        </button>
+                    `;
+                    newShippingStatus = "Vận chuyển thất bại";
+                    break;
+                case "confirm":
+                    newShippingBadge = '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">✅ Đã giao</span>';
+                    newActionContent = '<span class="text-green-600 font-medium text-sm">Vận chuyển thành công</span>';
+                    newShippingStatus = "Vận chuyển thành công";
                     break;
             }
 
-            // Update UI
+            // Cập nhật UI ngay
             shippingCell.innerHTML = newShippingBadge;
             actionCell.innerHTML = newActionContent;
 
-            // Show notification
-            showNotification(`Đã cập nhật trạng thái đơn hàng ${paymentId}`, 'success');
-
-            // TODO: Add API call here to update backend
-            // updateShippingStatusAPI(paymentId, newStatus);
+            // Gọi API backend cập nhật trạng thái vận chuyển
+            fetch('/Admin/UpdateShippingStatus', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    paymentId: paymentId,
+                    newShippingStatus: newShippingStatus
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) {
+                    showNotification('Cập nhật trạng thái thất bại!', 'error');
+                    // Có thể rollback UI nếu muốn
+                } else {
+                    showNotification(data.message, 'success');
+                }
+            })
+            .catch(() => {
+                showNotification('Lỗi kết nối máy chủ!', 'error');
+                // Có thể rollback UI nếu muốn
+            });
         }
     });
 
@@ -282,10 +311,4 @@
             }, 300);
         }, 3000);
     }
-
-    // Update stats when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add any additional initialization here
-        console.log('Order management page loaded successfully');
-    });
 </script>

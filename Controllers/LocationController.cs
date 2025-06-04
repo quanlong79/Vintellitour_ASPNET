@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using Vintellitour_Framework.Services.Interfaces;
+using Vintellitour_Framework.Models.Entities; // Đảm bảo có namespace chứa class Location
+using Vintellitour_Framework.Models.DTOs; // Thêm namespace chứa class LocationDto
 
 namespace Vintellitour_Framework.Controllers
 {
@@ -15,7 +18,7 @@ namespace Vintellitour_Framework.Controllers
             _locationService = locationService;
         }
 
-        // GET: api/locations?gid=1
+        // GET: api/location?gid=1
         [HttpGet]
         public async Task<IActionResult> GetLocationsByProvince([FromQuery] int gid)
         {
@@ -23,7 +26,6 @@ namespace Vintellitour_Framework.Controllers
             {
                 var locations = await _locationService.GetLocationsByProvinceGid(gid);
 
-                // Trả về format giống như trong JavaScript expect
                 var response = new
                 {
                     success = true,
@@ -33,7 +35,7 @@ namespace Vintellitour_Framework.Controllers
 
                 return Ok(response);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new
                 {
@@ -42,6 +44,46 @@ namespace Vintellitour_Framework.Controllers
                     message = ex.Message
                 });
             }
+        }
+
+        // POST: api/location
+        [HttpPost]
+        public async Task<IActionResult> AddLocation([FromBody] Location location)
+        {
+            if (location == null)
+                return BadRequest(new { error = "Location data is required" });
+
+            // Chuyển từ Entity Location sang LocationDto
+            var locationDto = MapToLocationDto(location);
+
+            var result = await _locationService.AddLocationAsync(locationDto); // Thêm LocationDto vào DB
+
+            return Ok(new { success = true, data = result });
+        }
+
+        // Chuyển từ Location Entity thành LocationDto
+        private LocationDto MapToLocationDto(Location location)
+        {
+            return new LocationDto
+            {
+                Id = location.Id,
+                Name = location.Name,
+                Address = location.Address,
+                Description = location.Description,
+                DescriptionHistory = location.DescriptionHistory,
+                Slug = location.Slug,
+                ProvinceGid = location.ProvinceGid,
+                OpenTime = location.OpenTime,
+                Price = location.Price,
+                StreetViewUrls = location.StreetViewUrls,
+                Tags = location.Tags,
+                Image = location.Image,
+                Coordinates = new LocationDto.CoordinatesDto
+                {
+                    Lat = location.Coordinates?.Lat ?? 0,
+                    Lng = location.Coordinates?.Lng ?? 0
+                }
+            };
         }
     }
 }

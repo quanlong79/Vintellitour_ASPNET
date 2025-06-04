@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using Vintellitour_Framework.ViewModels;
 
-namespace Vintellitour_Framework.Controllers
+namespace Vintellitour_Framework.Controllers.Admin
 {
-    [Route("province")]
     public class ProvinceController : Controller
     {
         private readonly MongoDbService _mongoDbService;
@@ -20,7 +19,6 @@ namespace Vintellitour_Framework.Controllers
         }
 
         // Action Details nhận param provinceId (hoặc gid) để tìm province và locations
-        [HttpGet("{provinceGid:int}")]
         public async Task<IActionResult> Details(int provinceGid)
         {
             // Lấy collection provinces và locations
@@ -38,7 +36,7 @@ namespace Vintellitour_Framework.Controllers
             // Tìm locations thuộc province này
             var locations = await locationsCollection.Find(l => l.ProvinceGid == provinceGid).ToListAsync();
 
-                 // Tạo ViewModel đổ dữ liệu xuống View
+            // Tạo ViewModel đổ dữ liệu xuống View
             var viewModel = new ProvinceWithLocationsViewModel
             {
                 Province = province,

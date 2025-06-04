@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Vintellitour_Framework.Models;
 using Vintellitour_Framework.Services;
 using Vintellitour_Framework.ViewModels;
@@ -102,6 +103,7 @@ namespace Vintellitour_Framework.Controllers
         {
             return HttpContext.Session.GetString("UserId");
         }
+
         [HttpGet("/Cart/PaymentResult")]
         public async Task<IActionResult> PaymentResult(string orderId, string resultCode, string message)
         {
@@ -131,6 +133,22 @@ namespace Vintellitour_Framework.Controllers
             }
 
             return RedirectToAction("Index", "Cart");
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+            var isPublicAction =
+                context.ActionDescriptor.RouteValues["action"] == "PaymentResult" &&
+                context.HttpContext.Request.Method == "GET";
+
+            if (string.IsNullOrEmpty(userId) && !isPublicAction)
+            {
+                context.Result = RedirectToAction("Login", "Account");
+                return;
+            }
+
+            base.OnActionExecuting(context);
         }
     }
 }

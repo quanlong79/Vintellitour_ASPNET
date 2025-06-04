@@ -84,7 +84,7 @@ namespace Vintellitour_Framework.Controllers
             HttpContext.Session.SetString("Avatar", user.Avatar ?? "/img/default-avatar.png");
 
             // Sau khi đăng nhập thành công, có thể chuyển hướng tới trang chính
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "/");
 
         }
         public IActionResult Logout()

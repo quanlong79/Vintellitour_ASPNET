@@ -27,7 +27,6 @@
 @section Scripts {
     <script src="~/js/lib/leaflet/leaflet.js"></script>
     <script src="~/js/lib/leaflet/L.Icon.Pulse.js"></script>
-    <script src="~/js/map/location-markers.js"></script>
     <script src="~/js/map/vietnam-map.js"></script>
 
     @if (TempData["Message"] != null)
@@ -36,6 +35,88 @@
             alert('@TempData["Message"]');
         </script>
     }
+
+
+
+
+    <script>
+        class LocationMarkers {
+            constructor(map) {
+                this.map = map;
+                this.markers = [];
+            }
+
+            loadMarkers(provinceGid) {
+                fetch(`/api/locations?gid=${provinceGid}`)
+                    .then(res => res.json())
+                    .then(json => {
+                        this.clearMarkers();
+                        json.data.forEach(location => {
+                            const pulseIcon = L.icon.pulse({
+                                iconSize: [20, 20],
+                                color: "black",
+                                heartbeat: 1,
+                            });
+
+                            const marker = L.marker([location.coordinates.lat, location.coordinates.lng], { icon: pulseIcon });
+
+                            // Popup với Tailwind CSS - đẹp và hiện đại
+                                    const popupContent = `
+          <div class="bg-white rounded-lg shadow-lg p-4 min-w-[260px] max-w-sm">
+            <div class="text-center">
+              <h4 class="text-lg font-bold text-gray-800 mb-4 leading-tight">${location.name}</h4>
+              <div class="flex gap-3 justify-center">
+                <button
+                  onclick="window.open('https://localhost:7128/Attraction/Details/${location.id}', '_blank')"
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center gap-2 text-sm flex-1"
+                  title="Xem chi tiết địa điểm"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  Xem chi tiết
+                </button>
+                <button
+                  onclick="window.open('https://localhost:7128/post/sharespace?selectedLocationRawId=${location.id}&canPost=true', '_blank')"
+                  class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center gap-2 text-sm flex-1"
+                  title="Tạo bài viết mới cho địa điểm này"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                  Tạo bài viết
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+                            marker.bindPopup(popupContent, {
+                                                                        maxWidth: 320,
+                                className: 'custom-popup'
+                            });
+
+                            marker.on('click', () => {
+                                marker.openPopup();
+                                console.log('Clicked on attraction:', location.name);
+                            });
+
+                            marker.addTo(this.map);
+                            this.markers.push(marker);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error loading markers:', error);
+                    });
+            }
+
+            clearMarkers() {
+                this.markers.forEach(m => this.map.removeLayer(m));
+                this.markers = [];
+            }
+        }
+    </script>
 }
 
 

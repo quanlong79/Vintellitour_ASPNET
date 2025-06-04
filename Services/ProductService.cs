@@ -116,6 +116,11 @@ namespace Vintellitour_Framework.Services
         {
             product.CreatedAt = DateTime.UtcNow;
             product.UpdatedAt = DateTime.UtcNow;
+            // Nếu Id rỗng thì gán null để MongoDB tự sinh ObjectId
+            if (string.IsNullOrEmpty(product.Id))
+            {
+                product.Id = null;
+            }
             await _products.InsertOneAsync(product);
         }
 

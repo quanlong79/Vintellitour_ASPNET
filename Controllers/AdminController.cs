@@ -1,34 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using System.Linq;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Vintellitour_Framework.Services;
-using Vintellitour_Framework.Models;
 using Vintellitour_Framework.ViewModels;
-using System.Collections.Generic;
 
 namespace Vintellitour_Framework.Controllers
 {
     public class AdminController : Controller
     {
-
         private readonly IAdminUserService _adminUserService;
-        private readonly DashboardService _dashboardService;  // Dùng trực tiếp DashboardService
+        private readonly DashboardService _dashboardService;
+        private readonly PaymentService _paymentService;
 
-        public AdminController(IAdminUserService adminUserService, DashboardService dashboardService)
+        public AdminController(
+            IAdminUserService adminUserService,
+            DashboardService dashboardService,
+            PaymentService paymentService)
         {
             _adminUserService = adminUserService;
             _dashboardService = dashboardService;
+            _paymentService = paymentService;
         }
 
-        // Phần Dashboard đã chỉnh sửa, lấy dữ liệu đầy đủ và truyền ViewModel
+        // Dashboard
         public async Task<IActionResult> Dashboard()
         {
             var model = new DashboardViewModel
             {
                 ProvinceEngagements = await _dashboardService.GetTop5ProvincesByEngagementAsync(),
                 UserPostStatus = await _dashboardService.GetUserPostStatusAsync(),
-                PostStatsByMonth = await _dashboardService.GetPostStatsByMonthAsync(System.DateTime.Now.Year)
+                PostStatsByMonth = await _dashboardService.GetPostStatsByMonthAsync(System.DateTime.Now.Year),
+                MonthlyRevenue = await _dashboardService.GetMonthlyRevenueAsync(DateTime.Now.Year),
+                YearlyRevenue = await _dashboardService.GetYearlyRevenueAsync()
             };
             return View(model);
         }
@@ -37,7 +40,13 @@ namespace Vintellitour_Framework.Controllers
         {
             return View();
         }
+
         public IActionResult posts()
+        {
+            return View();
+        }
+
+        public IActionResult orders()
         {
             return View();
         }
@@ -73,6 +82,21 @@ namespace Vintellitour_Framework.Controllers
 
             return Json(new { success = true, message = "Cập nhật thành công" });
         }
+
+        // MỚI: API cập nhật trạng thái vận chuyển đơn hàng
+        [HttpPost]
+        public async Task<IActionResult> UpdateShippingStatus([FromBody] UpdateShippingStatusRequest request)
+        {
+            if (request == null || string.IsNullOrEmpty(request.PaymentId) || string.IsNullOrEmpty(request.NewShippingStatus))
+                return Json(new { success = false, message = "Dữ liệu không hợp lệ" });
+
+            bool updated = await _paymentService.UpdateShippingStatusAsync(request.PaymentId, request.NewShippingStatus);
+
+            if (!updated)
+                return Json(new { success = false, message = "Cập nhật thất bại hoặc đơn hàng không tồn tại" });
+
+            return Json(new { success = true, message = "Cập nhật trạng thái vận chuyển thành công" });
+        }
     }
 
     public class EditUserRequest
@@ -80,5 +104,12 @@ namespace Vintellitour_Framework.Controllers
         public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+    }
+
+    // Class dùng cho API cập nhật trạng thái vận chuyển
+    public class UpdateShippingStatusRequest
+    {
+        public string PaymentId { get; set; }
+        public string NewShippingStatus { get; set; }
     }
 }

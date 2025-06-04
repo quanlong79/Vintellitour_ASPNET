@@ -157,11 +157,27 @@ namespace Vintellitour_Framework.Services
             return await _payments.Find(_ => true).ToListAsync();
         }
 
-        public async Task<Payment?> GetByUserIdAsync(string userId)
+        public async Task<List<Payment>> GetByUserIdAsync(string userId)
         {
             return await _payments.Find(p => p.UserId == userId)
-                                 .SortByDescending(p => p.CreatedAt)
-                                 .FirstOrDefaultAsync();
+                                  .SortByDescending(p => p.CreatedAt)
+                                  .ToListAsync();
         }
+
+        public async Task<bool> UpdateShippingStatusAsync(string paymentId, string shippingStatus)
+        {
+            if (!ObjectId.TryParse(paymentId, out ObjectId objId))
+                return false;
+
+            var filter = Builders<Payment>.Filter.Eq(p => p.Id, objId);
+            var update = Builders<Payment>.Update
+                .Set(p => p.ShippingStatus, shippingStatus)
+                .Set(p => p.UpdatedAt, DateTime.UtcNow);
+
+            var result = await _payments.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
+        }
+
+
     }
 }

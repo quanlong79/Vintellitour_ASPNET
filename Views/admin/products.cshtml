@@ -1,5 +1,8 @@
 ﻿@model List<Vintellitour_Framework.ViewModels.ProductViewModel>
 @{
+    Layout = "~/Views/admin/adminlayout.cshtml";
+}
+@{
     ViewData["Title"] = "Quản lý sản phẩm";
     var counts = ViewBag.CategoryCounts as Dictionary<string, int> ?? new();
     var values = ViewBag.CategoryValues as Dictionary<string, decimal> ?? new();
@@ -25,6 +28,13 @@
     // Tính tổng số lượng sản phẩm theo danh mục
     var totalStockByCategory = Model.GroupBy(p => p.CategoryName)
                                     .ToDictionary(g => g.Key, g => g.Sum(p => p.StockQuantity));
+ 
+    var categoriesInModel = Model
+        .Select(p => p.CategoryName)
+        .Distinct()
+        .Count();
+
+
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -53,11 +63,15 @@
         <div class="flex gap-6">
             <div>
                 <i class="fa fa-box mr-1 text-gray-400"></i>
-                <span class="font-semibold text-base text-black">@Model.Count</span> sản phẩm
+                <span class="font-semibold text-base text-black" id="totalProducts">@Model.Count</span> sản phẩm
             </div>
             <div>
                 <i class="fa fa-layer-group mr-1 text-gray-400"></i>
-                <span class="font-semibold text-base text-black">@counts.Count</span> danh mục
+                <span class="font-semibold text-base text-black">@categoriesInModel</span> danh mục
+            </div>
+            <div id="filteredInfo" class="text-blue-600 hidden">
+                <i class="fa fa-filter mr-1"></i>
+                <span id="filteredCount">0</span> sản phẩm được hiển thị
             </div>
         </div>
     </div>
@@ -69,26 +83,33 @@
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i class="fas fa-search text-gray-400"></i>
             </div>
-            <input type="text" placeholder="Tìm kiếm sản phẩm..."
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..."
                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
         </div>
 
         <!-- Dropdown danh mục -->
         <div class="relative">
-            <select class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[160px]">
-                <option>Tất cả danh mục</option>
-                @foreach (var category in counts.Keys)
+            <select id="categoryFilter" style="background-image: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;" class="bg-white border border-gray-300 rounded-lg px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[160px]">
+                <option value="">Tất cả danh mục</option>
+                @foreach (var category in Model.Select(p => p.CategoryName).Distinct().OrderBy(c => c))
                 {
-                    <option>@category</option>
+                    <option value="@category">@category</option>
                 }
             </select>
             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <i class="fas fa-filter text-gray-400"></i>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
             </div>
         </div>
 
+        <!-- Nút reset filter -->
+        <button id="resetFilter" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 hidden">
+            <i class="fas fa-times mr-2"></i>Reset
+        </button>
+
         <!-- Nút thêm sản phẩm -->
-        <a href="@Url.Action("Create", "Product")" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap">
+        <a href="@Url.Action("Create", "AdminProduct")" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap">
             <i class="fas fa-plus mr-2"></i>Thêm sản phẩm
         </a>
     </div>
@@ -97,7 +118,7 @@
     <div class="bg-white rounded-lg shadow-sm border">
         <div class="px-6 py-4 border-b border-gray-200">
             <h2 class="text-lg font-semibold text-gray-900">Danh sách sản phẩm</h2>
-            <p class="text-sm text-gray-500 mt-1">Hiển thị @Model.Count trong tổng số @Model.Count sản phẩm</p>
+            <p class="text-sm text-gray-500 mt-1">Hiển thị <span id="displayedCount">@Model.Count</span> trong tổng số <span id="totalCount">@Model.Count</span> sản phẩm</p>
         </div>
 
         <div class="overflow-x-auto">
@@ -112,10 +133,10 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200" id="productTableBody">
                     @foreach (var product in Model)
                     {
-                        <tr class="hover:bg-gray-50">
+                        <tr class="hover:bg-gray-50 product-row" data-product-name="@product.Name.ToLower()" data-category="@product.CategoryName">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-12 w-12">
@@ -154,8 +175,12 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-3">
-                                    <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="text-blue-600 hover:text-blue-900"><i class="fas fa-edit"></i></a>
-                                    <a href="@Url.Action("Delete", "Product", new { id = product.Id })" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
+                                    <a href="@Url.Action("Edit", "AdminProduct", new { id = product.Id })" class="text-blue-600 hover:text-blue-900"><i class="fas fa-edit"></i></a>
+                                    @Html.AntiForgeryToken()
+                                    <button class="text-red-600 hover:text-red-900 btn-delete" data-id="@product.Id" data-name="@product.Name">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+
                                 </div>
                             </td>
                         </tr>
@@ -163,5 +188,186 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Thông báo không tìm thấy -->
+        <div id="noResultsMessage" class="hidden px-6 py-8 text-center">
+            <div class="text-gray-400 text-6xl mb-4">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Không tìm thấy sản phẩm</h3>
+            <p class="text-gray-500">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc danh mục</p>
+        </div>
     </div>
 </div>
+
+@section Styles {
+    <link href="~/css/toast_amproduct.css" rel="stylesheet" />
+}
+<!-- Toast container -->
+<div id="toastContainer" class="toast-container"></div>
+
+<div id="deleteModal" class="custom-confirm hidden" role="dialog" aria-modal="true" aria-labelledby="customConfirmTitle" aria-describedby="customConfirmMessage">
+    <div class="custom-confirm-backdrop"></div>
+    <div class="custom-confirm-box">
+        <h3 id="customConfirmTitle" class="custom-confirm-title">Xác nhận xóa sản phẩm</h3>
+        <p id="deleteProductName" class="custom-confirm-message line-clamp-3"></p>
+        <div class="custom-confirm-buttons">
+            <button id="cancelDelete" class="btn-cancel" type="button" aria-label="Hủy">Hủy</button>
+            <button id="confirmDelete" class="btn-ok" type="button" aria-label="Xóa">Xóa</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Khai báo các element
+      const modal = document.getElementById('deleteModal');
+      const productNameElem = document.getElementById('deleteProductName');
+      const confirmBtn = document.getElementById('confirmDelete');
+      const cancelBtn = document.getElementById('cancelDelete');
+      const searchInput = document.getElementById('searchInput');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const resetFilterBtn = document.getElementById('resetFilter');
+      const productRows = document.querySelectorAll('.product-row');
+      const noResultsMessage = document.getElementById('noResultsMessage');
+      const displayedCount = document.getElementById('displayedCount');
+      const totalCount = document.getElementById('totalCount');
+      const filteredInfo = document.getElementById('filteredInfo');
+      const totalProducts = document.getElementById('totalProducts');
+
+      let productIdToDelete = null;
+      const totalProductCount = productRows.length;
+
+      // Hàm filter sản phẩm
+      function filterProducts() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedCategory = categoryFilter.value;
+        let visibleCount = 0;
+        let hasFilter = searchTerm || selectedCategory;
+
+        productRows.forEach(row => {
+          const productName = row.getAttribute('data-product-name');
+          const productCategory = row.getAttribute('data-category');
+
+          const matchesSearch = !searchTerm || productName.includes(searchTerm);
+          const matchesCategory = !selectedCategory || productCategory === selectedCategory;
+
+          if (matchesSearch && matchesCategory) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        // Cập nhật UI
+        displayedCount.textContent = visibleCount;
+        totalCount.textContent = totalProductCount;
+
+        if (hasFilter) {
+          filteredInfo.classList.remove('hidden');
+          document.getElementById('filteredCount').textContent = visibleCount;
+          resetFilterBtn.classList.remove('hidden');
+        } else {
+          filteredInfo.classList.add('hidden');
+          resetFilterBtn.classList.add('hidden');
+        }
+
+        // Hiển thị thông báo không tìm thấy
+        if (visibleCount === 0) {
+          noResultsMessage.classList.remove('hidden');
+        } else {
+          noResultsMessage.classList.add('hidden');
+        }
+      }
+
+      // Event listeners cho tìm kiếm và filter
+      searchInput.addEventListener('input', filterProducts);
+      categoryFilter.addEventListener('change', filterProducts);
+
+      // Reset filter
+      resetFilterBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        categoryFilter.value = '';
+        filterProducts();
+      });
+
+      // Modal xóa sản phẩm
+      document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', () => {
+          productIdToDelete = button.getAttribute('data-id');
+          const productName = button.getAttribute('data-name');
+          productNameElem.textContent = `Bạn có chắc chắn muốn xóa sản phẩm "${productName}" không?`;
+          modal.classList.remove('hidden');
+        });
+      });
+
+      // Hủy modal
+      cancelBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        productIdToDelete = null;
+      });
+
+      // Xác nhận xóa
+      confirmBtn.addEventListener('click', () => {
+        if (!productIdToDelete) return;
+
+        // Lấy token chống CSRF an toàn
+        const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+        const token = tokenInput ? tokenInput.value : null;
+
+        if (!token) {
+          alert("Không tìm thấy mã bảo vệ CSRF (__RequestVerificationToken). Vui lòng tải lại trang.");
+          modal.classList.add('hidden');
+          productIdToDelete = null;
+          return;
+        }
+
+        fetch(`/admin/product/delete/${productIdToDelete}`, {
+          method: 'POST',
+          headers: {
+            'RequestVerificationToken': token,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: productIdToDelete })
+        })
+        .then(res => {
+          if (res.ok) return res.json();
+          else throw new Error('Lỗi server khi xóa');
+        })
+        .then(data => {
+          modal.classList.add('hidden');
+          productIdToDelete = null;
+
+          if (data.success) {
+            showToast('Xóa sản phẩm thành công!', 'success');
+            // Bạn có thể reload trang hoặc xoá dòng sản phẩm khỏi bảng
+            location.reload();
+          } else {
+            alert('Xóa thất bại: ' + (data.message || ''));
+          }
+        })
+        .catch(err => {
+          alert('Lỗi: ' + err.message);
+          modal.classList.add('hidden');
+          productIdToDelete = null;
+        });
+      });
+    });
+
+    function showToast(message, type = 'success', duration = 3000) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.textContent = message;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        toast.addEventListener('transitionend', () => toast.remove());
+      }, duration);
+    }
+</script>

@@ -20,6 +20,9 @@ namespace Vintellitour_Framework.Models
         [BsonElement("status")]
         public string Status { get; set; } // Pending, Success, Cancel
 
+        [BsonElement("shippingStatus")]
+        public string ShippingStatus { get; set; } = null; // Có thể null hoặc giá trị mặc định
+
         [BsonElement("noteOrder")]
         public string NoteOrder { get; set; }  // <--- Thêm thuộc tính này
 

@@ -1,0 +1,11 @@
+﻿@model Vintellitour_Framework.Models.Product
+
+<h2>Xác nhận xóa sản phẩm</h2>
+
+<p>Bạn có chắc muốn xóa sản phẩm: <strong>@Model.Name</strong>?</p>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="@Url.Action("Index", "AdminProduct")" class="btn btn-secondary">Hủy</a>
+</form>

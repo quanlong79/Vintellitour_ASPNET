@@ -44,7 +44,7 @@ namespace Vintellitour_Framework.Models.Entities
         public string? Price { get; set; }
 
         [BsonElement("streetViewUrls")]
-        public List<string>? StreetViewUrls { get; set; }
+        public List<string> StreetViewUrls { get; set; } = new List<string>();
 
         [BsonElement("tags")]
         public List<string>? Tags { get; set; }
@@ -85,4 +85,5 @@ namespace Vintellitour_Framework.Models.Entities
         public int? SelectedProvinceGid { get; set; }
         public string? SelectedProvinceName { get; set; }
     }
+
 }

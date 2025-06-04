@@ -1,0 +1,624 @@
+﻿@model Vintellitour_Framework.Models.Entities.Location
+@{
+    ViewData["Title"] = Model.Id == null ? "Thêm địa điểm mới" : "Chỉnh sửa địa điểm";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
+}
+
+<style>
+    .form-container {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        margin: 1rem 0;
+    }
+
+    .page-title {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #3498db;
+        position: relative;
+    }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+    .form-section {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #3498db;
+    }
+
+    .section-title {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #34495e;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+            outline: none;
+        }
+
+        .form-control.is-valid {
+            border-color: #27ae60;
+        }
+
+        .form-control.is-invalid {
+            border-color: #e74c3c;
+        }
+
+    .required-star {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .input-group {
+        margin-bottom: 0.75rem;
+    }
+
+        .input-group .form-control {
+            border-radius: 8px 0 0 8px;
+        }
+
+    .btn {
+        border-radius: 8px;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9, #1f618d);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+    .btn-secondary {
+        background: #95a5a6;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+
+    .btn-info {
+        background: #17a2b8;
+        color: white;
+    }
+
+    .btn-outline-secondary {
+        border: 2px solid #95a5a6;
+        color: #95a5a6;
+        background: transparent;
+    }
+
+        .btn-outline-secondary:hover {
+            background: #95a5a6;
+            color: white;
+        }
+
+    .btn-outline-danger {
+        border: 2px solid #e74c3c;
+        color: #e74c3c;
+        background: transparent;
+        border-radius: 0 8px 8px 0;
+    }
+
+        .btn-outline-danger:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+    .alert {
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .alert-success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+
+    .alert-danger {
+        background: linear-gradient(135deg, #f8d7da, #f1aeb5);
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+
+    .img-thumbnail {
+        border-radius: 8px;
+        border: 2px solid #dee2e6;
+        padding: 0.25rem;
+        transition: transform 0.3s ease;
+    }
+
+        .img-thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #3498db;
+        }
+
+    .form-text {
+        color: #6c757d;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+    }
+
+    .coordinates-container {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #e9ecef;
+    }
+
+    .streetview-container {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #e9ecef;
+        margin-bottom: 1rem;
+    }
+
+    .action-buttons {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        text-align: center;
+        border: 1px solid #e9ecef;
+    }
+
+    .icon {
+        margin-right: 0.5rem;
+    }
+
+    .current-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="page-title">
+        <i class="fas fa-map-marker-alt icon"></i>
+        @ViewData["Title"]
+    </h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle icon"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle icon"></i>
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <h4><i class="fas fa-exclamation-triangle icon"></i>Có lỗi xảy ra:</h4>
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" id="locationForm">
+        @Html.AntiForgeryToken()
+
+        @if (Model.Id != null)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <!-- Thông tin cơ bản -->
+        <div class="form-section">
+            <div class="section-title">
+                <i class="fas fa-info-circle"></i>
+                Thông tin cơ bản
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label">
+                            <i class="fas fa-tag"></i>
+                            Tên địa điểm
+                            <span class="required-star">*</span>
+                        </label>
+                        <input asp-for="Name" class="form-control" required maxlength="200" placeholder="Nhập tên địa điểm..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Address" class="form-label">
+                            <i class="fas fa-map-marker"></i>
+                            Địa chỉ
+                            <span class="required-star">*</span>
+                        </label>
+                        <input asp-for="Address" class="form-control" required maxlength="500" placeholder="Nhập địa chỉ..." />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="form-label">
+                    <i class="fas fa-align-left"></i>
+                    Mô tả
+                </label>
+                <textarea asp-for="Description" class="form-control" rows="4" maxlength="2000" placeholder="Nhập mô tả về địa điểm..."></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DescriptionHistory" class="form-label">
+                    <i class="fas fa-history"></i>
+                    Mô tả lịch sử
+                </label>
+                <textarea asp-for="DescriptionHistory" class="form-control" rows="4" maxlength="2000" placeholder="Nhập mô tả lịch sử của địa điểm..."></textarea>
+                <span asp-validation-for="DescriptionHistory" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Tọa độ -->
+        <div class="form-section">
+            <div class="section-title">
+                <i class="fas fa-crosshairs"></i>
+                Tọa độ địa lý
+            </div>
+
+            <div class="coordinates-container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Coordinates.Lat" class="form-label">
+                                <i class="fas fa-globe"></i>
+                                Vĩ độ (Latitude)
+                            </label>
+                            <input asp-for="Coordinates.Lat" class="form-control" type="number" step="any" min="-90" max="90" placeholder="VD: 10.762622" />
+                            <span asp-validation-for="Coordinates.Lat" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Coordinates.Lng" class="form-label">
+                                <i class="fas fa-globe"></i>
+                                Kinh độ (Longitude)
+                            </label>
+                            <input asp-for="Coordinates.Lng" class="form-control" type="number" step="any" min="-180" max="180" placeholder="VD: 106.660172" />
+                            <span asp-validation-for="Coordinates.Lng" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông tin bổ sung -->
+        <div class="form-section">
+            <div class="section-title">
+                <i class="fas fa-clock"></i>
+                Thông tin bổ sung
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="OpenTime" class="form-label">
+                            <i class="fas fa-clock"></i>
+                            Giờ mở cửa
+                        </label>
+                        <input asp-for="OpenTime" class="form-control" placeholder="VD: 8:00 - 17:00" maxlength="100" />
+                        <span asp-validation-for="OpenTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Price" class="form-label">
+                            <i class="fas fa-dollar-sign"></i>
+                            Giá vé
+                        </label>
+                        <input asp-for="Price" class="form-control" placeholder="VD: 50,000 VND" maxlength="100" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Street View URLs -->
+        <div class="form-section">
+            <div class="section-title">
+                <i class="fas fa-street-view"></i>
+                Đường dẫn 360°
+            </div>
+
+            <div class="streetview-container">
+                <div id="streetViewContainer">
+                    @if (Model.StreetViewUrls != null && Model.StreetViewUrls.Any())
+                    {
+                        @for (var i = 0; i < Model.StreetViewUrls.Count; i++)
+                        {
+                            <div class="input-group mb-2" data-index="@i">
+                                <input name="StreetViewUrls" value="@Model.StreetViewUrls[i]" class="form-control streetview-input" placeholder="Nhập URL Street View 360°" maxlength="1000" />
+                                <button type="button" class="btn btn-outline-danger remove-streetview">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </button>
+                            </div>
+                        }
+                    }
+                </div>
+                <button type="button" id="addStreetViewBtn" class="btn btn-outline-secondary">
+                    <i class="fas fa-plus"></i> Thêm đường dẫn 360°
+                </button>
+            </div>
+        </div>
+
+        <!-- Ảnh -->
+        <div class="form-section">
+            <div class="section-title">
+                <i class="fas fa-images"></i>
+                Hình ảnh
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="image" class="form-label">
+                    <i class="fas fa-upload"></i>
+                    Tải lên ảnh địa điểm
+                </label>
+                <input type="file" name="image" id="image" class="form-control" accept="image/*" />
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Chỉ chấp nhận file ảnh (JPG, PNG, GIF, WebP) tối đa 5MB
+                </div>
+
+                @if (Model.Image != null && Model.Image.Any())
+                {
+                    <div class="current-images">
+                        <div class="w-100 mb-2">
+                            <strong><i class="fas fa-image"></i> Ảnh hiện tại:</strong>
+                        </div>
+                        @foreach (var img in Model.Image)
+                        {
+                            <img src="@img" class="img-thumbnail" alt="Current image" style="max-width: 200px; max-height: 150px;" />
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="fas fa-save"></i>
+                    <span id="submitText">Lưu thông tin</span>
+                </button>
+                <a href="/admin/locations" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Hủy bỏ
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let streetViewIndex = @(Model.StreetViewUrls?.Count ?? 0);
+
+            // Form submit handling
+            const form = document.getElementById('locationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+
+            form.addEventListener('submit', function(e) {
+                // Disable submit button to prevent double submission
+                submitBtn.disabled = true;
+                submitText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang lưu...';
+
+                // Clean up empty StreetView URLs before submission
+                cleanupStreetViewUrls();
+
+                console.log('Form submitting...');
+                debugFormData();
+            });
+
+            // Thêm Street View URL
+            document.getElementById('addStreetViewBtn').addEventListener('click', function() {
+                addStreetViewInput();
+            });
+
+            // Xóa Street View URL
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-streetview') || e.target.closest('.remove-streetview')) {
+                    e.preventDefault();
+                    const inputGroup = e.target.closest('.input-group');
+                    if (inputGroup) {
+                        inputGroup.remove();
+                        updateStreetViewIndices();
+                    }
+                }
+            });
+
+            function addStreetViewInput() {
+                const container = document.getElementById('streetViewContainer');
+                const newDiv = document.createElement('div');
+                newDiv.classList.add('input-group', 'mb-2');
+                newDiv.setAttribute('data-index', streetViewIndex);
+                newDiv.innerHTML = `
+                    <input name="StreetViewUrls" class="form-control streetview-input" placeholder="Nhập URL Street View 360°" maxlength="1000" />
+                    <button type="button" class="btn btn-outline-danger remove-streetview">
+                        <i class="fas fa-trash"></i> Xóa
+                    </button>
+                `;
+                container.appendChild(newDiv);
+                streetViewIndex++;
+            }
+
+            function updateStreetViewIndices() {
+                const inputGroups = document.querySelectorAll('#streetViewContainer .input-group');
+                inputGroups.forEach((group, index) => {
+                    group.setAttribute('data-index', index);
+                    const input = group.querySelector('input');
+                    if (input) {
+                        input.name = 'StreetViewUrls';
+                    }
+                });
+                streetViewIndex = inputGroups.length;
+            }
+
+            function cleanupStreetViewUrls() {
+                const inputs = document.querySelectorAll('.streetview-input');
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        const inputGroup = input.closest('.input-group');
+                        if (inputGroup) {
+                            inputGroup.remove();
+                        }
+                    }
+                });
+                updateStreetViewIndices();
+            }
+
+            // Auto-dismiss alerts
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert-dismissible');
+                alerts.forEach(alert => {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 5000);
+
+            // Form validation
+            const nameInput = document.querySelector('input[name="Name"]');
+            const addressInput = document.querySelector('input[name="Address"]');
+
+            nameInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                }
+            });
+
+            addressInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                }
+            });
+        });
+
+        // Enhanced debug function
+        function debugFormData() {
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+
+            console.log('=== FORM DATA DEBUG ===');
+            console.log('Form action:', form.action);
+            console.log('Form method:', form.method);
+
+            for (let [key, value] of formData.entries()) {
+                if (value instanceof File) {
+                    console.log(`${key}: [File] ${value.name} (${value.size} bytes)`);
+                } else {
+                    console.log(`${key}: ${value}`);
+                }
+            }
+
+            // Check specific fields
+            console.log('--- Field Values ---');
+            console.log('Name:', document.querySelector('input[name="Name"]')?.value);
+            console.log('Address:', document.querySelector('input[name="Address"]')?.value);
+            console.log('Description:', document.querySelector('textarea[name="Description"]')?.value);
+            console.log('DescriptionHistory:', document.querySelector('textarea[name="DescriptionHistory"]')?.value);
+            console.log('Coordinates.Lat:', document.querySelector('input[name="Coordinates.Lat"]')?.value);
+            console.log('Coordinates.Lng:', document.querySelector('input[name="Coordinates.Lng"]')?.value);
+            console.log('OpenTime:', document.querySelector('input[name="OpenTime"]')?.value);
+            console.log('Price:', document.querySelector('input[name="Price"]')?.value);
+
+            const streetViewInputs = document.querySelectorAll('input[name="StreetViewUrls"]');
+            console.log('--- StreetView URLs ---');
+            streetViewInputs.forEach((input, index) => {
+                console.log(`  [${index}]: ${input.value}`);
+            });
+
+            console.log('--- Model State ---');
+            console.log('Required fields filled:',
+                document.querySelector('input[name="Name"]')?.value?.trim() &&
+                document.querySelector('input[name="Address"]')?.value?.trim()
+            );
+
+            console.log('=== END FORM DATA DEBUG ===');
+        }
+    </script>
+}

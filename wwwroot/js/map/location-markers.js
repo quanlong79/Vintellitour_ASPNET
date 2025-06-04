@@ -16,7 +16,7 @@
                         heartbeat: 1,
                     });
                     const marker = L.marker([location.coordinates.lat, location.coordinates.lng], { icon: pulseIcon });
-                    marker.bindPopup(`<b>${location.name}</b>`);
+                    marker.bindPopup(`<b></b>`);
                     marker.addTo(this.map);
                     this.markers.push(marker);
                 });

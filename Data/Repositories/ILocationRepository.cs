@@ -9,5 +9,9 @@ namespace Vintellitour_Framework.Data.Repositories
         Task<Location?> GetByIdAsync(string id);
         Task<List<Location>> GetByProvinceGidAsync(int provinceGid);
         Task<List<Location>> GetAllAsync();
+        Task<Location> AddAsync(Location location);
+        Task UpdateAsync(Location location);
+        Task DeleteAsync(Location location);
+
     }
 }

@@ -1,0 +1,63 @@
+﻿@model MapViewModel
+@{
+    ViewData["Title"] = "Vietnam Map";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
+}
+
+
+<div id="map-container" style="position: relative; width: 100%; height: 100vh;">
+    <!-- Search Input -->
+    <input type="text"
+           id="search-input"
+           placeholder="Tìm kiếm tỉnh"
+           style="position: absolute; top: 60px; left: 20px; z-index: 1000;" />
+
+    <!-- Suggestions List -->
+    <ul id="suggestions-list" style="display: none;"></ul> 
+    <!-- Back Button -->
+    <button id="back-button"
+            style="position: absolute; top: 20px; left: 20px; z-index: 1000; display: none;">
+        Back
+    </button>
+
+    <!-- Map Container -->
+    <div id="map" style="height: 100vh; width: 100%;"></div>
+    <div id="location-list-container" 
+     style="
+       display: block; 
+       position: fixed; 
+       top: 20px; 
+       right: 20px; 
+       width: 350px; 
+       max-height: calc(100vh - 40px); 
+       background-color: white; 
+       border-radius: 12px; 
+       box-shadow: 0 8px 32px rgba(0,0,0,0.15); 
+       border: 1px solid #e0e0e0; 
+       overflow-y: auto; 
+       z-index: 1000;">
+</div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/lib/leaflet/leaflet.js"></script>
+    <script src="~/js/lib/leaflet/L.Icon.Pulse.js"></script>
+    <script src="~/js/admin/location-list-manager-admin.js"></script>
+    <script src="~/js/admin/map-interactions-admin.js"></script>
+    <script src="~/js/admin/location-markers-manager-admin.js"></script>
+
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            alert('@TempData["Message"]');
+        </script>
+    }
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="~/css/leaflet/L.Icon.Pulse.css" />
+    <link rel="stylesheet" href="~/css/vietnam-map.css" />
+}

@@ -1,0 +1,104 @@
+[{
+  "_id": 58,
+  "name": "TP. HCM",
+  "description": "Thành phố Hồ Chí Minh, thường được gọi tắt là Sài Gòn, là trung tâm kinh tế, tài chính, văn hóa và giáo dục lớn nhất của Việt Nam. Thành phố sôi động này mang trong mình sự pha trộn hài hòa giữa kiến trúc cổ điển Pháp, các công trình hiện đại và nền văn hóa đa dạng, phong phú từ khắp nơi trên thế giới.",
+  "cuisine": {
+    "title": "Ẩm thực TP. HCM",
+    "description": "Ẩm thực Thành phố Hồ Chí Minh phản ánh sự giao thoa văn hóa từ nhiều vùng miền khác nhau. Du khách có thể thưởng thức từ những món ăn đường phố dân dã như bánh mì, phở, hủ tiếu gõ đến những món ăn quốc tế sang trọng. Ẩm thực nơi đây không chỉ ngon mà còn thể hiện sự sáng tạo và linh hoạt trong cách chế biến."
+  },
+  "culture": {
+    "title": "Văn hóa TP. HCM",
+    "description": "Văn hóa Thành phố Hồ Chí Minh mang tính cởi mở, năng động và đầy sáng tạo. Nơi đây là sự pha trộn độc đáo giữa truyền thống và hiện đại, giữa văn hóa Việt Nam và ảnh hưởng phương Tây. Các lễ hội truyền thống, hoạt động nghệ thuật đường phố và các không gian sáng tạo góp phần tạo nên bản sắc văn hóa đặc trưng cho thành phố này."
+  }
+},
+{
+  "_id": 44,
+  "name": "Phú Yên",
+  "description": "Phú Yên được mệnh danh là 'xứ hoa vàng cỏ xanh' của Việt Nam, nổi bật với những bãi biển hoang sơ, núi non trùng điệp và những cánh đồng lúa bát ngát. Nơi đây vẫn giữ được vẻ đẹp nguyên sơ, yên bình và trở thành điểm đến lý tưởng cho những ai yêu thích thiên nhiên và sự tĩnh lặng.",
+  "cuisine": {
+    "title": "Ẩm thực Phú Yên",
+    "description": "Ẩm thực Phú Yên giản dị mà đậm đà với những món ăn dân dã như bánh hỏi lòng heo, cá ngừ đại dương, mắt cá ngừ tiềm thuốc bắc. Đặc sản nơi đây mang hương vị đậm đà của biển cả và đất trời miền Trung, để lại dấu ấn khó quên trong lòng du khách."
+  },
+  "culture": {
+    "title": "Văn hóa Phú Yên",
+    "description": "Văn hóa Phú Yên mang đậm bản sắc miền Trung với các lễ hội truyền thống như Hội đua thuyền, lễ cầu ngư và các sinh hoạt văn hóa dân gian. Người dân Phú Yên chân chất, hiền hòa và luôn gắn bó mật thiết với thiên nhiên quanh mình."
+  }
+},
+{
+  "_id": 48,
+  "name": "Quảng Ninh",
+  "description": "Quảng Ninh là vùng đất hội tụ của những kỳ quan thiên nhiên nổi tiếng, tiêu biểu là Vịnh Hạ Long - Di sản thiên nhiên thế giới. Với sự kết hợp hài hòa giữa núi non, biển cả và những di tích lịch sử, Quảng Ninh trở thành điểm đến hấp dẫn hàng đầu tại Việt Nam.",
+  "cuisine": {
+    "title": "Ẩm thực Quảng Ninh",
+    "description": "Ẩm thực Quảng Ninh gắn liền với biển cả, nổi tiếng với các món như chả mực Hạ Long, sam biển chế biến đủ món, sá sùng và bún bề bề. Hương vị đặc trưng đậm đà của biển Quảng Ninh chắc chắn sẽ làm hài lòng cả những thực khách khó tính nhất."
+  },
+  "culture": {
+    "title": "Văn hóa Quảng Ninh",
+    "description": "Văn hóa Quảng Ninh đa dạng và phong phú, từ văn hóa ngư dân vùng biển đến những di sản Phật giáo lâu đời như Yên Tử. Các lễ hội như lễ hội Yên Tử, lễ hội Cửa Ông phản ánh đời sống tâm linh sâu sắc và niềm tin mạnh mẽ của người dân nơi đây."
+  }
+},
+{
+  "_id": 24,
+  "name": "Hà Nội",
+  "description": "Hà Nội - thủ đô ngàn năm văn hiến, là trái tim của Việt Nam với bề dày lịch sử, văn hóa và truyền thống. Phố cổ Hà Nội, hồ Hoàn Kiếm, Văn Miếu - Quốc Tử Giám cùng vô vàn di tích, danh thắng đã tạo nên một Hà Nội vừa cổ kính, vừa hiện đại.",
+  "cuisine": {
+    "title": "Ẩm thực Hà Nội",
+    "description": "Ẩm thực Hà Nội tinh tế, thanh nhã, nổi bật với những món ăn truyền thống như phở, bún chả, bún thang, chả cá Lã Vọng. Mỗi món ăn đều mang trong mình sự khéo léo và chiều sâu văn hóa lâu đời của vùng đất kinh kỳ."
+  },
+  "culture": {
+    "title": "Văn hóa Hà Nội",
+    "description": "Văn hóa Hà Nội là sự kết tinh giữa truyền thống và hiện đại, thể hiện qua lối sống thanh lịch, các hoạt động nghệ thuật, lễ hội truyền thống và những giá trị tinh thần lâu đời. Nơi đây còn lưu giữ nhiều di sản văn hóa vật thể và phi vật thể quý giá."
+  }
+},
+{
+  "_id": 45,
+  "name": "Quảng Bình",
+  "description": "Quảng Bình, nằm ở miền Trung Việt Nam, nổi tiếng với hệ thống hang động kỳ vĩ như Sơn Đoòng - hang động lớn nhất thế giới. Bên cạnh đó, Quảng Bình còn sở hữu những bãi biển tuyệt đẹp và những di tích lịch sử ghi dấu ấn hào hùng trong cuộc chiến tranh bảo vệ Tổ quốc.",
+  "cuisine": {
+    "title": "Ẩm thực Quảng Bình",
+    "description": "Ẩm thực Quảng Bình mang đậm phong vị miền Trung, giản dị mà đậm đà. Các món ăn nổi tiếng như bánh bột lọc, cháo canh, cá khoai nấu lẩu và khoai deo đều toát lên hương vị mộc mạc, dân dã và tinh tế."
+  },
+  "culture": {
+    "title": "Văn hóa Quảng Bình",
+    "description": "Văn hóa Quảng Bình gắn liền với những câu hò khoan da diết, các lễ hội truyền thống và tinh thần kiên cường, bất khuất của người dân nơi đây. Những giá trị văn hóa đặc trưng được lưu giữ qua các thế hệ, tạo nên nét đẹp riêng biệt cho vùng đất này."
+  }
+},
+{
+  "_id": 52,
+  "name": "Tây Ninh",
+  "description": "Tây Ninh, vùng đất nằm giữa trung tâm giao thoa văn hóa giữa miền Đông và miền Tây Nam Bộ, nổi tiếng với núi Bà Đen - nóc nhà Nam Bộ và hệ thống tôn giáo đa dạng, đặc biệt là đạo Cao Đài với kiến trúc độc đáo.",
+  "cuisine": {
+    "title": "Ẩm thực Tây Ninh",
+    "description": "Ẩm thực Tây Ninh nổi bật với các món đặc sản như bánh tráng phơi sương, muối tôm Tây Ninh, bò tơ và ốc núi Bà Đen. Hương vị mặn mà, cay nồng và đậm chất đồng quê miền Nam tạo nên sức hấp dẫn riêng cho ẩm thực nơi đây."
+  },
+  "culture": {
+    "title": "Văn hóa Tây Ninh",
+    "description": "Văn hóa Tây Ninh là sự giao hòa của nhiều tôn giáo, tín ngưỡng và nét sinh hoạt văn hóa dân gian phong phú. Các lễ hội như lễ hội núi Bà Đen và lễ hội đạo Cao Đài thể hiện đậm nét đời sống tâm linh và văn hóa đặc trưng của vùng đất này."
+  }
+},
+{
+  "_id": 16,
+  "name": "Đắk Lắk",
+  "description": "Đắk Lắk, nằm ở trung tâm Tây Nguyên, được mệnh danh là thủ phủ cà phê của Việt Nam. Nơi đây nổi bật với những cao nguyên bạt ngàn, các buôn làng dân tộc thiểu số giàu bản sắc và những lễ hội truyền thống đặc sắc.",
+  "cuisine": {
+    "title": "Ẩm thực Đắk Lắk",
+    "description": "Ẩm thực Đắk Lắk đậm đà hương vị núi rừng với các món ăn như gà nướng Bản Đôn, cơm lam, cà đắng và cà phê chồn nổi tiếng. Các món ăn nơi đây mang đến trải nghiệm ẩm thực độc đáo, khó quên cho du khách."
+  },
+  "culture": {
+    "title": "Văn hóa Đắk Lắk",
+    "description": "Văn hóa Đắk Lắk phong phú với các lễ hội cồng chiêng, đua voi Bản Đôn và đời sống sinh hoạt mang đậm bản sắc của các dân tộc Ê Đê, M'Nông. Những nét văn hóa truyền thống này đã trở thành phần không thể thiếu trong đời sống cộng đồng nơi đây."
+  }
+},
+{
+  "_id": 17,
+  "name": "Đắk Nông",
+  "description": "Đắk Nông, vùng đất phía Nam Tây Nguyên, nổi bật với cảnh quan thiên nhiên hùng vĩ, những thác nước tuyệt đẹp và hệ thống hang động núi lửa độc đáo. Nơi đây còn lưu giữ đậm nét đời sống văn hóa truyền thống của đồng bào các dân tộc thiểu số.",
+  "cuisine": {
+    "title": "Ẩm thực Đắk Nông",
+    "description": "Ẩm thực Đắk Nông mộc mạc mà đậm đà, với các món ăn dân dã từ núi rừng như cá suối nướng, rau rừng luộc chấm mắm, cơm lam và các món ăn chế biến từ thịt rừng, phản ánh sự gắn bó mật thiết với thiên nhiên của cư dân nơi đây."
+  },
+  "culture": {
+    "title": "Văn hóa Đắk Nông",
+    "description": "Văn hóa Đắk Nông đậm đà bản sắc dân tộc với các lễ hội truyền thống như lễ hội cồng chiêng, lễ hội mừng lúa mới. Những phong tục tập quán, nghệ thuật dân gian đặc sắc được cộng đồng các dân tộc nơi đây bảo tồn và phát huy mạnh mẽ."
+  }
+}]

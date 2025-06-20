@@ -142,11 +142,11 @@ app.UseRouting();
 // Session must come BEFORE Authorization
 app.UseSession();
 app.UseStaticFiles();
-app.MapControllerRoute(
-    name: "admin",
-    pattern: "Admin/{controller=Maps}/{action=Index}/{id?}",
-    defaults: new { area = "Admin" }
-);
+//app.MapControllerRoute(
+//    name: "admin",
+//    pattern: "Admin/{controller=Maps}/{action=Index}/{id?}",
+//    defaults: new { area = "Admin" }
+//);
 app.MapControllers(); // Thêm dòng này để hỗ trợ API Controllers
 app.UseAuthentication();
 app.UseAuthorization();

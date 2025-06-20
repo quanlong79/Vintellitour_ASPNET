@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "683b22113b1267f675641278"
+  },
+  "userId": "683210d9a32cfed3663586db",
+  "amount": {
+    "$numberDecimal": "2400000"
+  },
+  "status": "Pending",
+  "noteOrder": null,
+  "createdAt": {
+    "$date": "2025-05-31T15:36:49.842Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-31T15:36:49.842Z"
+  },
+  "details": [
+    {
+      "productId": "683295e45cd17a4dfa150bf1",
+      "productName": "Tai nghe dịch thuật AI",
+      "price": {
+        "$numberDecimal": "1200000"
+      },
+      "quantity": 2
+    }
+  ]
+}]

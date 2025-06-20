@@ -13,7 +13,7 @@ namespace Vintellitour_Framework.Models
         [BsonElement("lng")]
         public double Lng { get; set; }
     }
-
+    [BsonIgnoreExtraElements]
     public class LocationsModel
     {
         [BsonId]

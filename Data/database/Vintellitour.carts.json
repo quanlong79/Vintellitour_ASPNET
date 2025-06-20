@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6835d741dd6bcba177cb1d22"
+  },
+  "userId": "683210d9a32cfed3663586db",
+  "items": [
+    {
+      "productId": "683295e45cd17a4dfa150bf1",
+      "quantity": 4
+    },
+    {
+      "productId": "683b273c3b1267f675641279",
+      "quantity": 1
+    }
+  ],
+  "updatedAt": {
+    "$date": "2025-05-27T15:16:17.569Z"
+  }
+}]

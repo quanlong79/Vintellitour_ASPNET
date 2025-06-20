@@ -1,0 +1,278 @@
+[{
+  "_id": {
+    "$oid": "6a2afc7b57634143ad869607"
+  },
+  "email": "user1@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "c43a14cdbd34420682ec08c0"
+  },
+  "email": "user2@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "1f5437a3ebd143889a0d435c"
+  },
+  "email": "user3@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "41263020e12e4c409115ccda"
+  },
+  "email": "user4@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "f2ba683fdfc842489e417b12"
+  },
+  "email": "user6@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "2a0f4d0d0e434101b805d6b5"
+  },
+  "email": "user7@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "c3b84e7b66f04a46a1f16720"
+  },
+  "email": "user8@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "68398bc6ad7b4de58b0c9c6e"
+  },
+  "email": "user9@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "0c7279f1747246b8821f27b2"
+  },
+  "email": "user10@example.com",
+  "password": "$2b$10$V2wQDIPnu9fgSRFH03DJm.JO4Y2uC3/wNnWAhCMC8XRGrFl2485I.",
+  "createdAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-19T07:41:56.727Z"
+  },
+  "__v": 0,
+  "username": "Kết Test",
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "680777755759ec532251c1aa"
+  },
+  "username": "tststs",
+  "email": "s1121364@mail",
+  "password": "$2b$10$K6ZmWPgASurR/zfn5KxwR.6QEize78xiJ2zwRY9tZ30fT3/tHDvh.",
+  "createdAt": {
+    "$date": "2025-04-22T11:03:17.742Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-22T11:03:17.742Z"
+  },
+  "__v": 0,
+  "avatar": "/img/man.png"
+},
+{
+  "_id": {
+    "$oid": "68037d00f0c940bf0b480346"
+  },
+  "username": "quanlong7924",
+  "email": "longly0709@gmail.com",
+  "password": "$2b$10$tAYrJuypSqkYoKdLVONYoOO05x5aLxOXOuM5mLOglnLRhVJOrRXpC",
+  "createdAt": {
+    "$date": "2025-04-19T10:37:52.885Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-27T07:48:55.863Z"
+  },
+  "__v": 0,
+  "avatar": "/img/1745740135826-cho-dam-boc.jpg"
+},
+{
+  "_id": {
+    "$oid": "680e2167a7fd8e5d403cdcaa"
+  },
+  "username": "longdeptrai",
+  "email": "ab@gmail.com",
+  "password": "$2b$10$CSeH72Px3PR/YVzFZJosl.jqqhpuXF9PZ9j2R1yc8NT9oBFvsw.i2",
+  "avatar": "/img/1745756548990-hetcuu.jpg",
+  "createdAt": {
+    "$date": "2025-04-27T12:21:59.306Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-27T12:22:28.991Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "username": "huy",
+  "email": "a@gmail.com",
+  "password": "$2b$10$Ns8i4oKfUxfg/a6FqqjlveXjkuJeNmOTHRTn8uo4i0wEcXhx45SQi",
+  "createdAt": {
+    "$date": "2025-04-22T09:14:53.308Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-22T09:14:53.308Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d9157539b15332965a410"
+  },
+  "username": "huy123",
+  "email": "huy@gmail.com",
+  "password": "$2b$10$u0sdfPryg/I4CX6Tm8WWde8Dhv.b8RLts8yQ9LWaJhooVui6WHIzi",
+  "createdAt": {
+    "$date": "2025-04-27T02:07:19.093Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-27T02:07:19.093Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6819941b3f96f0291a18d956"
+  },
+  "username": "Hellooo",
+  "email": "vanket9494@gmail.com",
+  "password": "@Avk1402",
+  "avatar": "/img/1746519178569-Nguyễn-Kim-Phương-Huy.png",
+  "isVerified": true,
+  "verificationToken": null,
+  "resetPasswordToken": null,
+  "resetPasswordExpires": null,
+  "createdAt": {
+    "$date": "2025-05-06T04:46:19.441Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-06T08:12:58.573Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6829c693cf2f9eac0ad875b5"
+  },
+  "username": "Noahs",
+  "email": "22520595@gm.uit.edu.vn",
+  "password": "$2b$10$TjUZ/iCIu41pOdRTvR.jw.WxYkcaGno5JvzAK5FTRm4AfZqsdwgsu",
+  "avatar": "",
+  "isVerified": true,
+  "verificationToken": null,
+  "resetPasswordToken": null,
+  "resetPasswordExpires": null,
+  "createdAt": {
+    "$date": "2025-05-18T11:37:55.051Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-18T11:38:42.678Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683210d9a32cfed3663586db"
+  },
+  "username": "Noahs",
+  "email": "s1121364@mail.yzu.edu.tw",
+  "password": "$2a$11$NkhK8CWME4mIgcndXh19KOXOjp4SRA4odwLjKwyYlAbic.6sTQrxK",
+  "avatar": "/uploads/avatars/52ca8953-15b5-4314-88eb-416bcc0c667b.jpg",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2025-05-24T18:32:57.280Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-24T18:33:18.590Z"
+  }
+}]

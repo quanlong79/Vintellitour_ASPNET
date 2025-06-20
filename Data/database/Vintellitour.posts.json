@@ -1,0 +1,1235 @@
+[{
+  "_id": {
+    "$oid": "17e2979477ae40829f465365"
+  },
+  "author_id": {
+    "$oid": "0c7279f1747246b8821f27b2"
+  },
+  "content": "stupid fuck you ass",
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/img/VN.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/img/sky.png"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/img/sky.png"
+    }
+  ],
+  "timestamp": {
+    "$date": "2025-04-19T15:00:00.000Z"
+  },
+  "status": "flagged",
+  "tags": [
+    "du lịch",
+    "tham chiếu"
+  ],
+  "likes": 2,
+  "comments": [],
+  "usersLiked": [],
+  "flagInfo": {
+    "type": "hate_speech",
+    "word": "fuck",
+    "source": "keyword",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:33:28.314Z"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6809eb5cf0cfce6106ee6947"
+  },
+  "author_id": {
+    "$oid": "680353c4c24743e274a83b60"
+  },
+  "content": "cock dick assss",
+  "media": [
+    {
+      "media_url": "/img/sky.png",
+      "media_type": "image"
+    },
+    {
+      "media_url": "/img/sky.png",
+      "media_type": "image"
+    }
+  ],
+  "timestamp": {
+    "$date": "2025-04-19T15:00:00.000Z"
+  },
+  "tags": [
+    "Bắc Ninh"
+  ],
+  "likes": {
+    "$numberLong": "6"
+  },
+  "comments": [],
+  "usersLiked": [
+    "6819941b3f96f0291a18d956"
+  ],
+  "flagInfo": {
+    "type": "toxic",
+    "word": null,
+    "source": "toxic_bert",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:33:28.615Z"
+    }
+  },
+  "status": "flagged"
+},
+{
+  "_id": {
+    "$oid": "680e1699809e5c2d8cfaf132"
+  },
+  "title": "Bài viết mới",
+  "content": "“Dray Nur – nơi thiên nhiên chạm đến tâm linh”\r\n\r\nGiữa tháng 4 nắng như đổ lửa, mình quyết định chạy trốn khỏi thành phố, tìm một nơi có thể khiến mình... tạm dừng lại. Thác Dray Nur hiện ra không nhẹ nhàng như mình từng tưởng tượng. Ngược lại, nó ầm ào, dữ dội – một khối năng lượng sống động tràn ra giữa đại ngàn. Tiếng nước đổ rền vang như tiếng gọi từ sâu trong lòng đất, mạnh mẽ đến mức khiến mình đứng lặng người.\r\n\r\nCảm giác đầu tiên là choáng ngợp – nhưng rồi sau đó, mình thấy như có một sợi dây vô hình kết nối mình với thiên nhiên nơi đây. Như thể dòng thác không chỉ cuộn trào ngoài kia, mà còn cuốn theo những lo toan, ồn ào trong lòng mình, đổ xuống đá, rồi tan đi.\r\n\r\nTrên đường khám phá quanh khu vực, mình bắt gặp một cái cây cổ thụ khổng lồ, rễ của nó quấn chằng chịt như một mạng lưới thời gian. Không biết nó đã ở đây bao lâu – vài trăm năm? Có thể hơn. Nhưng khi đứng trước nó, mình cảm thấy một sự yên tĩnh kỳ lạ, gần như là thiêng liêng. Như thể mình đang được một vị thần rừng im lặng quan sát. Có điều gì đó khiến mình không dám nói to, không dám bước vội – chỉ lặng lẽ đứng đó, thở nhẹ, và cảm nhận. Cây không nói gì, nhưng nó kể một câu chuyện – về sự sống, về thời gian, và về sự bền bỉ lặng lẽ của đất trời.\r\n\r\nMình ngồi bên bờ suối, ngắm cá bơi dưới làn nước trong vắt, không dám chạm tay – như thể mình đang là khách của một thế giới khác, cần giữ sự tôn trọng. Xung quanh có lối đi, chỗ ngồi picnic, nhà vệ sinh, nhà hàng – tiện nghi nhưng không phá vỡ vẻ hoang sơ. An ninh ở đây cũng rất tốt, có người canh giữ cẩn thận, mọi thứ được bảo vệ kỹ lưỡng.\r\n\r\nRời khỏi nơi này, mình mang theo không chỉ những bức ảnh, mà cả một thứ cảm giác kỳ lạ như thể mình đã được gột rửa, được \"nhắc nhớ\" bởi một điều gì đó rất xa xưa, rất thật, và rất riêng.\r\n\r\nVới mình, Dray Nur không chỉ là một điểm đến – mà là một nghi lễ, một hành trình trở về với thiên nhiên, và cũng là trở về với chính mình.",
+  "author_id": {
+    "$oid": "6807765b5759ec532251c1a6"
+  },
+  "locationRaw": "680df78c030705939e3d838a",
+  "provinceGid": 16,
+  "timestamp": {
+    "$date": "2025-02-27T11:35:53.916Z"
+  },
+  "status": "flagged",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753753917_thac-dray-nur-3.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753753919_45-1634114959-draynu.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753753921_photo3jpg.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753753922_Draynur_falls.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "0"
+  },
+  "usersLiked": [
+    "6807765b5759ec532251c1a6",
+    "6805e6ede93d6be6fd40ead8"
+  ],
+  "flagInfo": {
+    "type": "sexual",
+    "word": "cu",
+    "source": "keyword",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:33:28.619Z"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "680e2066809e5c2d8cfaf14d"
+  },
+  "title": "Bài viết mới",
+  "content": "fuck you",
+  "author_id": {
+    "$oid": "6807765b5759ec532251c1a6"
+  },
+  "locationRaw": "680df9c9030705939e3d838b",
+  "provinceGid": 16,
+  "timestamp": {
+    "$date": "2025-03-27T12:17:42.729Z"
+  },
+  "status": "flagged",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756262729_bao-tang-the-gioi-ca-phe-1.jpeg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756262731_Bảo-tàng-Thế-giới-Cà-phê12-e1543376203127.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "0"
+  },
+  "usersLiked": [
+    "6807765b5759ec532251c1a6",
+    "6805e6ede93d6be6fd40ead8"
+  ],
+  "flagInfo": {
+    "type": "hate_speech",
+    "word": "fuck",
+    "source": "keyword",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:33:28.620Z"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "680e166fa7fd8e5d403cdca0"
+  },
+  "title": "Bài viết mới",
+  "content": "Quảng Bình được mệnh danh là “Vương quốc hang động” với trên 400 hang động lớn, nhỏ. Trong đó, nổi bật nhất là hang Sơn Đoòng. Đây là hang động lớn nhất thế giới, được người dân địa phương phát hiện vào năm 1990 và chính thức được khám phá vào năm 2009. Tour du lịch thám hiểm Sơn Đoòng được đưa vào khai thác du lịch mạo hiểm tại Việt Nam từ tháng 8/2013 và hiện trở thành tour hấp dẫn đối với du khách đam mê mạo hiểm trên toàn thế giới.\r\n\r\nTour thám hiểm, chinh phục hang Sơn Đoòng đã tạo ra 130 việc làm trực tiếp cho người dân địa phương khu vực Phong Nha, bao gồm các công việc: mang vác hành lý, đầu bếp, trợ lý an toàn, hướng dẫn viên và nhiều công việc khác.\r\nTrước đây, những người này chủ yếu sống dựa vào nông nghiệp và khai thác trái phép tài nguyên rừng. Hiện nay, với việc tham gia vào tour du lịch Sơn Đoòng và các dịch vụ tương tự, cuộc sống của người dân đã ổn định hơn, nhiều người có thể lo cho con cái học đại học và làm việc tại các công ty du lịch trong khu vực.",
+  "author_id": {
+    "$oid": "68037d00f0c940bf0b480346"
+  },
+  "locationRaw": "680dff69030705939e3d8393",
+  "provinceGid": 45,
+  "timestamp": {
+    "$date": "2025-01-20T11:35:11.317Z"
+  },
+  "status": "flagged",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753711317_2.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753711321_1.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745753711322_3.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "0"
+  },
+  "usersLiked": [
+    "68037d00f0c940bf0b480346",
+    "6807765b5759ec532251c1a6"
+  ],
+  "flagInfo": {
+    "type": "sexual",
+    "word": "cu",
+    "source": "keyword",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:33:28.626Z"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "680e182ca7fd8e5d403cdca2"
+  },
+  "title": "Bài viết mới",
+  "content": "Công trình biểu tượng đáng đồng tiền bát gạo!\r\nRất đẹp, cảnh quan rộng mở lộng gió biển và ánh sáng!",
+  "author_id": {
+    "$oid": "68037d00f0c940bf0b480346"
+  },
+  "locationRaw": "680e01d7c489d692a7243f6b",
+  "provinceGid": 44,
+  "timestamp": {
+    "$date": "2025-01-15T11:42:36.107Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/nghingphong1.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/nghingphong2.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "2"
+  },
+  "usersLiked": [
+    "68037d00f0c940bf0b480346",
+    "6807765b5759ec532251c1a6",
+    "6805e6ede93d6be6fd40ead8",
+    "6819941b3f96f0291a18d956",
+    "683210d9a32cfed3663586db"
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "682f699dee1efc2e0ce3eaad"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "đẹp",
+      "created_at": {
+        "$date": "2025-05-22T18:14:53.583Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f699fee1efc2e0ce3eaae"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "đẹp",
+      "created_at": {
+        "$date": "2025-05-22T18:14:55.019Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f69adee1efc2e0ce3eaaf"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "đẹp",
+      "created_at": {
+        "$date": "2025-05-22T18:15:09.538Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f69b0ee1efc2e0ce3eab0"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "rất đẹp",
+      "created_at": {
+        "$date": "2025-05-22T18:15:12.471Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f69beee1efc2e0ce3eab1"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "đ",
+      "created_at": {
+        "$date": "2025-05-22T18:15:26.255Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f69cfee1efc2e0ce3eab2"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "hellloooooooooo",
+      "created_at": {
+        "$date": "2025-05-22T18:15:43.761Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "683201d3ef57ac53c03fb286"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "s",
+      "created_at": {
+        "$date": "2025-05-24T17:28:51.170Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832044e2e0c0f5490e7c0dc"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "Hello",
+      "created_at": {
+        "$date": "2025-05-24T17:39:26.094Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "683204532e0c0f5490e7c0dd"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "xin chào",
+      "created_at": {
+        "$date": "2025-05-24T17:39:31.548Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd830f56950b52dae04b"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "hello",
+      "created_at": {
+        "$date": "2025-05-25T06:49:39.920Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd850f56950b52dae04c"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "heloo",
+      "created_at": {
+        "$date": "2025-05-25T06:49:41.067Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd850f56950b52dae04d"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "hê",
+      "created_at": {
+        "$date": "2025-05-25T06:49:41.984Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd860f56950b52dae04e"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "sa",
+      "created_at": {
+        "$date": "2025-05-25T06:49:42.293Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd860f56950b52dae04f"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "ds",
+      "created_at": {
+        "$date": "2025-05-25T06:49:42.702Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd860f56950b52dae050"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "d",
+      "created_at": {
+        "$date": "2025-05-25T06:49:42.879Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae051"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "s",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.029Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae052"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "á",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.187Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae053"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "d",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.328Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae054"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "ád",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.474Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae055"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "sa",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.626Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae056"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "d",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.767Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd870f56950b52dae057"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "sa",
+      "created_at": {
+        "$date": "2025-05-25T06:49:43.902Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd880f56950b52dae058"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "d",
+      "created_at": {
+        "$date": "2025-05-25T06:49:44.049Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6832bd890f56950b52dae059"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "sad",
+      "created_at": {
+        "$date": "2025-05-25T06:49:45.002Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e21dea7fd8e5d403cdcb0"
+  },
+  "title": "Bài viết mới",
+  "content": "Mình đã dậy từ 3h sáng để đến Mũi Điện - nơi đón bình minh sớm nhất Việt Nam. Mũi Điện còn được gọi là Mũi Đại Lãnh bởi mũi đá này là phần cuối cùng của dãy núi Đại Lãnh. Ngọn núi này là một nhánh của dãy Trường Sơn được đâm thẳng ra biển.",
+  "author_id": {
+    "$oid": "680e2167a7fd8e5d403cdcaa"
+  },
+  "locationRaw": "680e075fc489d692a7243f73",
+  "provinceGid": 44,
+  "timestamp": {
+    "$date": "2025-04-27T12:23:58.538Z"
+  },
+  "status": "flagged",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756638538_4.jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "680e2167a7fd8e5d403cdcaa",
+    "6807765b5759ec532251c1a6"
+  ],
+  "flagInfo": {
+    "type": "sexual",
+    "word": "cu",
+    "source": "keyword",
+    "flaggedAt": {
+      "$date": "2025-05-29T16:52:10.676Z"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "680e227ba7fd8e5d403cdcb3"
+  },
+  "title": "Bài viết mới",
+  "content": "Hang động đẹp tuyệt vời. Vòm hang rất cao và rộng, có nhiều nhũ đá hình thành từ hàng triệu năm trước rất tuyệt vời. Không khí mát mẻ. Nhà thuyền rất nhiệt tình, tuy chạy thuyền máy hơi ồn ào chút trước khi tới Hang. Nhưng vào trong hang thì các bác ấy đã chuyển sang chèo bằng tay. Mái thuyền che nắng cũng được thu gọn để toàn bộ khách có thể ngắm hang động. Một trải nghiệm tuyệt vời.",
+  "author_id": {
+    "$oid": "680e2167a7fd8e5d403cdcaa"
+  },
+  "locationRaw": "680dfe8d030705939e3d8392",
+  "provinceGid": 45,
+  "timestamp": {
+    "$date": "2025-04-27T12:26:35.495Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756795496_5.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756795497_6.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "1"
+  },
+  "usersLiked": [
+    "6807765b5759ec532251c1a6",
+    "6819941b3f96f0291a18d956"
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "6819a8a33f96f0291a18d976"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "hello",
+      "created_at": {
+        "$date": "2025-05-06T06:13:55.525Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e1cbce634a520488789d1"
+  },
+  "title": "Bài viết mới",
+  "content": "Thác Dray nur đẹp quá",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680df9c9030705939e3d838b",
+  "provinceGid": 16,
+  "timestamp": {
+    "$date": "2025-05-06T05:11:37.955Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745755324268_45-1634114959-draynu.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745755324270_du-lich-buon-ma-thuot-kham-pha-cum-3-thac-dray-sap-dray-nur-gia-long.jpg"
+    },
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745755324271_huong-dan-duong-den-thac-dray-nur-ivivu-7.jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e1f25e634a520488789d7"
+  },
+  "title": "Bài viết mới",
+  "content": "Trải nghiệm du ngoạn trên Vịnh Hạ Long lúc hoàng hôn",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680df8e2151b98f919baa5ea",
+  "provinceGid": 48,
+  "timestamp": {
+    "$date": "2025-06-27T12:12:21.118Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745755941119_images (1).jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e1f70e634a520488789d8"
+  },
+  "title": "Bài viết mới",
+  "content": "Cẩm nang khám phá các hang động kỳ vĩ ở Vịnh Hạ Long",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680df8e2151b98f919baa5ea",
+  "provinceGid": 48,
+  "timestamp": {
+    "$date": "2025-07-27T12:13:36.455Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756016455_images1283642_2.jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e200de634a520488789db"
+  },
+  "title": "Bài viết mới",
+  "content": "Check-in Đảo Cô Tô – Thiên đường biển trong xanh",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680dfb98151b98f919baa5ed",
+  "provinceGid": 48,
+  "timestamp": {
+    "$date": "2025-07-27T12:16:13.471Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756173471_dao-co-to.jpeg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e20efe634a520488789de"
+  },
+  "title": "Bài viết mới",
+  "content": "Những khoảnh khắc bình yên bên Hồ Gươm sáng sớm",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680e059a809e5c2d8cfaf10b",
+  "provinceGid": 24,
+  "timestamp": {
+    "$date": "2025-07-27T12:19:59.540Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756399541_thap-rua-ho-guom-tho-ai-1-1531.jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "680e3462809e5c2d8cfaf169"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "hồ gươm thật đẹp",
+      "created_at": {
+        "$date": "2025-04-27T13:42:58.842Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "680e3d929009bc989a08ee22"
+      },
+      "user_id": {
+        "$oid": "6829c693cf2f9eac0ad875b5"
+      },
+      "content": "hồ gươm đẹp ghê",
+      "created_at": {
+        "$date": "2025-04-27T14:22:10.135Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6961ee1efc2e0ce3eaa2"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "hello",
+      "created_at": {
+        "$date": "2025-05-22T18:13:53.432Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6963ee1efc2e0ce3eaa3"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "sada",
+      "created_at": {
+        "$date": "2025-05-22T18:13:55.593Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6964ee1efc2e0ce3eaa4"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "sa",
+      "created_at": {
+        "$date": "2025-05-22T18:13:56.183Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6964ee1efc2e0ce3eaa5"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "ds",
+      "created_at": {
+        "$date": "2025-05-22T18:13:56.349Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6964ee1efc2e0ce3eaa6"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "a",
+      "created_at": {
+        "$date": "2025-05-22T18:13:56.515Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6964ee1efc2e0ce3eaa7"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "sad",
+      "created_at": {
+        "$date": "2025-05-22T18:13:56.689Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6964ee1efc2e0ce3eaa8"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "á",
+      "created_at": {
+        "$date": "2025-05-22T18:13:56.988Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6965ee1efc2e0ce3eaa9"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "sa",
+      "created_at": {
+        "$date": "2025-05-22T18:13:57.131Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6965ee1efc2e0ce3eaaa"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "ds",
+      "created_at": {
+        "$date": "2025-05-22T18:13:57.407Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6965ee1efc2e0ce3eaab"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "s",
+      "created_at": {
+        "$date": "2025-05-22T18:13:57.555Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "682f6965ee1efc2e0ce3eaac"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "s",
+      "created_at": {
+        "$date": "2025-05-22T18:13:57.700Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e212ae634a520488789df"
+  },
+  "title": "Bài viết mới",
+  "content": "Khám phá vẻ đẹp cổ kính xung quanh Hồ Hoàn Kiếm",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680e059a809e5c2d8cfaf10b",
+  "provinceGid": 24,
+  "timestamp": {
+    "$date": "2025-07-27T12:20:58.859Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756458859_dia-diem-du-lich-o-ha-noi-1.jpg"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e21bbe634a520488789e2"
+  },
+  "title": "Bài viết mới",
+  "content": "Hành trình viếng Lăng Bác - Niềm tự hào dân tộc",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680e084e809e5c2d8cfaf10c",
+  "provinceGid": 24,
+  "timestamp": {
+    "$date": "2025-09-27T12:23:23.608Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756603608_lang-chu-tich–ho-chi-minh-15.webp"
+    }
+  ],
+  "likes": 0,
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e2253e634a520488789e5"
+  },
+  "title": "Bài viết mới",
+  "content": "Văn Miếu Quốc Tử Giám - Nơi lưu giữ tinh hoa dân tộc Việt",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680e0a14809e5c2d8cfaf10d",
+  "provinceGid": 24,
+  "timestamp": {
+    "$date": "2025-10-27T12:25:55.929Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756755929_van-mieu-quoc-tu-giam (5).png"
+    }
+  ],
+  "likes": {
+    "$numberLong": "1"
+  },
+  "usersLiked": [
+    "6807765b5759ec532251c1a6",
+    "6819941b3f96f0291a18d956"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e22c0e634a520488789e8"
+  },
+  "title": "Bài viết mới",
+  "content": "Chinh phục đỉnh Núi Bà Đen – nóc nhà Nam Bộ",
+  "author_id": {
+    "$oid": "68075e0d451ca6c3ce261ceb"
+  },
+  "locationRaw": "680e042e72f74deacb8c6442",
+  "provinceGid": 52,
+  "timestamp": {
+    "$date": "2025-09-27T12:27:44.629Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1745756864629_sungroup-1-645.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "0"
+  },
+  "usersLiked": [
+    "6807765b5759ec532251c1a6"
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "68320f506a53cc7408de3f9b"
+      },
+      "user_id": {
+        "$oid": "6819941b3f96f0291a18d956"
+      },
+      "content": "helkd",
+      "created_at": {
+        "$date": "2025-05-24T18:26:24.154Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "681b23d8c993050eb8bddd67"
+  },
+  "title": "Bài viết mới",
+  "content": "Hello mọi người",
+  "author_id": {
+    "$oid": "6819941b3f96f0291a18d956"
+  },
+  "locationRaw": "680dfb5c030705939e3d838c",
+  "provinceGid": 16,
+  "timestamp": {
+    "$date": "2025-05-07T09:11:52.366Z"
+  },
+  "status": "active",
+  "tags": [
+    ""
+  ],
+  "media": [
+    {
+      "media_type": "image",
+      "media_url": "/uploads/1746609112366_1745747441068_photo-1-16395604236201458496477.jpg"
+    }
+  ],
+  "likes": {
+    "$numberLong": "1"
+  },
+  "usersLiked": [
+    "6819941b3f96f0291a18d956"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683c92294f48ceda73af1b0c"
+  },
+  "author_id": {
+    "$oid": "683210d9a32cfed3663586db"
+  },
+  "content": "adsdgfg",
+  "locationRaw": "680df8e2151b98f919baa5ea",
+  "media": [
+    {
+      "media_type": "image/jpeg",
+      "media_url": "/uploads/190b143e-f444-4ac0-80cd-1a70844c3eb9.jpg"
+    }
+  ],
+  "timestamp": {
+    "$date": "2025-06-01T17:47:21.600Z"
+  },
+  "status": "active",
+  "tags": null,
+  "likes": {
+    "$numberLong": "1"
+  },
+  "comments": [
+    {
+      "_id": {
+        "$oid": "683c92774f48ceda73af1b0d"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "dsfdfh",
+      "created_at": {
+        "$date": "2025-06-01T17:48:39.756Z"
+      }
+    }
+  ],
+  "usersLiked": [
+    "683210d9a32cfed3663586db"
+  ],
+  "flagInfo": null,
+  "provinceGid": 48
+},
+{
+  "_id": {
+    "$oid": "683d579c012d001c11e7903d"
+  },
+  "author_id": {
+    "$oid": "683210d9a32cfed3663586db"
+  },
+  "content": "sfdgf",
+  "locationRaw": "680df8e2151b98f919baa5ea",
+  "media": [
+    {
+      "media_type": "image/jpeg",
+      "media_url": "/uploads/c4f5cf7d-94ec-44b6-94b6-ad690c7f17e9.jpeg"
+    }
+  ],
+  "timestamp": {
+    "$date": "2025-06-02T07:49:48.539Z"
+  },
+  "status": "active",
+  "tags": null,
+  "likes": {
+    "$numberLong": "0"
+  },
+  "comments": [],
+  "usersLiked": [],
+  "flagInfo": null,
+  "provinceGid": 48
+},
+{
+  "_id": {
+    "$oid": "683f4aa5dd0c44358cbb77f2"
+  },
+  "author_id": {
+    "$oid": "683210d9a32cfed3663586db"
+  },
+  "content": "phong nha kẻ bàng thật tuyệt",
+  "locationRaw": "680dfdf2c489d692a7243f67",
+  "media": [
+    {
+      "media_type": "image/jpeg",
+      "media_url": "/uploads/d7a94bf4-82f7-4ab4-8ab3-9de6cc415678.jpg"
+    }
+  ],
+  "timestamp": {
+    "$date": "2025-06-03T19:19:01.757Z"
+  },
+  "status": "active",
+  "tags": null,
+  "likes": {
+    "$numberLong": "1"
+  },
+  "comments": [
+    {
+      "_id": {
+        "$oid": "683f4ab0dd0c44358cbb77f3"
+      },
+      "user_id": {
+        "$oid": "683210d9a32cfed3663586db"
+      },
+      "content": "ohhh noooo",
+      "created_at": {
+        "$date": "2025-06-03T19:19:12.980Z"
+      }
+    }
+  ],
+  "usersLiked": [
+    "683210d9a32cfed3663586db"
+  ],
+  "flagInfo": null,
+  "provinceGid": 45
+}]

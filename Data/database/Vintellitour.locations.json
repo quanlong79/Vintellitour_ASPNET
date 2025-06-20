@@ -1,0 +1,557 @@
+[{
+  "_id": {
+    "$oid": "680df8e2151b98f919baa5ea"
+  },
+  "coordinates": {
+    "lat": 20.956309891986706,
+    "lng": 107.09008179984305
+  },
+  "provinceGid": 48,
+  "address": "Quảng Ninh",
+  "description": "Vịnh Hạ Long, một kỳ quan thiên nhiên thế giới nằm ở tỉnh Quảng Ninh, Việt Nam, nổi bật với hàng nghìn hòn đảo đá vôi kỳ vĩ và mặt nước xanh ngọc bích. Cảnh sắc nơi đây tạo nên một bức tranh thủy mặc tuyệt đẹp, là điểm đến lý tưởng cho những chuyến du ngoạn thuyền, khám phá hang động và tận hưởng vẻ đẹp kỳ ảo của thiên nhiên.\r\n",
+  "description_history": "Vịnh Hạ Long đã gắn liền với nhiều truyền thuyết dân gian Việt Nam, nổi tiếng nhất là câu chuyện về đàn rồng giáng thế để bảo vệ đất nước, tạo ra hàng nghìn hòn đảo lớn nhỏ. Được UNESCO công nhận là Di sản Thiên nhiên Thế giới vào năm 1994 và 2000, Vịnh Hạ Long không chỉ có giá trị cảnh quan mà còn là kho tàng địa chất, sinh học và khảo cổ học quý giá. Nơi đây đã trải qua hàng triệu năm kiến tạo địa chất, tạo nên hệ thống đảo đá vôi hùng vĩ cùng với hệ sinh thái biển đa dạng, trở thành biểu tượng tự hào của du lịch Việt Nam trên bản đồ thế giới.\r\n",
+  "image": [
+    "/uploads/1745746620287_vinhhalong.jpg"
+  ],
+  "name": "Vịnh Hạ Long",
+  "openTime": "6:00",
+  "price": "Chưa cập nhật",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745746488606!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJREYtckt4S1E.!2m2!1d20.94944746984379!2d107.0848245401605!3f184.84201493921984!4f-2.2017199914613457!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745746544780!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRDk2dWJlWHc.!2m2!1d20.9100512289355!2d107.1839024224061!3f179.38305226278453!4f9.451237178266538!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745746606297!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRHA2X1RWMGdF!2m2!1d20.9100512289355!2d107.1839024224061!3f256.84533533031913!4f-46.00799485072609!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dfb98151b98f919baa5ed"
+  },
+  "coordinates": {
+    "lat": 20.99734274071184,
+    "lng": 107.74480548881296
+  },
+  "provinceGid": 48,
+  "address": "Quảng Ninh",
+  "description": "Đảo Cô Tô, viên ngọc xanh của Quảng Ninh, nổi tiếng với những bãi biển cát trắng mịn trải dài, làn nước trong vắt và vẻ đẹp hoang sơ quyến rũ. Đây là điểm đến lý tưởng cho những ai yêu thích thiên nhiên, muốn tận hưởng không gian biển cả yên bình, trải nghiệm cuộc sống của người dân vùng đảo.\r\n",
+  "description_history": "Đảo Cô Tô từng được biết đến là nơi neo đậu của các đội tàu đánh cá từ thời phong kiến. Trải qua nhiều thế kỷ, Cô Tô vẫn giữ được vẻ đẹp nguyên sơ cùng nét văn hóa đặc trưng của ngư dân vùng biển. Nơi đây còn lưu giữ dấu chân Chủ tịch Hồ Chí Minh khi Người thăm đảo năm 1961. Với những giá trị tự nhiên và lịch sử đặc biệt, Cô Tô ngày nay không chỉ là điểm du lịch nổi tiếng mà còn là biểu tượng gắn kết tình yêu biển đảo thiêng liêng của Việt Nam.\r\n",
+  "image": [
+    "/uploads/1745747114679_đảo-cô-tô-ivivu1.jpg"
+  ],
+  "name": "Đảo Cô Tô",
+  "openTime": "6:00",
+  "price": "Chưa cập nhật",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745746992956!6m8!1m7!1sCAoSLEFGMVFpcE80NE5XVHZXeWd5VzVqMVlVa1ZSVThxV1BoWlFDaXZFMWN2elRU!2m2!1d20.97312830801298!2d107.7656200092429!3f173.75002677511034!4f2.817022054661436!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745747040208!6m8!1m7!1sCAoSLEFGMVFpcE01RnJqZXhoZE9QU1dnRkFUZ0wxWEVkNmRNOWJhT25FMmJUb1Ri!2m2!1d20.97308128450443!2d107.7632434260711!3f100.70725703943967!4f-13.583459384135196!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745747091321!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ014cktXb3dF!2m2!1d21.0091022647372!2d107.751909999064!3f7.0653669826656795!4f-13.822025447783659!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e0180809e5c2d8cfaf10a"
+  },
+  "coordinates": {
+    "lat": 20.93578924489374,
+    "lng": 107.51333546734931
+  },
+  "provinceGid": 48,
+  "address": "Quảng Ninh",
+  "description": "Đảo Quan Lạn, viên ngọc ẩn mình của vịnh Bái Tử Long, Quảng Ninh, nổi tiếng với những bãi biển hoang sơ, làn nước trong xanh và những đồi cát trắng trải dài. Với không khí yên bình, thiên nhiên nguyên sơ và nhịp sống mộc mạc của ngư dân địa phương, Quan Lạn là điểm đến lý tưởng cho những ai muốn tìm về với thiên nhiên thuần khiết và tránh xa nhịp sống đô thị ồn ào.\r\n",
+  "description_history": "Quan Lạn từng là thương cảng cổ Vân Đồn nổi tiếng trong thế kỷ 12, nơi giao thương tấp nập giữa Việt Nam và các nước trong khu vực. Hòn đảo còn gắn liền với những chiến công oanh liệt trong cuộc kháng chiến chống quân Nguyên Mông dưới thời nhà Trần. Ngày nay, Quan Lạn vẫn lưu giữ nhiều dấu ấn lịch sử như đình Quan Lạn – ngôi đình cổ kính bậc nhất vùng Đông Bắc. Không chỉ có giá trị văn hóa, Quan Lạn còn sở hữu vẻ đẹp tự nhiên tuyệt mỹ, là biểu tượng cho sự giao hòa giữa lịch sử và thiên nhiên.\r\n",
+  "image": [
+    "/uploads/1745748548404_quanlan.jpg"
+  ],
+  "name": "Đảo Quan Lạn",
+  "openTime": "6:00",
+  "price": "Chưa cập nhật",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745748449340!6m8!1m7!1sCAoSLEFGMVFpcE1RdXNqaFpMdkVwc1hqdkxxR0h5bDFmTVpkOENrdlBEUmc3Mjh1!2m2!1d20.90798501831087!2d107.5143049639971!3f309.79022268419095!4f-21.319309372525694!5f0.4000000000000002",
+    "https://www.google.com/maps/embed?pb=!4v1745748512803!6m8!1m7!1sCAoSLEFGMVFpcE42Umkta3FVYjFidkVXNUFfcnJKOVJFY2RsTlRfWFVpNGxtTEJF!2m2!1d20.8187196110255!2d107.4696707634142!3f272.7521290393047!4f-4.0805513862682545!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745748535313!6m8!1m7!1sCAoSLEFGMVFpcFBLeW0wQjFfdDlDRjI5eTVkYWFvbVBPT3ZLTXo5YTRpRmhEc1Vo!2m2!1d20.81698067755328!2d107.4773070436241!3f204.43069000230534!4f11.646562882462092!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e059a809e5c2d8cfaf10b"
+  },
+  "coordinates": {
+    "lat": 21.091333808217318,
+    "lng": 105.81021813423291
+  },
+  "provinceGid": 24,
+  "address": "Hà Nội",
+  "description": "Hồ Hoàn Kiếm, hay còn gọi là Hồ Gươm, là biểu tượng văn hóa và lịch sử lâu đời của thủ đô Hà Nội. Với mặt nước xanh ngọc bích, Tháp Rùa cổ kính giữa hồ, cùng Đền Ngọc Sơn linh thiêng trên đảo Ngọc, nơi đây mang đến cho du khách cảm giác thanh bình, cổ kính và đầy thi vị giữa lòng thành phố sôi động.\r\n",
+  "description_history": "Hồ Hoàn Kiếm gắn liền với truyền thuyết vua Lê Lợi trả lại gươm thần cho Rùa Vàng sau khi chiến thắng quân Minh vào thế kỷ 15. Từ đó, hồ được mang tên Hoàn Kiếm, nghĩa là 'trả gươm'. Qua nhiều thế kỷ, Hồ Gươm đã trở thành chứng nhân lịch sử, chứng kiến bao thăng trầm của Hà Nội, từ thời phong kiến, thời Pháp thuộc cho đến ngày nay. Với giá trị văn hóa, lịch sử to lớn, Hồ Hoàn Kiếm là niềm tự hào và là điểm nhấn không thể thiếu trong lòng mỗi người dân Hà Nội và du khách thập phương.\r\n",
+  "image": [
+    "/uploads/1745750069699_ho-hoan-kiem-21_1688885249.jpg"
+  ],
+  "name": "Hồ Hoàn Kiếm",
+  "openTime": "Cả ngày",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://diachidohanoi.vr360.com.vn/viewer/?code=084b6fbb10729ed4da8c3d3f5a3ae7c9",
+    "https://www.google.com/maps/embed?pb=!4v1745599412488!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRDRtY1hUb0FF!2m2!1d21.02633983536467!2d105.853111280511!3f280!4f10!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745599931374!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ1dzN21OQ1E.!2m2!1d21.02911674065396!2d105.8532367156918!3f236.68897786515268!4f5.673544647943615!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e084e809e5c2d8cfaf10c"
+  },
+  "coordinates": {
+    "lat": 21.007599191785754,
+    "lng": 105.71138681639134
+  },
+  "provinceGid": 24,
+  "address": "Hà Nội",
+  "description": "Lăng Chủ tịch Hồ Chí Minh, toạ lạc tại Quảng trường Ba Đình lịch sử, là nơi lưu giữ thi hài Bác Hồ – vị lãnh tụ vĩ đại của dân tộc Việt Nam. Với kiến trúc trang nghiêm, bề thế và không gian thanh tịnh, Lăng Bác là điểm đến linh thiêng, thể hiện lòng thành kính, biết ơn sâu sắc của nhân dân Việt Nam và bạn bè quốc tế dành cho Người.\r\n",
+  "description_history": "\"Sau khi Chủ tịch Hồ Chí Minh từ trần năm 1969, theo nguyện vọng của toàn thể nhân dân Việt Nam, Lăng Chủ tịch Hồ Chí Minh đã được xây dựng từ năm 1973 và khánh thành vào năm 1975. Công trình được xây dựng trên nền Quảng trường Ba Đình – nơi Bác Hồ đọc bản Tuyên ngôn Độc lập khai sinh ra nước Việt Nam Dân chủ Cộng hòa năm 1945. Lăng mang phong cách kiến trúc kiên cố, vững chắc nhưng vẫn giản dị, gần gũi, kết hợp hài hòa giữa bản sắc văn hóa Việt Nam và tinh thần quốc tế. Đây không chỉ là nơi an nghỉ vĩnh hằng của Bác mà còn là biểu tượng bất diệt về tư tưởng, đạo đức và tâm hồn của Chủ tịch Hồ Chí Minh – vị cha già dân tộc.\"\r\n",
+  "image": [
+    "/uploads/1745750431333_Lăng_Bác_-_NKS.jpg"
+  ],
+  "name": "Lăng Chủ tịch Hồ Chí Minh",
+  "openTime": "Cả ngày",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745750324814!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRFR3X0hrOGdF!2m2!1d21.03689726900265!2d105.8346666880866!3f146.53322088616144!4f7.758085062810906!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745750358437!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0VtSmZsclFF!2m2!1d21.03732551264546!2d105.836162180722!3f346.4460695629372!4f7.247523546021924!5f0.7820865974627469",
+    ""
+  ],
+  "tags": [
+    "hanoi"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e0a14809e5c2d8cfaf10d"
+  },
+  "coordinates": {
+    "lat": 20.940919670394646,
+    "lng": 105.84876777623047
+  },
+  "provinceGid": 24,
+  "address": "Hà Nội",
+  "description": "Văn Miếu - Quốc Tử Giám là quần thể di tích lịch sử văn hóa nổi tiếng bậc nhất tại Hà Nội, được coi là biểu tượng của truyền thống hiếu học và nền giáo dục lâu đời của dân tộc Việt Nam. Với kiến trúc cổ kính, khuôn viên xanh mát và những bia tiến sĩ khắc tên những nhân tài thời phong kiến, nơi đây là điểm đến lý tưởng để tìm hiểu về lịch sử học thuật Việt Nam và tận hưởng không gian trầm mặc giữa lòng thủ đô.\r\n",
+  "description_history": "\"Văn Miếu được xây dựng vào năm 1070 dưới triều vua Lý Thánh Tông để thờ Khổng Tử và các bậc hiền triết Nho giáo. Đến năm 1076, dưới thời vua Lý Nhân Tông, Quốc Tử Giám được thành lập ngay trong khuôn viên Văn Miếu, trở thành trường đại học đầu tiên của Việt Nam, đào tạo nhân tài cho triều đình phong kiến. Trải qua hàng nghìn năm lịch sử, Văn Miếu - Quốc Tử Giám không chỉ là trung tâm giáo dục lớn nhất thời phong kiến mà còn lưu giữ những giá trị văn hóa, tinh thần quý báu của dân tộc. Các bia tiến sĩ dựng từ thế kỷ 15 khắc tên những người đỗ đại khoa đã trở thành những bảo vật quốc gia, biểu tượng cho truyền thống tôn sư trọng đạo và lòng hiếu học muôn đời của người Việt.\"\r\n",
+  "image": [
+    "/uploads/1745750843226_vanmieuqtg.jpg"
+  ],
+  "name": "Văn Miếu - Quốc Tử Giám",
+  "openTime": "Cả ngày",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745750716208!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRDRxb3ozd1FF!2m2!1d21.02778053082973!2d105.8355700025428!3f177.08608746597764!4f13.189493921152646!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745750740939!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREctcnpCaXdF!2m2!1d21.02741728960589!2d105.8354394727501!3f201.32958393047116!4f-14.721099923217182!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745750828483!6m8!1m7!1sCAoSLEFGMVFpcE9BRGw2YlNvcFNtVWphX3JlSzVIUXAzOG16NVByZ3hoa1RDTFJG!2m2!1d21.0288887399838!2d105.8359847958349!3f286.5905524313046!4f-17.457162692598274!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e042e72f74deacb8c6442"
+  },
+  "coordinates": {
+    "lat": 11.517705009897712,
+    "lng": 106.3427444031372
+  },
+  "provinceGid": 52,
+  "address": "Phường Ninh Sơn, Thành phố Tây Ninh, tỉnh Tây Ninh, Việt Nam",
+  "description": "Núi Bà Đen là ngọn núi cao nhất miền Nam Việt Nam với độ cao 986 mét, nổi tiếng với cảnh quan thiên nhiên hùng vĩ và quần thể chùa Bà linh thiêng. Đây là địa điểm lý tưởng cho du khách yêu thích du lịch tâm linh, leo núi và thưởng ngoạn thiên nhiên. Núi có hệ thống cáp treo hiện đại giúp du khách dễ dàng lên đỉnh núi và tham quan nhiều điểm đẹp trên đường đi.",
+  "description_history": "Núi Bà Đen gắn liền với truyền thuyết về nàng Đênh, một cô gái trẻ xinh đẹp nhưng gặp nhiều bất hạnh. Nơi đây từ lâu đã trở thành một trung tâm tín ngưỡng lớn, thu hút hàng triệu lượt khách hành hương mỗi năm, đặc biệt là vào dịp Tết Nguyên Đán và Rằm tháng Giêng.",
+  "image": [
+    "/uploads/1745749364017_toan-canh-nui-ba-2024011010171949.jpg"
+  ],
+  "name": "Núi Bà Đen",
+  "openTime": "5:00 – 22:00 hằng ngày",
+  "price": "Miễn phí",
+  "tags": [
+    ""
+  ],
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745749600660!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREN1OHl4OXdF!2m2!1d11.38168908650588!2d106.1757379305223!3f335.12324610145373!4f-17.39089350193575!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745749643838!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0U3X25aLXdF!2m2!1d11.38168908650588!2d106.1757379305223!3f67.38361529338445!4f-2.813332163596499!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745749682850!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRFJoNTdPdUFF!2m2!1d11.38168908650588!2d106.1757379305223!3f178.03651083850673!4f-58.53750671142793!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e0788edecaa89034d23cb"
+  },
+  "coordinates": {
+    "lat": 11.366953427299931,
+    "lng": 106.18891053472636
+  },
+  "provinceGid": 52,
+  "address": "Phường Long Hoa, Thị xã Hòa Thành, Tỉnh Tây Ninh, Việt Nam",
+  "description": "Tòa Thánh Tây Ninh là trung tâm tín ngưỡng của đạo Cao Đài – một tôn giáo đặc trưng của Việt Nam. Công trình có kiến trúc độc đáo pha trộn giữa phương Đông và phương Tây, với gam màu tươi sáng và những chi tiết chạm khắc tinh xảo. Không gian nơi đây yên bình và rộng lớn, tạo nên cảm giác thanh tịnh, thích hợp cho du khách tìm hiểu văn hóa tôn giáo Việt Nam.",
+  "description_history": "Tòa Thánh Tây Ninh được khởi công xây dựng vào năm 1933 và hoàn thành năm 1955. Đây là nơi thờ Đức Chí Tôn và các vị giáo chủ của đạo Cao Đài. Công trình này là biểu tượng của sự hòa hợp giữa các nền văn hóa, tôn giáo khác nhau và là điểm đến quan trọng của tín đồ Cao Đài cũng như du khách trong và ngoài nước.",
+  "image": [
+    "/uploads/1745750257358_Toa-thanh-tay-ninh-001-.jpg"
+  ],
+  "name": "Tòa Thánh Tây Ninh",
+  "openTime": "6:00 – 18:00 hằng ngày (các buổi lễ lớn diễn ra vào 12h trưa)",
+  "price": "Miễn phí ",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745750165113!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ2Vnb0hjUHc.!2m2!1d11.30388812295595!2d106.1331244655115!3f184.30934198742517!4f9.266000457895359!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745750211464!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ2Vnc0hncGdF!2m2!1d11.30388812295595!2d106.1331244655115!3f224.07792389241106!4f-0.119173351345367!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745750241437!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ2Vnc0hJVnc.!2m2!1d11.30388812295595!2d106.1331244655115!3f56.63075217117526!4f-0.7548559223737072!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e09b5edecaa89034d23cc"
+  },
+  "coordinates": {
+    "lat": 11.609193407938953,
+    "lng": 106.04057073304449
+  },
+  "provinceGid": 52,
+  "address": "Xã Tân Lập, Huyện Tân Biên, Tỉnh Tây Ninh, Việt Nam",
+  "description": "Vườn Quốc gia Lò Gò - Xa Mát là khu bảo tồn thiên nhiên lớn nhất Tây Ninh, nổi bật với hệ sinh thái rừng nhiệt đới phong phú, nhiều loài động thực vật quý hiếm. Du khách có thể trải nghiệm trekking xuyên rừng, tham quan sông Vàm Cỏ Đông, và khám phá đời sống tự nhiên hoang dã. Đây là địa điểm lý tưởng cho những ai yêu thích thiên nhiên, khám phá sinh thái.",
+  "description_history": "Vườn Quốc gia Lò Gò - Xa Mát được thành lập năm 2002 nhằm bảo vệ hệ sinh thái rừng đặc dụng đặc trưng cho vùng Tây Nam Bộ. Ngoài giá trị sinh thái, khu vực này còn có vai trò lịch sử khi từng là căn cứ cách mạng trong thời kỳ kháng chiến chống Mỹ.\r\n\r\n",
+  "image": [
+    "/uploads/1745750655499_28950-vuon-quoc-gia-lo-go-xa-mat.jpg"
+  ],
+  "name": "Vườn Quốc gia Lò Gò - Xa Mát ",
+  "openTime": "7:00 – 17:00 hằng ngày",
+  "price": "Khoảng 40.000 VNĐ/người",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745750553615!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE1xdktzeHdF!2m2!1d11.59370423742109!2d105.8932641562431!3f278.56512509558956!4f2.1748101306942544!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745750592456!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRE1xdks0Znc.!2m2!1d11.58945939728527!2d105.8909651676862!3f315.03474934527554!4f0.9636722049088462!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745750642848!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRE1xdktpWHc.!2m2!1d11.58721647078254!2d105.8896415638289!3f0.15262301574085768!4f1.252544847013752!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dfdf2c489d692a7243f67"
+  },
+  "coordinates": {
+    "lat": 17.60978365788717,
+    "lng": 106.3052227878171
+  },
+  "provinceGid": 45,
+  "address": "Quảng Bình, Việt Nam",
+  "description": "Vườn quốc gia Phong Nha - Kẻ Bàng là di sản thiên nhiên thế giới nằm ở tỉnh Quảng Bình, Việt Nam, nổi tiếng với hệ thống hang động kỳ vĩ, rừng nguyên sinh bạt ngàn và đa dạng sinh học phong phú. Với những kỳ quan như động Phong Nha, động Thiên Đường và hang Sơn Đoòng – hang động lớn nhất thế giới, nơi đây thu hút du khách bởi vẻ đẹp hoang sơ, hùng vĩ cùng giá trị địa chất, địa mạo đặc biệt quý giá.",
+  "description_history": "Vườn quốc gia Phong Nha - Kẻ Bàng có lịch sử hình thành từ hơn 400 triệu năm trước, là kết quả của quá trình kiến tạo địa chất lâu dài và phức tạp. Khu vực này từng là vùng biển cổ, nơi những lớp đá vôi được hình thành và biến đổi qua hàng triệu năm, tạo nên hệ thống hang động đồ sộ ngày nay. Trong lịch sử hiện đại, Phong Nha - Kẻ Bàng còn là căn cứ địa cách mạng trong kháng chiến chống Pháp và chống Mỹ, ghi dấu nhiều chiến công oai hùng của quân dân Quảng Bình.",
+  "image": [
+    "/uploads/1745748085380_phongnhakebang.jpg"
+  ],
+  "name": "Vườn Quốc gia Phong Nha - Kẻ Bàng",
+  "openTime": "07h15",
+  "price": "150000",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745747903266!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREVsT3E0c0FF!2m2!1d17.61229889307029!2d106.3064736214239!3f63.36046378921661!4f-34.96174808691941!5f0.4000000000000002\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745748026799!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ2trNl9SNGdF!2m2!1d17.59078148187119!2d106.2833927991569!3f280!4f0!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745748061578!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ3RudkhKbWdF!2m2!1d17.47767903045252!2d106.1340395116056!3f353.57314469675987!4f-30.013389379776157!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e01d7c489d692a7243f6b"
+  },
+  "coordinates": {
+    "lat": 13.108587121847734,
+    "lng": 109.31276847536039
+  },
+  "provinceGid": 44,
+  "address": "Bình Kiến, Tuy Hòa, Phú Yên, Việt Nam",
+  "description": "Quảng trường Nghinh Phong nằm ven biển thành phố Tuy Hòa, tỉnh Phú Yên, là công trình biểu tượng mới của địa phương. Nổi bật với cụm công trình kiến trúc \"Tháp Nghinh Phong\" mô phỏng hình ảnh gió thổi qua những khối đá, quảng trường rộng lớn này không chỉ là điểm check-in yêu thích của du khách mà còn là không gian sinh hoạt cộng đồng sôi động, tổ chức nhiều sự kiện văn hóa, nghệ thuật ngoài trời. Với vị trí hướng biển và thiết kế độc đáo, nơi đây thể hiện khát vọng vươn xa và hòa mình cùng thiên nhiên của con người Phú Yên.",
+  "description_history": "Quảng trường Nghinh Phong được khởi công xây dựng vào năm 2019 và khánh thành vào năm 2021. Công trình này nằm trong kế hoạch phát triển hạ tầng du lịch của thành phố Tuy Hòa nhằm tạo điểm nhấn văn hóa - du lịch mới, thu hút du khách đến với Phú Yên. Thiết kế lấy cảm hứng từ truyền thuyết \"Sơn Tinh – Thủy Tinh\" và hình tượng những luồng gió mạnh vùng duyên hải miền Trung, quảng trường không chỉ mang tính biểu tượng về thiên nhiên mà còn phản ánh tinh thần kiên cường, hòa hợp với đất trời của người dân nơi đây.",
+  "image": [
+    "/uploads/1745748904662_thapnghinhphong.jpg"
+  ],
+  "name": "Quảng trường Nghinh Phong",
+  "openTime": "24/24",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745748794462!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRHVpb2VFcWdF!2m2!1d13.11632291429274!2d109.3069432292851!3f77.2813352628184!4f17.85010967188522!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745748820813!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHBvN1dMWEE.!2m2!1d13.11638051183431!2d109.3074462810445!3f202.0415082979637!4f30.132076680334748!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade",
+    "https://www.google.com/maps/embed?pb=!4v1745748881002!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRDJ3TXFCMlFF!2m2!1d13.11627712710051!2d109.3072513404836!3f9.561323440389174!4f-4.987911937410203!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e04b8c489d692a7243f72"
+  },
+  "coordinates": {
+    "lat": 13.353356122988458,
+    "lng": 109.28529927004867
+  },
+  "provinceGid": 44,
+  "address": "Tuy An, Phú Yên, Việt Nam",
+  "description": "Gành Đá Đĩa là một kỳ quan thiên nhiên độc đáo nằm tại xã An Ninh Đông, huyện Tuy An, tỉnh Phú Yên. Nơi đây nổi bật với hàng ngàn cột đá hình lăng trụ xếp chồng lên nhau như những chồng đĩa khổng lồ, tạo nên cảnh tượng kỳ vĩ hiếm có. Các cột đá có màu đen sẫm, mặt cắt đều đặn, tạo nên một bức tranh tự nhiên vừa hùng vĩ vừa huyền bí, thu hút đông đảo du khách và nhiếp ảnh gia. Gành Đá Đĩa không chỉ là biểu tượng du lịch của Phú Yên mà còn là một trong những danh thắng thiên nhiên hiếm hoi của Việt Nam.",
+  "description_history": "Gành Đá Đĩa được hình thành cách đây khoảng 200 triệu năm, do hoạt động núi lửa phun trào dung nham nóng chảy xuống biển, gặp nước lạnh đột ngột khiến dòng dung nham bị nứt mẻ theo các khối đa giác tự nhiên. Qua hàng triệu năm phong hóa, thiên nhiên đã tạo nên một kỳ quan đá với hình thù lạ mắt như ngày nay. Gành Đá Đĩa không chỉ gắn liền với lịch sử kiến tạo địa chất của vùng duyên hải miền Trung, mà còn là niềm tự hào văn hóa - du lịch của người dân Phú Yên.",
+  "image": [
+    "/uploads/1745749705084_ganhdadia.jpg"
+  ],
+  "name": "Gành Đá Đĩa",
+  "openTime": "24/24",
+  "price": "40000",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745749586581!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE90cEs4aWdF!2m2!1d13.35415167585298!2d109.2939529167041!3f78.96596431965304!4f-18.156316756173993!5f0.4000000000000002\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745749646346!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE90dUt2bHdF!2m2!1d13.35390000099407!2d109.2935867329767!3f57.93644624969315!4f-12.4826936667977!5f0.4000000000000002\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745749685377!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ2N5cTNUTFE.!2m2!1d13.35420827479798!2d109.2939216980556!3f348.807690889143!4f-39.823401822854336!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\""
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e075fc489d692a7243f73"
+  },
+  "coordinates": {
+    "lat": 12.899478120703815,
+    "lng": 109.44888496053701
+  },
+  "provinceGid": 44,
+  "address": "thôn Đồng Bé, xã, Hoà Tâm, Đông Hòa, Phú Yên, Việt Nam",
+  "description": "Hải đăng Đại Lãnh, còn gọi là Mũi Đại Lãnh hoặc Mũi Điện, tọa lạc tại xã Hòa Tâm, huyện Đông Hòa, tỉnh Phú Yên. Đây là một trong những ngọn hải đăng cổ nhất Việt Nam, nằm ở vị trí đón ánh bình minh đầu tiên trên đất liền Việt Nam. Từ đỉnh hải đăng, du khách có thể chiêm ngưỡng toàn cảnh biển xanh mênh mông, bãi Môn hoang sơ tuyệt đẹp và những dãy núi uốn lượn theo bờ biển. Hải đăng Đại Lãnh không chỉ là công trình định hướng hàng hải quan trọng mà còn là điểm đến hấp dẫn cho những ai yêu thiên nhiên và khám phá.",
+  "description_history": "Hải đăng Đại Lãnh được người Pháp xây dựng vào cuối thế kỷ 19, khoảng năm 1890, nhằm hỗ trợ tàu thuyền lưu thông qua vùng biển miền Trung Việt Nam an toàn hơn. Sau nhiều biến cố lịch sử, ngọn hải đăng từng bị phá hủy và ngưng hoạt động trong chiến tranh, rồi được trùng tu, khôi phục lại sau năm 1975. Đến nay, hải đăng vẫn hoạt động, không chỉ đóng vai trò dẫn đường cho tàu thuyền mà còn trở thành biểu tượng lịch sử gắn liền với hành trình khai phá vùng đất Phú Yên.",
+  "image": [
+    "/uploads/1745750149986_haidangdailanh.jpg"
+  ],
+  "name": "Hải đăng Đại Lãnh",
+  "openTime": "24/24",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745750041893!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREU3OUdkbHdF!2m2!1d12.89588759318425!2d109.457494001796!3f354.4210800205848!4f-9.150448413945682!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745750084917!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQzRoNG1pb3dF!2m2!1d12.89656579105902!2d109.4569808105242!3f168.5804266877577!4f-19.628448371491956!5f0.4000000000000002\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745750129114!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQzYwYUtBMmdF!2m2!1d12.89724173129715!2d109.457506711298!3f70.8818!4f0!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\""
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680df78c030705939e3d838a"
+  },
+  "name": "Thác Dray Nur",
+  "description": "Thác Draynur là một trong những thác nước kỳ vĩ bậc nhất Tây Nguyên, nổi tiếng với dòng nước cuồn cuộn trắng xóa và khung cảnh hoang sơ tuyệt đẹp. Âm thanh ầm vang của nước đổ hòa cùng hơi nước mờ ảo tạo nên một không gian vừa hùng tráng vừa thơ mộng, làm say lòng mọi du khách.",
+  "slug": "",
+  "coordinates": {
+    "lat": 12.41474769034729,
+    "lng": 108.03362861086543
+  },
+  "provinceGid": 16,
+  "address": "Xã Dray Sáp, huyện Krông Ana, Đắk Lắk",
+  "description_history": "Theo truyền thuyết của người Ê Đê và M'Nông, thác Draynur là nơi chứng kiến một mối tình đẹp nhưng bi thương, khiến dòng nước mãi mãi ngân vang tiếng khóc. Thác còn được xem là biểu tượng linh thiêng, gắn liền với đời sống tâm linh và văn hóa của đồng bào Tây Nguyên.",
+  "image": [
+    "/uploads/locations/54a53fa3-2d0d-42b5-b9b0-e6b164b20568.png"
+  ],
+  "openTime": "7h sáng - 5h chiều",
+  "price": "50.000 VND",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745746111940!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQzR5ckNBbmdF!2m2!1d12.53922258364893!2d107.8876023619172!3f104.00970710031032!4f-18.385472707686006!5f0.4000000000000002",
+    "https://www.google.com/maps/embed?pb=!4v1745746226114!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREUzSnFydndF!2m2!1d12.54079826622897!2d107.8905174040296!3f342.3780376147695!4f8.426491084729605!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745746258436!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREI3Wkh3NndF!2m2!1d12.54143160710806!2d107.8905647739298!3f105.605896!4f0!5f0.7820865974627469"
+  ],
+  "tags": []
+},
+{
+  "_id": {
+    "$oid": "680df9c9030705939e3d838b"
+  },
+  "coordinates": {
+    "lat": 12.720281720071883,
+    "lng": 108.04461342353193
+  },
+  "provinceGid": 16,
+  "address": "Đường Nguyễn Đình Chiểu, Phường Tân Lợi, TP. Buôn Ma Thuột, Đắk Lắk",
+  "description": "Bảo tàng Thế giới Cà phê là điểm đến độc đáo tại Buôn Ma Thuột, nơi lưu giữ tinh hoa văn hóa cà phê Việt Nam và thế giới. Với kiến trúc hiện đại và không gian trải nghiệm sáng tạo, bảo tàng mang đến cho du khách hành trình khám phá cà phê đầy cảm hứng.\r\n",
+  "description_history": "Được khánh thành vào năm 2018 bởi Tập đoàn Trung Nguyên Legend, Bảo tàng Thế giới Cà phê tại Buôn Ma Thuột ra đời với sứ mệnh xây dựng nơi đây trở thành \"thủ phủ cà phê toàn cầu\". Bảo tàng lưu giữ hơn 10.000 hiện vật quý liên quan đến văn hóa cà phê thế giới, đồng thời là không gian sáng tạo, giao lưu giữa các nền văn hóa cà phê. Công trình sở hữu kiến trúc mô phỏng những ngôi nhà dài truyền thống của Tây Nguyên, kết hợp nghệ thuật hiện đại, mang đến trải nghiệm độc đáo cho du khách trong nước và quốc tế.\r\n",
+  "image": [
+    "/uploads/1745746666959_bao-tang-the-gioi-ca-phe.jpg"
+  ],
+  "name": "Bảo tàng Thế giới Cà phê",
+  "openTime": "08:00 - 17:00",
+  "price": "Khoảng 75,000 VND/người lớn, 50,000 VND/trẻ em",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745746596085!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ3g1TExDNHdF!2m2!1d12.69090133332988!2d108.044584674225!3f44.90831886423357!4f-0.5014643852892959!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745746637271!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRDQyNVAyb3dF!2m2!1d12.69030470758947!2d108.0446563083941!3f157.8459273263002!4f-7.918503876676866!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dfb5c030705939e3d838c"
+  },
+  "coordinates": {
+    "lat": 12.635447637985417,
+    "lng": 108.47851352385742
+  },
+  "provinceGid": 16,
+  "address": "Xã Yang Tao, huyện Lắk, tỉnh Đắk Lắk",
+  "description": "Núi Đá Voi là điểm đến nổi tiếng tại Đắk Lắk với hai khối đá khổng lồ nằm giữa núi rừng hoang sơ. Với hình dáng như những chú voi đang nghỉ ngơi, nơi đây không chỉ thu hút du khách tham quan mà còn mang đậm giá trị tâm linh của người Ê Đê.\r\n",
+  "description_history": "Theo truyền thuyết của người Ê Đê và M'Nông, Núi Đá Voi là hóa thân của những chú voi chiến quả cảm, từng sát cánh cùng người dân bảo vệ buôn làng khỏi hiểm họa. Khi hy sinh, linh hồn của voi hóa đá, sừng sững giữa đại ngàn như những người canh giữ thiêng liêng. Trải qua hàng ngàn năm, hai khối đá ấy vẫn trường tồn như biểu tượng của sức mạnh, lòng trung thành và sự gắn bó bền chặt giữa con người Tây Nguyên và thiên nhiên hùng vĩ.\r\n",
+  "image": [
+    "/uploads/1745746935000_da-voi-me-yang-tao-ivivu-4.jpg"
+  ],
+  "name": "Núi Đá Voi",
+  "openTime": "Mở cửa tự do, không giới hạn thời gian",
+  "price": "Miễn phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745746906930!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHV2TlhHV1E.!2m2!1d12.48145191803785!2d108.2334295588426!3f345.4409!4f4.577866!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dfc74030705939e3d838d"
+  },
+  "coordinates": {
+    "lat": 12.012956622452133,
+    "lng": 107.62711022290395
+  },
+  "provinceGid": 17,
+  "address": "Xã Đắk Som, huyện Đắk Glong, tỉnh Đắk Nông",
+  "description": "Hồ Tà Đùng được mệnh danh là “Vịnh Hạ Long của Tây Nguyên” với mặt hồ xanh biếc và hàng trăm hòn đảo nhỏ nhấp nhô tuyệt đẹp. Khung cảnh thiên nhiên kỳ vĩ, không khí trong lành khiến nơi đây trở thành điểm đến hấp dẫn cho những ai yêu thích khám phá và nghỉ dưỡng.\r\n",
+  "description_history": "Hồ Tà Đùng được hình thành từ quá trình xây dựng nhà máy thủy điện Đồng Nai 3, tạo nên vùng hồ rộng lớn bao phủ những dãy núi trùng điệp trước kia. Trải qua thời gian, những ngọn núi bị cô lập giữa mặt nước, tạo nên hàng trăm hòn đảo nhỏ tuyệt đẹp, biến nơi đây thành một kỳ quan thiên nhiên hiếm có của Tây Nguyên. Người dân bản địa còn lưu truyền nhiều câu chuyện kỳ bí về vùng đất này, gắn liền với đời sống tâm linh và tín ngưỡng núi rừng.",
+  "image": [
+    "/uploads/1745747441068_photo-1-16395604236201458496477.jpg"
+  ],
+  "name": "Hồ Tà Đùng",
+  "openTime": "24/7",
+  "price": "Miễn Phí",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745747415458!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRFR6ZFRpWGc.!2m2!1d11.82682091387773!2d107.8880075334946!3f119.88746!4f0.11253999999999564!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dfe8d030705939e3d8392"
+  },
+  "coordinates": {
+    "lat": 17.848400473254735,
+    "lng": 105.88033709207758
+  },
+  "provinceGid": 45,
+  "address": "Vườn quốc gia Phong Nha – Kẻ Bàng, xã Sơn Trạch, huyện Bố Trạch, tỉnh Quảng Bình",
+  "description": "Động Phong Nha, được mệnh danh là 'Đệ nhất kỳ quan động', nổi tiếng với hệ thống thạch nhũ kỳ ảo và những dòng sông ngầm dài nhất thế giới. Với vẻ đẹp hoang sơ, tráng lệ và hệ sinh thái phong phú, nơi đây trở thành điểm đến không thể bỏ qua đối với du khách yêu thích khám phá thiên nhiên kỳ thú.",
+  "description_history": "Động Phong Nha đã được phát hiện từ hàng ngàn năm trước và từng được sử dụng như một nơi trú ẩn trong các cuộc kháng chiến chống ngoại xâm. Với chiều dài hơn 7.729m, động sở hữu 14 hang chính và nhiều nhánh sông ngầm phức tạp. Năm 2003, Phong Nha – Kẻ Bàng được UNESCO công nhận là Di sản Thiên nhiên Thế giới nhờ hệ sinh thái đa dạng và giá trị địa chất độc đáo. Động Phong Nha ngày nay không chỉ là báu vật thiên nhiên mà còn là biểu tượng tự hào của du lịch Việt Nam trên bản đồ thế giới.",
+  "image": [
+    "/uploads/1745747747685_hangdongphongnhakebang.jpg"
+  ],
+  "name": "Động Phong Nha",
+  "openTime": "07:30 - 17:00",
+  "price": "150,000 VND/người lớn; 80,000 VND/trẻ em",
+  "streetViewUrls": [
+    ""
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680dff69030705939e3d8393"
+  },
+  "coordinates": {
+    "lat": 17.52836481534146,
+    "lng": 106.09454093907371
+  },
+  "provinceGid": 45,
+  "address": "Vườn quốc gia Phong Nha – Kẻ Bàng, xã Sơn Trạch, huyện Bố Trạch, tỉnh Quảng Bình",
+  "description": "Hang Sơn Đoòng, được công nhận là hang động tự nhiên lớn nhất thế giới, là kỳ quan thiên nhiên kỳ vĩ của Việt Nam. Với chiều cao đủ để chứa một tòa nhà 40 tầng và hệ sinh thái độc lập bên trong, Sơn Đoòng mang đến trải nghiệm khám phá ngoạn mục, làm say đắm bất kỳ du khách nào may mắn đặt chân tới.",
+  "description_history": "Hang Sơn Đoòng được một người dân địa phương tên Hồ Khanh phát hiện vào năm 1991, nhưng mãi đến năm 2009, nó mới được các nhà thám hiểm Anh khảo sát và công bố rộng rãi. Với chiều dài hơn 9km, chiều cao lên tới 200m và chiều rộng 150m, Sơn Đoòng sở hữu hệ sinh thái riêng biệt với rừng nguyên sinh, sông ngầm và hệ thống mây tự phát. Năm 2013, nó chính thức được công nhận là hang động lớn nhất thế giới, đưa Quảng Bình trở thành điểm đến hấp dẫn bậc nhất trên bản đồ du lịch khám phá toàn cầu.",
+  "image": [
+    "/uploads/1745748090454_hang-son-doong-quang-binh-hang-dong-lon-nhat-the-gioi-hinh4-848x530-16649303939522043678324.webp"
+  ],
+  "name": "Hang Sơn Đoòng",
+  "openTime": "Theo tour tổ chức, chỉ từ tháng 1 đến tháng 8 hằng năm",
+  "price": "70,000,000 VND/người",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745748030456!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREhrWVBjdUFF!2m2!1d17.54693151642693!2d106.1439997741049!3f321.88745!4f0.11253999999999564!5f0.7820865974627469",
+    "https://www.google.com/maps/embed?pb=!4v1745748069590!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREVzSXJpLVFF!2m2!1d17.54693151642693!2d106.1439997741049!3f341.92139152587!4f34.25231652314325!5f0.7820865974627469"
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e0bb4c489d692a7243f75"
+  },
+  "coordinates": {
+    "lat": 12.644945118284358,
+    "lng": 107.8807734726503
+  },
+  "provinceGid": 17,
+  "address": "Đắk Sôr, Krông Nô, Đắk Nông, Việt Nam",
+  "description": "Thác Dray Sáp nằm trên sông Sêrêpôk, cách thành phố Buôn Ma Thuột khoảng 30km, thuộc địa phận hai tỉnh Đắk Lắk và Đắk Nông. Thác nổi bật với dòng nước trắng xóa đổ xuống những vách đá bazan hùng vĩ, tạo nên một khung cảnh thiên nhiên kỳ vĩ, hoang sơ. Với chiều cao khoảng 20 mét và trải rộng trên 100 mét, Dray Sáp được ví như \"nàng tiên ngủ quên\" giữa đại ngàn Tây Nguyên, là điểm đến lý tưởng cho những ai yêu thích khám phá vẻ đẹp nguyên sơ và không khí mát lành của núi rừng.",
+  "description_history": "Theo truyền thuyết của người Ê Đê, thác Dray Sáp được hình thành từ một câu chuyện tình buồn giữa đôi trai gái yêu nhau tha thiết. Khi bị chia lìa bởi thế lực thù địch, nước mắt của họ đã hóa thành dòng thác trắng xóa như tấm màn nước che phủ núi rừng. Về mặt địa chất, thác hình thành từ quá trình dòng sông Sêrêpôk cắt qua những tầng đá bazan cổ hàng triệu năm trước, tạo nên địa hình hiểm trở và những dải thác kỳ vĩ như ngày nay. Thác Dray Sáp không chỉ mang vẻ đẹp thiên nhiên độc đáo mà còn ẩn chứa những giá trị văn hóa sâu sắc của đồng bào bản địa.",
+  "image": [
+    "/uploads/1745751562291_thacdraysap.jpg"
+  ],
+  "name": "Thác Dray Sap",
+  "openTime": "24/24",
+  "price": "80000",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745751371969!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ3hfTnoxd2dF!2m2!1d12.53712262067303!2d107.889782267554!3f42.924904895637!4f-0.2744313409553456!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745751396471!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ3hfTHpKRXc.!2m2!1d12.53712353893305!2d107.8900468694642!3f320!4f0!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\""
+  ],
+  "tags": [
+    ""
+  ]
+},
+{
+  "_id": {
+    "$oid": "680e0ec2c489d692a7243f7b"
+  },
+  "coordinates": {
+    "lat": 12.183808886375209,
+    "lng": 107.33374012920474
+  },
+  "provinceGid": 17,
+  "address": "Tuy Đức, Đắk Nông, Việt Nam",
+  "description": "Thác Đắk G'Lung nằm sâu trong vùng núi rừng thuộc xã Đắk Som, huyện Đắk G’Long, tỉnh Đắk Nông. Với chiều cao ấn tượng và dòng nước trong xanh đổ xuống qua những vách đá rêu phong, thác mang vẻ đẹp hoang sơ, hùng vĩ đặc trưng của vùng Tây Nguyên. Xung quanh thác là thảm thực vật xanh mướt, tiếng nước chảy hòa cùng tiếng chim rừng tạo nên một không gian yên bình, nguyên sơ, lý tưởng cho những ai yêu thích khám phá thiên nhiên và tìm kiếm sự tĩnh lặng.",
+  "description_history": "Theo truyền thuyết của người M’nông, thác Đắk G'Lung gắn liền với câu chuyện tình yêu thủy chung của đôi trai gái. Hai dòng nước của thác tượng trưng cho chàng trai và cô gái, mãi mãi bên nhau giữa núi rừng. Ngoài ra, người M’nông còn gọi thác này là \"Leng Rlu\", trong đó \"Leng\" nghĩa là thác đá, thác nước, và \"Rlu\" nghĩa là nghỉ ngơi, thể hiện ý nghĩa là nơi nghỉ ngơi. Thác cũng được cho là có một \"trái tim thác\" – một khối đá hình quả trám nằm dưới dòng nước, phát ra âm thanh như nhịp đập, giúp người dân trong bon tìm đường về nhà khi bị lạc trong rừng",
+  "image": [
+    "/uploads/1745752013004_thacdakglun.jpg"
+  ],
+  "name": "Thác Đắk G'Lung",
+  "openTime": "07h00",
+  "price": "50000",
+  "streetViewUrls": [
+    "https://www.google.com/maps/embed?pb=!4v1745751917340!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJREJzYmJ3YUE.!2m2!1d12.15026548382495!2d107.4240940342997!3f179.83398566896156!4f18.460365119043388!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745751954154!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRDRtcEhGOUFF!2m2!1d12.1503560753455!2d107.4240793239846!3f167.77680967026055!4f0.7461166703053692!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "https://www.google.com/maps/embed?pb=!4v1745751997378!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRDRtdUg5T0E.!2m2!1d12.15024083520886!2d107.4244432014733!3f180.877807288723!4f-7.942032020561484!5f0.7820865974627469\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\""
+  ],
+  "tags": [
+    ""
+  ]
+}]
